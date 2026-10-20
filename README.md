@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.10:** `site.min.css`: Solutions page: carousel page header (slide crossfade and drift, 4:3 phone frame), sticky sub-nav (gold hairline, current pill, phone edge fade), inline video fill, text-side compass on light solution sections.
 - **v1.0.9:** `site.min.css`: press release template (CMS): the Brand field switches the logo and boilerplate; an empty lead image or PDF hides its frame or button; dateline spacing.
 - **v1.0.8:** `site.min.js`: carousels fed by a Webflow CMS list get their per-slide state on load (first slide active, others hidden and inert, every second slide reversed, "n of N" labels), and the dots are rebuilt to match the number of slides.
 - **v1.0.7:** `site.min.css`: insight card hover (gold title underline, slight image zoom, deeper shadow) and focus ring.

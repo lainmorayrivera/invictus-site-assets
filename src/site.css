@@ -157,7 +157,49 @@ body.is-locked { overflow: hidden; }
 .press_pdf[href="#"] { display: none; }                     /* no PDF uploaded */
 .press_dateline time { margin-left: .3em; }
 
+/* Carousel page headers (data-media-header="carousel"): raw <picture> slides crossfade, the active one drifts. */
+.header-media_slide { position: absolute; inset: 0; opacity: 0; z-index: 0; transition: opacity 2.4s ease-in-out; }
+.header-media_slide.is-active { opacity: 1; z-index: 2; }
+.header-media_slide.is-leaving { opacity: 1; z-index: 1; transition: none; }
+.header-media_slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+@media (prefers-reduced-motion: no-preference) {
+  .header-media_slide.is-active img, .header-media_slide.is-leaving img { animation: header-media-drift 14s linear both; }
+}
+@keyframes header-media-drift { from { transform: scale(1.04); } to { transform: scale(1); } }
+@media (max-width: 767px) {   /* landscape photos: a 4:3 frame keeps people in shot */
+  .section_header-media[data-media-header="carousel"] .header-media_background { aspect-ratio: 4 / 3; }
+  .section_header-media[data-media-header="carousel"] .header-media_controls { top: calc(75vw - 3.75rem); }
+}
+
+/* Sticky solution sub-nav: gold hairline, current pill (site.min.js sets .is-current), edge fade on phones. */
+.section_subnav::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; opacity: .75;
+  background: linear-gradient(90deg, transparent, rgba(209, 169, 51, .6) 25%, rgba(209, 169, 51, .6) 75%, transparent); }
+.subnav_link.is-current { background-color: rgba(209, 169, 51, .1); border-color: rgba(209, 169, 51, .75); }
+.subnav_list { scrollbar-width: none; }
+.subnav_list::-webkit-scrollbar { display: none; }
+@media (max-width: 991px) {
+  .subnav_list { scroll-snap-type: x proximity; overscroll-behavior-x: contain; }
+  .subnav_list > li { scroll-snap-align: start; }
+  .subnav_list.has-more { -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent); mask-image: linear-gradient(90deg, #000 80%, transparent); }
+}
+
+/* Solution sections: inline BizNuvo video fills its frame; a navy compass sits behind the text on light sections. */
+.solution_video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.section_solution:not(.background-color-alternate) .solution_intro-text::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  width: clamp(18rem, 30vw, 30rem); aspect-ratio: 1; bottom: clamp(-11rem, -10vw, -6rem); left: clamp(-16rem, -14vw, -8rem);
+  background-color: #0F2A4A; opacity: .045;
+  -webkit-mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+  mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+}
+@media (max-width: 991px) {
+  .section_solution:not(.background-color-alternate) .solution_intro-text::before { left: auto; right: -30%; bottom: -20%; width: 75vw; opacity: .04; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .header-media_slide { transition: none; }
+  .solution_help-item { transition: none; }
+  .solution_help-item:hover { transform: none; }
   .insights_card, .insights_card .image-cover { transition: none; }
   .insights_card:hover, .insights_card:hover .image-cover { transform: none; }
   .text-link::after, .navbar_logo, .header-media_media, .header-media_video,
