@@ -396,18 +396,22 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
    and the closing CTA bands. site.min.js inserts .navy-photo (img) + .navy-photo-tint; the logo, label and compass
    watermark stay above them. */
 .insights_title-card.has-photo, .section_cta-billboard.has-photo { isolation: isolate; }
-.navy-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(1) contrast(1.05); pointer-events: none; }
-.navy-photo-tint { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #0F2A4A; mix-blend-mode: multiply; opacity: .82; }
-.navy-photo-tint::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 28, 51, .1), rgba(10, 28, 51, .5)); }
-.insights_title-card.has-photo > :not(.navy-photo):not(.navy-photo-tint):not(.is-overlay) { z-index: 1; }
-.section_cta-billboard.has-photo .navy-photo-tint { background: #0F2A4A; opacity: .86; }
+/* Cards: a lighter, bluer duotone (closer to the Bucknell reference) so the photo reads through the wash. */
+.navy-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(1) brightness(1.45) contrast(.9); pointer-events: none; }
+.navy-photo-tint { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #2B5385; mix-blend-mode: multiply; opacity: .9; }
+.navy-photo-shade { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(180deg, rgba(10, 28, 51, .22), rgba(10, 28, 51, 0) 30%, rgba(10, 28, 51, 0) 62%, rgba(10, 28, 51, .4)); }
+/* Bands: photo softened and darkened only behind the words, so it shows at the edges and stays quiet under the heading. */
+.section_cta-billboard.has-photo .navy-photo { inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); filter: grayscale(1) brightness(1.1) blur(1.5px); }
+.section_cta-billboard.has-photo .navy-photo-shade { background: radial-gradient(60% 70% at 50% 50%, rgba(10, 28, 51, .62), rgba(10, 28, 51, .15) 70%, rgba(10, 28, 51, .05)); }
+.insights_title-card.has-photo > :not(.navy-photo):not(.navy-photo-tint):not(.navy-photo-shade):not(.is-overlay) { z-index: 1; }
+.section_cta-billboard.has-photo .navy-photo-tint { background: #16365C; opacity: .9; }
 
 /* Play/pause circles: Webflow's button padding (9px 15px) left a 14px content box for an 18px icon, so the icon
    overflowed to the right (2.8px off-centre on every device; most visible on phones). Centre it in the full box. */
 .header-media_toggle { padding: 0; display: grid; place-items: center; }
 .section_cta-billboard.has-photo > .padding-global { position: relative; z-index: 1; }
 .section_cta-billboard.has-photo > .band_hairline { z-index: 2; }
-.navy-photo-mark { position: absolute; left: 50%; top: 50%; width: min(42rem, 90vw); transform: translate(-50%, -50%); opacity: .07; z-index: 0; pointer-events: none; }
+.navy-photo-mark { position: absolute; left: 50%; top: 50%; width: min(36rem, 80vw); transform: translate(-50%, -50%); opacity: .06; z-index: 0; pointer-events: none; }
 .insights_card .insights_title-card.has-photo .navy-photo { transition: transform .6s ease; }
 .insights_card:hover .insights_title-card.has-photo .navy-photo { transform: scale(1.03); }
 
