@@ -400,7 +400,11 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
 .navy-photo-tint { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #0F2A4A; mix-blend-mode: multiply; opacity: .82; }
 .navy-photo-tint::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 28, 51, .1), rgba(10, 28, 51, .5)); }
 .insights_title-card.has-photo > :not(.navy-photo):not(.navy-photo-tint):not(.is-overlay) { z-index: 1; }
-.section_cta-billboard.has-photo .navy-photo-tint { background: #0A1C33; opacity: .86; }
+.section_cta-billboard.has-photo .navy-photo-tint { background: #0F2A4A; opacity: .86; }
+
+/* Play/pause circles: Webflow's button padding (9px 15px) left a 14px content box for an 18px icon, so the icon
+   overflowed to the right (2.8px off-centre on every device; most visible on phones). Centre it in the full box. */
+.header-media_toggle { padding: 0; display: grid; place-items: center; }
 .section_cta-billboard.has-photo > .padding-global { position: relative; z-index: 1; }
 .section_cta-billboard.has-photo > .band_hairline { z-index: 2; }
 .navy-photo-mark { position: absolute; left: 50%; top: 50%; width: min(42rem, 90vw); transform: translate(-50%, -50%); opacity: .07; z-index: 0; pointer-events: none; }
