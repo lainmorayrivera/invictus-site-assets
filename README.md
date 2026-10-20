@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.19:** `site.min.js` + `site.min.css`: Media & Insights archive shows a friendly note (with a Substack link) when a filter has no items yet, e.g. Press before the first release.
 - **v1.0.18:** `site.min.css`: define the design tokens the book figures use (colours, fonts, spacing, gold bars) on the figure roots; on Webflow the figure icons, rules and gold bars had no colour.
 - **v1.0.17:** `site.min.css`: visible two-tone keyboard focus ring (gold on a navy halo) for buttons, nav and footer links, insight cards and text links that had none.
 - **v1.0.16:** `site.min.js`: clear Webflow's "Example Text" placeholders case-insensitively (inputs and textareas); external `rel="noopener"` links open in a new tab (the Webflow API drops `target`).
