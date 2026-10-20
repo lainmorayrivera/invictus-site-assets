@@ -236,6 +236,22 @@ body.is-locked { overflow: hidden; }
 .contact-next_link span[aria-hidden] { display: inline-block; transition: transform .2s ease; }
 .contact-next_link:hover span[aria-hidden] { transform: translateX(4px); }
 
+/* Book figures (figures.min.css) use the prototype's design tokens; Webflow's own variables have other names,
+   so define them on the figure roots. Without these the figure icons and rules had no colour. */
+.fig-force, .fig-wheel, .fig-diagnostic, .fig-phases {
+  --color--primary: #0F2A4A; --color--accent: #D1A933; --color--accent-ink: #85660A; --color--ink: #1E2531;
+  --color--light: #FBFAF7; --color--muted: #5B6370; --color--neutral: #A9B2BE; --color--surface: #FBFAF7; --color--surface-alt: #F1EEE7;
+  --font--body: "Source Sans 3", "Segoe UI", Arial, sans-serif; --font--heading: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --weight--heading: 640; --text--eyebrow: .8125rem; --text--small: .875rem;
+  --space--small: 1rem; --space--medium: 1.5rem; --space--large: 2.5rem; --radius--small: 4px; --radius--pill: 999px;
+  --theme--rule: rgba(15, 42, 74, .14);
+  --shadow-card: 0 1px 0 rgba(15, 42, 74, .05), 0 .9rem 2rem -1.4rem rgba(8, 24, 44, .38);
+  --shadow-card-hover: 0 1px 0 rgba(15, 42, 74, .06), 0 1.25rem 2.5rem -1.4rem rgba(8, 24, 44, .5);
+  --bar-gold: linear-gradient(90deg, rgba(209, 169, 51, .15), #D1A933 30%, #D1A933 70%, rgba(209, 169, 51, .15));
+  --bar-gold-v: linear-gradient(180deg, rgba(209, 169, 51, .15), #D1A933 25%, #D1A933 75%, rgba(209, 169, 51, .15));
+  --hairline-gold: linear-gradient(90deg, transparent, rgba(209, 169, 51, .6) 25%, rgba(209, 169, 51, .6) 75%, transparent);
+}
+
 /* Keyboard focus: a two-tone ring (gold on a navy halo) that reads on light and dark sections alike,
    for controls whose Webflow styles had no focus state. */
 .button:focus-visible, .w-button:focus-visible, .navbar_menu-email:focus-visible, .footer_social-button:focus-visible,
