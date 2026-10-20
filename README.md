@@ -15,26 +15,27 @@ In **Site settings → Custom code**, pin a release tag:
 
 Head code:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lainmorayrivera/invictus-site-assets@v1.0.5/dist/figures.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lainmorayrivera/invictus-site-assets@v1.0.5/dist/site.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lainmorayrivera/invictus-site-assets@v1.0.6/dist/figures.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lainmorayrivera/invictus-site-assets@v1.0.6/dist/site.min.css">
 ```
 
 Footer code (before `</body>`):
 ```html
-<script src="https://cdn.jsdelivr.net/gh/lainmorayrivera/invictus-site-assets@v1.0.5/dist/site.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/lainmorayrivera/invictus-site-assets@v1.0.6/dist/site.min.js" defer></script>
 ```
 
 ## Releasing a change
 1. Edit `prototype/modules/fig-*.css`, `fig-shared.css`, `prototype/script.js` or `src/site.css`.
 2. From the project root, run `python site-assets/build.py`. It rebuilds the combined CSS and minifies both files into `site-assets/dist/`.
-3. Commit, then tag the next version: `git tag v1.0.6 && git push && git push --tags`.
-4. In Webflow, change the version in every line (e.g. `@v1.0.5` to `@v1.0.6`) and publish.
+3. Commit, then tag the next version: `git tag v1.0.7 && git push && git push --tags`.
+4. In Webflow, change the version in every line (e.g. `@v1.0.6` to `@v1.0.7`) and publish.
 
 Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr caches permanently, so visitors never see a half-updated mix.
 
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.6:** `site.min.css`: scroll reveals (`[data-reveal]` fade-up, photo settle) and the thesis band's reveal; carousel dot focus ring. `site.min.js`: decorative images (`aria-hidden="true"`, e.g. watermarks) are no longer revealed to full opacity.
 - **v1.0.5:** `site.min.css`: 3D flip book (custom-property sizing, container units, sheens, spine, pages) and rotator state rules (progress line, active icon, phone tab strip). `site.min.js`: the `#`/Space handling also covers `role="tab"` links; the rotator's pause label is derived from its own text.
 - **v1.0.4:** `site.min.js`: the scroll behaviour (`is-scrolled` shadow and logo shrink, phone navbar hide/show) targets `.navbar_component`; Webflow's navbar has no `.is-dark`, so it never ran there.
 - **v1.0.3:** `site.min.js`: the media header can no longer stay hidden. The first poster is forced to eager (Webflow marks images lazy), and `is-loaded` is added after 2.5 s regardless of image load events.
