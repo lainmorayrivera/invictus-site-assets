@@ -164,8 +164,15 @@ body.is-locked { overflow: hidden; }
 .header-media_slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 @media (prefers-reduced-motion: no-preference) {
   .header-media_slide.is-active img, .header-media_slide.is-leaving img { animation: header-media-drift 14s linear both; }
+  /* Vary the motion so consecutive slides don't all zoom the same way: zoom out, pan right, zoom in, pan left. */
+  .header-media_slide:nth-child(4n+2).is-active img, .header-media_slide:nth-child(4n+2).is-leaving img { animation-name: header-media-pan-right; }
+  .header-media_slide:nth-child(4n+3).is-active img, .header-media_slide:nth-child(4n+3).is-leaving img { animation-name: header-media-push-in; }
+  .header-media_slide:nth-child(4n+4).is-active img, .header-media_slide:nth-child(4n+4).is-leaving img { animation-name: header-media-pan-left; }
 }
 @keyframes header-media-drift { from { transform: scale(1.04); } to { transform: scale(1); } }
+@keyframes header-media-pan-right { from { transform: scale(1.08) translateX(-2.5%); } to { transform: scale(1.08) translateX(2.5%); } }
+@keyframes header-media-push-in { from { transform: scale(1) translateY(0); } to { transform: scale(1.06) translateY(-1.5%); } }
+@keyframes header-media-pan-left { from { transform: scale(1.08) translateX(2.5%); } to { transform: scale(1.08) translateX(-2.5%); } }
 @media (max-width: 767px) {   /* landscape photos: a 4:3 frame keeps people in shot */
   .section_header-media[data-media-header="carousel"] .header-media_background { aspect-ratio: 4 / 3; }
   .section_header-media[data-media-header="carousel"] .header-media_controls { top: calc(75vw - 3.75rem); }

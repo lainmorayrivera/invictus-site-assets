@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.28:** `site.min.css`: header slideshows vary their motion (zoom out, pan right, gentle zoom in, pan left, repeating) instead of every slide zooming out the same way. Reduced-motion users still get no motion.
 - **v1.0.27:** photo refinement. Cards: lighter, bluer duotone so the photo reads (closer to the Bucknell reference). Bands: photo softened (1.5px blur) and darkened only behind the text, watermark lighter. Solutions, About and Insights bands swapped to photos without signage (towers under cloud, Lower Manhattan across the water, glass tower); sign photos removed from the rotation pool.
 - **v1.0.26:** `site.min.css`: play/pause circles centre their icon (Webflow's 15px button padding pushed it 2.8px right); CTA band photo wash uses the brand navy (#0F2A4A) so bands match the footer.
 - **v1.0.25:** `site.min.js` + `site.min.css`: navy photo backgrounds (Bucknell-style). Article title cards with no image of their own get a matched greyscale FiDi / Wall Street photo under a navy wash (new articles rotate through the pool by a hash of their link); the closing CTA band on each page gets its own photo and the compass watermark. Logo, label and watermark stay on top. Photos: Unsplash License, in Webflow Assets (`stock-*`).
