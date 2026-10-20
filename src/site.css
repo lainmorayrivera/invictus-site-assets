@@ -441,3 +441,8 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
   .book-3d_object, .solutions-rotator_panel, .solutions-rotator_panel.is-active { transition: none; }
   .text-link:hover::after { transform: none; }
 }
+
+/* Footer credits: photographer and developer links, styled as quiet text links. */
+.footer_bottom-text a { color: inherit; text-decoration: underline; text-decoration-color: rgba(209, 169, 51, .45); text-underline-offset: 3px; transition: color .2s ease, text-decoration-color .2s ease; }
+.footer_bottom-text a:hover, .footer_bottom-text a:focus-visible { color: #D1A933; text-decoration-color: #D1A933; }
+.footer_bottom-text a + a { margin-left: .35em; }
