@@ -362,6 +362,14 @@ body.is-locked { overflow: hidden; }
   .advisors-rotator .solutions-rotator_tab span:not(.solutions-rotator_progress) { font-size: .8125rem; }
 }
 
+/* Insight cards: Tags / Topics / Minutes are bound as raw text in [data-meta] spans; site.min.js turns them into pills. */
+.insights_meta { flex-wrap: wrap; row-gap: .4rem; }
+.insights_meta [data-meta] { display: none; }
+.tag.is-new { background: #0F2A4A; color: #FFFFFF; border-color: #0F2A4A; }
+.tag.is-popular { background: #D1A933; color: #0A1C33; border-color: #D1A933; }
+.tag.is-discussed { background: #F1EEE7; color: #0F2A4A; border-color: #0F2A4A; }
+.tag.is-topic { background: transparent; color: #5B6370; border-color: rgba(91, 99, 112, .35); font-weight: 600; }
+
 @media (prefers-reduced-motion: reduce) {
   .header-media_slide { transition: none; }
   .insights-featured_card .image-cover { transition: none; }
