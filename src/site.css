@@ -256,7 +256,7 @@ body.is-locked { overflow: hidden; }
 .insights-filter_button[aria-pressed="true"] { background-color: #0F2A4A; border-color: #0F2A4A; color: #FBFAF7; }
 .insights-filter_button:focus-visible { outline: 2px solid #85660A; outline-offset: 2px; }
 [data-insights-more][hidden] { display: none; }
-.insights_title-card-label[data-kind]:not([data-kind=""])::before { content: attr(data-kind) "  B7  "; }   /* "Article · Substack" from the Type attribute + Source text */
+.insights_title-card-label[data-kind]:not([data-kind=""])::before { content: attr(data-kind) " · "; }   /* "Article · Substack" from the Type attribute + Source text */
 .insights-featured_card:hover .heading-style-h3 { text-decoration: underline; text-decoration-color: #D1A933; text-underline-offset: 6px; }
 .insights-featured_card .image-cover { transition: transform .4s ease; }
 .insights-featured_card:hover .image-cover { transform: scale(1.03); }
