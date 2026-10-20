@@ -370,6 +370,34 @@ body.is-locked { overflow: hidden; }
 .tag.is-discussed { background: #F1EEE7; color: #0F2A4A; border-color: #0F2A4A; }
 .tag.is-topic { background: transparent; color: #5B6370; border-color: rgba(91, 99, 112, .35); font-weight: 600; }
 
+/* Scrolling (prototype section 41): smooth in-page jumps that clear the fixed navbar, a gold reading-progress line
+   on long pages (site.min.js sets [data-progress]), and on phones the navbar slides away on scroll down. */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+html { scroll-padding-top: 6.5rem; }
+html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
+@supports (animation-timeline: scroll()) {
+  .navbar_component[data-progress]::before {
+    content: ""; position: absolute; left: 0; bottom: 0; z-index: 2; width: 100%; height: 2px; pointer-events: none;
+    background: linear-gradient(90deg, #9A7A1E, #D1A933);
+    transform-origin: 0 50%; transform: scaleX(0);
+    animation: read-progress linear both; animation-timeline: scroll(root block);
+  }
+  @keyframes read-progress { to { transform: scaleX(1); } }
+}
+@media (max-width: 991px) {
+  .navbar_component { transition: transform .3s ease, box-shadow .3s ease; }
+  html.nav-hidden .navbar_component { transform: translateY(-100%); box-shadow: none; }
+  html.nav-hidden .section_subnav { top: 0; }
+  .navbar_menu { overscroll-behavior: contain; }
+}
+@media (max-width: 991px) and (prefers-reduced-motion: reduce) { .navbar_component { transition: none; } }
+
+/* "Watch on YouTube" buttons: YouTube red with the play logo (site.min.js adds .is-youtube and the icon).
+   #CC0000 rather than YouTube's #FF0000 so white text passes WCAG AA contrast. */
+.button.is-youtube { display: inline-flex; align-items: center; gap: .55rem; background-color: #CC0000; border-color: #CC0000; color: #FFFFFF; }
+.button.is-youtube:hover { background-color: #A80000; border-color: #A80000; color: #FFFFFF; }
+.button.is-youtube svg { width: 1.35em; height: 1.35em; flex: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .header-media_slide { transition: none; }
   .insights-featured_card .image-cover { transition: none; }

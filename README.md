@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.22:** `site.min.css` + `site.min.js`: scrolling from the prototype (section 41) that never reached Webflow: smooth in-page jumps offset below the navbar, the gold reading-progress line on every page but Home, and the phone navbar sliding away on scroll down. "Watch on YouTube" buttons are YouTube red (#CC0000, AA contrast) with the play logo.
 - **v1.0.21:** `site.min.js` + `site.min.css`: Insight cards show their CMS Tags (New / Popular / Most discussed pills), Topics and "N min read", expanded from `[data-meta]` spans in the card meta row, as in the prototype.
 - **v1.0.20:** `site.min.js`: header and inline videos set `muted` + `loop` before playing (Webflow strips the attributes, so the hero froze after one pass and iOS would not autoplay); a "Skip to content" link is inserted on every page (styles in `site.min.css`); Insights filter clicks update `?filter=` in the address bar.
 - **v1.0.19:** `site.min.js` + `site.min.css`: Media & Insights archive shows a friendly note (with a Substack link) when a filter has no items yet, e.g. Press before the first release.
