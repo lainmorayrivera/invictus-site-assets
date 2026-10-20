@@ -147,6 +147,16 @@ body.is-locked { overflow: hidden; }
 .insights_card:hover .image-frame { box-shadow: 0 1.4rem 2.6rem -1.3rem rgba(8, 24, 44, .55); }
 .insights_card:focus-visible { outline: 2px solid #85660A; outline-offset: 6px; }
 
+/* Press release template (CMS). The brand wrapper carries data-press-brand bound to the Brand option,
+   which switches the logo and the boilerplate; Webflow defaults show the Advisors versions. */
+.press_content:has([data-press-brand="Invictus Global Media"]) .press_brand.is-advisors,
+.press_content:has([data-press-brand="Invictus Global Media"]) .press_about-block.is-advisors { display: none; }
+.press_content:has([data-press-brand="Invictus Global Media"]) .press_brand.is-media,
+.press_content:has([data-press-brand="Invictus Global Media"]) .press_about-block.is-media { display: block; }
+.press_image:has(img.w-dyn-bind-empty) { display: none; }   /* no lead image: drop the frame too */
+.press_pdf[href="#"] { display: none; }                     /* no PDF uploaded */
+.press_dateline time { margin-left: .3em; }
+
 @media (prefers-reduced-motion: reduce) {
   .insights_card, .insights_card .image-cover { transition: none; }
   .insights_card:hover, .insights_card:hover .image-cover { transform: none; }
