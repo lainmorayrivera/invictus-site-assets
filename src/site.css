@@ -392,6 +392,21 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
 }
 @media (max-width: 991px) and (prefers-reduced-motion: reduce) { .navbar_component { transition: none; } }
 
+/* Navy photo backgrounds (Bucknell-style): a greyscale FiDi photo washed in navy sits under the article title card
+   and the closing CTA bands. site.min.js inserts .navy-photo (img) + .navy-photo-tint; the logo, label and compass
+   watermark stay above them. */
+.insights_title-card.has-photo, .section_cta-billboard.has-photo { isolation: isolate; }
+.navy-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(1) contrast(1.05); pointer-events: none; }
+.navy-photo-tint { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #0F2A4A; mix-blend-mode: multiply; opacity: .82; }
+.navy-photo-tint::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 28, 51, .1), rgba(10, 28, 51, .5)); }
+.insights_title-card.has-photo > :not(.navy-photo):not(.navy-photo-tint):not(.is-overlay) { z-index: 1; }
+.section_cta-billboard.has-photo .navy-photo-tint { background: #0A1C33; opacity: .86; }
+.section_cta-billboard.has-photo > .padding-global { position: relative; z-index: 1; }
+.section_cta-billboard.has-photo > .band_hairline { z-index: 2; }
+.navy-photo-mark { position: absolute; left: 50%; top: 50%; width: min(42rem, 90vw); transform: translate(-50%, -50%); opacity: .07; z-index: 0; pointer-events: none; }
+.insights_card .insights_title-card.has-photo .navy-photo { transition: transform .6s ease; }
+.insights_card:hover .insights_title-card.has-photo .navy-photo { transform: scale(1.03); }
+
 /* "Watch on YouTube" buttons: YouTube red with the play logo (site.min.js adds .is-youtube and the icon).
    #CC0000 rather than YouTube's #FF0000 so white text passes WCAG AA contrast. */
 .button.is-youtube { display: inline-flex; align-items: center; gap: .55rem; background-color: #CC0000; border-color: #CC0000; color: #FFFFFF; }
