@@ -252,6 +252,13 @@ body.is-locked { overflow: hidden; }
   --hairline-gold: linear-gradient(90deg, transparent, rgba(209, 169, 51, .6) 25%, rgba(209, 169, 51, .6) 75%, transparent);
 }
 
+/* Skip link (inserted by site.min.js): hidden above the page until it receives keyboard focus. */
+.skip-link {
+  position: absolute; left: 1rem; top: -4rem; z-index: 2000; display: inline-flex; align-items: center; min-height: 44px;
+  padding: .5rem 1rem; border-radius: 4px; background: #0F2A4A; color: #FBFAF7; font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { top: 1rem; outline: 3px solid #D1A933; outline-offset: 2px; }
+
 /* Keyboard focus: a two-tone ring (gold on a navy halo) that reads on light and dark sections alike,
    for controls whose Webflow styles had no focus state. */
 .button:focus-visible, .w-button:focus-visible, .navbar_menu-email:focus-visible, .footer_social-button:focus-visible,
