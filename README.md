@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.16:** `site.min.js`: clear Webflow's "Example Text" placeholders case-insensitively (inputs and textareas); external `rel="noopener"` links open in a new tab (the Webflow API drops `target`).
 - **v1.0.15:** `site.min.js`: Contact form on Webflow (Topic options from `data-options`, `?topic=` pre-select and topic cards; Webflow handles the submit), clears Webflow's default "Example text" placeholders. `site.min.css`: Education (card hovers, figure margins), Contact (hero compass, topic states, textarea/select, next-step links), Privacy/Terms typography and compasses, text-side compass on the About bio, academic intro and contact intro.
 - **v1.0.14:** `site.min.js`: CMS-fed rotators (`data-rotator-cms`): flatten the Advisors tab and panel lists into the rotator, order by the bound Sort order (blank last), set ids/ARIA, split Roles into tags. `site.min.css`: Advisory Board tab photos, active ring, quote marks, empty-field hiding, alternating panel sides on desktop.
 - **v1.0.13:** `site.min.css`: insight title cards read "Article · Substack" (Type from a `data-kind` attribute ahead of the bound Source).
