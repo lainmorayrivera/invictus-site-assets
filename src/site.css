@@ -142,7 +142,8 @@ body.is-locked { overflow: hidden; }
 /* Insight cards: hovering the card underlines its title in gold, zooms the image slightly and deepens the shadow. */
 .insights_card:hover .heading-style-h4 { text-decoration: underline; text-decoration-color: #D1A933; text-underline-offset: 5px; }
 .insights_card .image-cover { transition: transform .4s ease; }
-.insights_card:hover .image-cover { transform: scale(1.03); }
+.insights_card:hover .image-cover,
+.js-motion .insights_card:hover img.image-cover[data-reveal-img].is-revealed { transform: scale(1.03); }   /* outranks the reveal's settled state */
 .insights_card:hover .image-frame { box-shadow: 0 1.4rem 2.6rem -1.3rem rgba(8, 24, 44, .55); }
 .insights_card:focus-visible { outline: 2px solid #85660A; outline-offset: 6px; }
 
