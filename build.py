@@ -1,6 +1,7 @@
 """Build the CDN files from the prototype sources. Run from the project root:
     python site-assets/build.py
-Concatenates the diagram module CSS (fig-shared.css last), then minifies it and script.js with esbuild (via npx)."""
+Concatenates the diagram module CSS (fig-shared.css last), then minifies it, src/site.css and
+script.js with esbuild (via npx)."""
 import pathlib, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -19,6 +20,7 @@ def minify(src, out):
     subprocess.run(cmd, check=True, shell=sys.platform == "win32")
 
 minify(combined, DIST / "figures.min.css")
+minify(ROOT / "site-assets" / "src" / "site.css", DIST / "site.min.css")
 minify(ROOT / "prototype" / "script.js", DIST / "site.min.js")
 for f in sorted(DIST.iterdir()):
     print(f"{f.name}: {f.stat().st_size / 1024:.1f} KB")

@@ -1,0 +1,21 @@
+/* Invictus site rules that Webflow's Designer cannot author (pseudo-element content,
+   descendant selectors, body state classes). Everything else lives in Webflow classes.
+   Built to dist/site.min.css by build.py. */
+
+/* Phone menu open (site.min.js adds body.is-locked): the page behind it doesn't scroll. */
+body.is-locked { overflow: hidden; }
+
+/* "Read more" style links: trailing arrow that nudges on hover. */
+.text-link::after { content: "\2192"; transition: transform .2s ease; }
+.text-link:hover::after { transform: translateX(3px); }
+
+/* Desktop header: the logo shrinks slightly once the page scrolls (site.min.js adds .is-scrolled). */
+.navbar_logo { transition: width .3s ease; }
+@media (min-width: 992px) {
+  .navbar_component.is-scrolled .navbar_logo-link .navbar_logo { width: 9.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-link::after, .navbar_logo { transition: none; }
+  .text-link:hover::after { transform: none; }
+}
