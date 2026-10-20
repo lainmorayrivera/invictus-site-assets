@@ -236,6 +236,13 @@ body.is-locked { overflow: hidden; }
 .contact-next_link span[aria-hidden] { display: inline-block; transition: transform .2s ease; }
 .contact-next_link:hover span[aria-hidden] { transform: translateX(4px); }
 
+/* Keyboard focus: a two-tone ring (gold on a navy halo) that reads on light and dark sections alike,
+   for controls whose Webflow styles had no focus state. */
+.button:focus-visible, .w-button:focus-visible, .navbar_menu-email:focus-visible, .footer_social-button:focus-visible,
+.insights_card:focus-visible, .text-link:focus-visible, .contact-next_link:focus-visible, .footer_legal-link:focus-visible {
+  outline: 3px solid #D1A933; outline-offset: 2px; box-shadow: 0 0 0 5px #0F2A4A;
+}
+
 /* Privacy and Terms: plain elements inside .legal_content, styled here so editors can add paragraphs freely. */
 .section_legal { position: relative; overflow: hidden; isolation: isolate; }
 .section_legal::before, .section_legal::after {
