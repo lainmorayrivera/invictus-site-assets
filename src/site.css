@@ -261,6 +261,29 @@ body.is-locked { overflow: hidden; }
 .insights-featured_card .image-cover { transition: transform .4s ease; }
 .insights-featured_card:hover .image-cover { transform: scale(1.03); }
 
+/* About: Advisory Board, a rotator fed by two Advisors collection lists (site.min.js flattens them into the rotator). */
+.advisors-rotator { --rot-dur: 14s; }
+.advisors-rotator .solutions-rotator_tab { gap: .75rem; }
+.advisors-rotator .advisors_tab-photo { opacity: 1; }
+.advisors-rotator .solutions-rotator_tab.is-active .advisors_tab-photo { border-color: #D1A933; box-shadow: 0 0 0 2px #F1EEE7, 0 0 0 4px #D1A933; }
+.advisors-rotator:hover .solutions-rotator_tab.is-active .solutions-rotator_progress,
+.advisors-rotator:focus-within .solutions-rotator_tab.is-active .solutions-rotator_progress { animation-play-state: paused; }
+.advisors_quote-text::before { content: "“"; }
+.advisors_quote-text::after { content: "”"; }
+.advisors_quote:has(.w-dyn-bind-empty), .advisors_summary.w-dyn-bind-empty, .advisors_roles.w-dyn-bind-empty { display: none; }
+.advisors_more summary::-webkit-details-marker { margin-right: .4rem; }
+.advisors_more summary:hover { text-decoration: underline; text-underline-offset: 4px; }
+.advisors_more[open] summary { margin-bottom: 1rem; }
+.advisors_more p { margin-bottom: 1rem; color: #1E2531; }
+@media (min-width: 992px) {
+  /* The bar is child 1, so panels 2, 4... are children 3, 5...: they put the photo on the right. */
+  .solutions-rotator > .advisors_panel:nth-child(odd) { grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); }
+  .solutions-rotator > .advisors_panel:nth-child(odd) > :first-child { order: 2; }
+}
+@media (max-width: 767px) {
+  .advisors-rotator .solutions-rotator_tab span:not(.solutions-rotator_progress) { font-size: .8125rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .header-media_slide { transition: none; }
   .insights-featured_card .image-cover { transition: none; }
