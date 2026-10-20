@@ -249,8 +249,20 @@ body.is-locked { overflow: hidden; }
   .header-media_aside .book-stage_hint { display: none; }
 }
 
+/* Media & Insights: the CMS wrappers don't box their cards, so the archive grid works before (and without) the script. */
+[data-insights-list] > .w-dyn-list, [data-insights-list] .w-dyn-items { display: contents; }
+[data-insights-list] .w-dyn-empty { display: none; }
+.insights_archive-item[hidden] { display: none; }
+.insights-filter_button[aria-pressed="true"] { background-color: #0F2A4A; border-color: #0F2A4A; color: #FBFAF7; }
+.insights-filter_button:focus-visible { outline: 2px solid #85660A; outline-offset: 2px; }
+[data-insights-more][hidden] { display: none; }
+.insights-featured_card:hover .heading-style-h3 { text-decoration: underline; text-decoration-color: #D1A933; text-underline-offset: 6px; }
+.insights-featured_card .image-cover { transition: transform .4s ease; }
+.insights-featured_card:hover .image-cover { transform: scale(1.03); }
+
 @media (prefers-reduced-motion: reduce) {
   .header-media_slide { transition: none; }
+  .insights-featured_card .image-cover { transition: none; }
   .solution_help-item { transition: none; }
   .solution_help-item:hover { transform: none; }
   .insights_card, .insights_card .image-cover { transition: none; }
