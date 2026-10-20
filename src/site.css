@@ -208,7 +208,53 @@ body.is-locked { overflow: hidden; }
 @media (max-width: 991px) {
   #part-why .solution_intro-text::before, #part-journey .solution_intro-text::before, #part-future .solution_intro-text::before { left: auto; right: -30%; bottom: -20%; width: 75vw; opacity: .04; }
 }
-.part_figure figure, .solution_figure figure { margin: 0; }
+.part_figure figure, .solution_figure figure, .edu-arc_figure figure { margin: 0; }
+
+/* About bio, Education academic intro, Contact intro: the same text-side compass. Contact hero: a light one on navy. */
+.bio_content::before, .edu-academic_intro::before, .contact_intro::before, .contact-hero_compass {
+  -webkit-mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+  mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+}
+.bio_content::before, .edu-academic_intro::before, .contact_intro::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  width: clamp(18rem, 30vw, 30rem); aspect-ratio: 1; bottom: clamp(-11rem, -10vw, -6rem); left: clamp(-16rem, -14vw, -8rem);
+  background-color: #0F2A4A; opacity: .045;
+}
+.contact-hero_compass { background-color: #FBFAF7; opacity: .08; }
+@media (max-width: 991px) {
+  .bio_content::before, .edu-academic_intro::before, .contact_intro::before { left: auto; right: -30%; bottom: -15%; width: 75vw; opacity: .04; }
+}
+
+/* Education and Contact cards: lift on hover; the chosen contact topic gets a gold edge. */
+.edu-card:hover, .edu-resource:hover, .contact_topic:hover { transform: translateY(-2px); box-shadow: 0 1.25rem 2.5rem -1.5rem rgba(8, 24, 44, .45); }
+.edu-resource:hover { border-color: rgba(15, 42, 74, .25); }
+.contact_topic[aria-pressed="true"] { border-color: #0F2A4A; box-shadow: inset 3px 0 0 #D1A933, 0 1.25rem 2.5rem -1.5rem rgba(8, 24, 44, .45); }
+.contact_topic:focus-visible { outline: 3px solid #85660A; outline-offset: 2px; }
+.contact_form textarea.form_input { min-height: 8rem; resize: vertical; }
+.contact_form select.form_input { appearance: auto; }
+.contact-next_link:hover { text-decoration: underline; text-underline-offset: .2em; }
+.contact-next_link span[aria-hidden] { display: inline-block; transition: transform .2s ease; }
+.contact-next_link:hover span[aria-hidden] { transform: translateX(4px); }
+
+/* Privacy and Terms: plain elements inside .legal_content, styled here so editors can add paragraphs freely. */
+.section_legal { position: relative; overflow: hidden; isolation: isolate; }
+.section_legal::before, .section_legal::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; width: clamp(20rem, 36vw, 34rem); aspect-ratio: 1;
+  background-color: #0F2A4A; opacity: .045;
+  -webkit-mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+  mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+}
+.section_legal::before { top: 2rem; right: clamp(-14rem, -10vw, -6rem); }
+.section_legal::after { bottom: 4rem; left: clamp(-14rem, -10vw, -6rem); }
+.legal_content h1 { margin-bottom: .5rem; }
+.legal_content h2 { position: relative; margin: 2.5rem 0 .5rem; padding-top: .9rem; font-size: 1.5rem; color: #0F2A4A; }
+.legal_content h2::before { content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 2px; background: #D1A933; border-radius: 2px; }
+.legal_content p, .legal_content li { color: #1E2531; margin-bottom: .5rem; }
+.legal_content ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+.legal_content li::marker { color: #D1A933; }
+.legal_content a { color: #85660A; }
+.legal_updated { color: #5B6370; margin-bottom: 1rem; }
+@media (max-width: 767px) { .section_legal::before, .section_legal::after { width: 80vw; opacity: .035; } }
 
 /* Book page header: the flip book stands at the right of a carousel header (.header-media_aside),
    mirrored so the page edges face the reader, on a navy halo that reads over any photo. */
@@ -289,6 +335,8 @@ body.is-locked { overflow: hidden; }
   .insights-featured_card .image-cover { transition: none; }
   .solution_help-item { transition: none; }
   .solution_help-item:hover { transform: none; }
+  .edu-card, .edu-resource, .contact_topic, .contact-next_link span[aria-hidden] { transition: none; }
+  .edu-card:hover, .edu-resource:hover, .contact_topic:hover, .contact-next_link:hover span[aria-hidden] { transform: none; }
   .insights_card, .insights_card .image-cover { transition: none; }
   .insights_card:hover, .insights_card:hover .image-cover { transform: none; }
   .text-link::after, .navbar_logo, .header-media_media, .header-media_video,
