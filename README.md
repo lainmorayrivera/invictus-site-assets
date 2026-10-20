@@ -35,7 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
-- **v1.0.6:** `site.min.css`: scroll reveals (`[data-reveal]` fade-up, photo settle) and the thesis band's reveal; carousel dot focus ring. `site.min.js`: decorative images (`aria-hidden="true"`, e.g. watermarks) are no longer revealed to full opacity.
+- **v1.0.6:** `site.min.css`: scroll reveals (`[data-reveal]` fade-up, photo settle) and the thesis band's reveal; carousel dot focus ring. `site.min.js`: decorative images (`alt=""`, e.g. watermarks; Webflow drops `aria-hidden` on images) are no longer revealed to full opacity.
 - **v1.0.5:** `site.min.css`: 3D flip book (custom-property sizing, container units, sheens, spine, pages) and rotator state rules (progress line, active icon, phone tab strip). `site.min.js`: the `#`/Space handling also covers `role="tab"` links; the rotator's pause label is derived from its own text.
 - **v1.0.4:** `site.min.js`: the scroll behaviour (`is-scrolled` shadow and logo shrink, phone navbar hide/show) targets `.navbar_component`; Webflow's navbar has no `.is-dark`, so it never ran there.
 - **v1.0.3:** `site.min.js`: the media header can no longer stay hidden. The first poster is forced to eager (Webflow marks images lazy), and `is-loaded` is added after 2.5 s regardless of image load events.
