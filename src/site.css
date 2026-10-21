@@ -145,7 +145,7 @@ body.is-locked { overflow: hidden; }
 .insights_card:hover .image-cover,
 .js-motion .insights_card:hover img.image-cover[data-reveal-img].is-revealed { transform: scale(1.03); }   /* outranks the reveal's settled state */
 .insights_card:hover .image-frame { box-shadow: 0 1.4rem 2.6rem -1.3rem rgba(8, 24, 44, .55); }
-.insights_card:focus-visible { outline: 2px solid #85660A; outline-offset: 6px; }
+
 
 /* Press release template (CMS). The brand wrapper carries data-press-brand bound to the Brand option,
    which switches the logo and the boilerplate; Webflow defaults show the Advisors versions. */
@@ -249,7 +249,7 @@ body.is-locked { overflow: hidden; }
   --color--primary: #0F2A4A; --color--accent: #D1A933; --color--accent-ink: #85660A; --color--ink: #1E2531;
   --color--light: #FBFAF7; --color--muted: #5B6370; --color--neutral: #A9B2BE; --color--surface: #FBFAF7; --color--surface-alt: #F1EEE7;
   --font--body: "Source Sans 3", "Segoe UI", Arial, sans-serif; --font--heading: "Montserrat", "Segoe UI", Arial, sans-serif;
-  --weight--heading: 640; --text--eyebrow: .8125rem; --text--small: .875rem;
+  --weight--heading: 600; --text--eyebrow: .8125rem; --text--small: .875rem;
   --space--small: 1rem; --space--medium: 1.5rem; --space--large: 2.5rem; --radius--small: 4px; --radius--pill: 999px;
   --theme--rule: rgba(15, 42, 74, .14);
   --shadow-card: 0 1px 0 rgba(15, 42, 74, .05), 0 .9rem 2rem -1.4rem rgba(8, 24, 44, .38);
@@ -441,7 +441,7 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
 }
 .button.is-secondary:hover { background-color: color-mix(in srgb, var(--_theme---button-bg) 12%, transparent); }
 .button:active { transform: translateY(0); box-shadow: 0 .4rem .8rem -.6rem rgba(8, 24, 44, .5); transition-duration: .12s; }
-.insights-carousel_arrow:hover { transform: translateY(-1px); }
+
 @media (prefers-reduced-motion: reduce) {
   .button:hover, .button:active, .footer_social-button:hover, .insights-carousel_arrow:hover { transform: none; }
 }
@@ -510,3 +510,138 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
 .header-media_toggle.solutions-rotator_toggle {
   transition: color .3s ease, background-color .3s ease, border-color .3s ease, transform .4s cubic-bezier(.2, .7, .2, 1);
 }
+
+/* ===== Polish pass (20 Oct 2026 review, docs/polish-review-2026-10-20.md). Numbers refer to that list. ===== */
+
+/* 1. Advisor tab avatars keep their circle when a long name needs the room. */
+.advisors_tab-photo { flex-shrink: 0; }
+
+/* 2, 22. Book on phones: cover centred under the slideshow, controls moved to the top-right (as on tablet and desktop)
+   so the cover never sits on the dots. All slideshow controls line up with the content column's right edge. */
+.header-media_controls { right: calc(var(--_space---global) + max(0px, (100% - 2 * var(--_space---global) - 80rem) / 2)); }
+@media (max-width: 767px) {
+  .section_header-media .header-media_aside { align-self: center; margin: -6.5rem auto 1rem; }
+  .section_header-media:has(.header-media_aside) .header-media_controls { top: 1rem; bottom: auto; }
+}
+
+/* 3. One scroll offset: the page's scroll-padding already clears the navbar and sub-nav. */
+.section_solution { scroll-margin-top: 0; }
+
+/* 4. Card meta: tags on the first row, date and read time on the second, in every card. */
+.insights_meta-break { flex-basis: 100%; height: 0; }
+
+/* 5. Privacy and Terms: comfortable reading column and spacing, headings in Montserrat. */
+.legal_content > :not(h1) { max-width: 68ch; }
+.legal_content p { margin-bottom: 1rem; }
+.legal_content h2 { font-family: var(--_type---font-heading); font-weight: 600; letter-spacing: -.01em; }
+
+/* 6. No single words stranded on a heading's or short paragraph's last line. */
+h1, h2, h3, h4, h5, h6, .eyebrow, blockquote { text-wrap: balance; }
+p, li, figcaption { text-wrap: pretty; }
+
+/* 7. One keyboard focus style: dark gold on light backgrounds, gold on navy. */
+:is(a, button, summary, [role="tab"], [tabindex]):focus-visible {
+  outline: 3px solid #85660A; outline-offset: 3px; box-shadow: none; border-radius: 3px;
+}
+:is(.background-color-dark, .background-color-deep, .footer_component, .navbar_component, .section_header-media,
+    .thesis_panel, .contact-hero_panel, .section_cta-billboard, .section_edu-quote)
+  :is(a, button, summary, [role="tab"], [tabindex]):focus-visible { outline-color: #D1A933; }
+.solutions-rotator_tab:focus-visible { outline-offset: -3px; }
+.insights_card:focus-visible { outline-offset: 6px; }
+.book-3d:focus-visible { outline-offset: 10px; }
+
+/* 8, 23. Page headers: Home's spacing on every page (eyebrow 12px, headline 24px, subtitle 40px) and one headline scale. */
+.section_header-media .header-media_content > .heading-style-h1 { margin-top: 0; margin-bottom: 1.5rem; }
+.section_header-media .header-media_content > .text-size-large { margin-bottom: 2.5rem; }
+.section_header-media .header-media_content > .heading-style-h1:not(.is-hero) { font-size: clamp(2.5rem, 1.5rem + 3.4vw, 4rem); }
+.contact-hero_text > .heading-style-h1 { margin-top: 0; margin-bottom: 1.5rem; }
+@media (min-width: 768px) {
+  .section_header-media.is-short { min-height: max(34rem, min(56.25vw, 100svh - 5rem)); }
+}
+
+/* 15. Book headline: one fluid size that only grows with the window. */
+.section_header-media:has(.header-media_aside) .header-media_content > .heading-style-h1 { font-size: clamp(2.5rem, 1.6rem + 2.4vw, 4rem); }
+
+/* 9. Thesis band: panels grow to their content and every slide's text starts at the same height. */
+.thesis_layout { height: auto; min-height: clamp(32rem, 64vh, 44rem); }
+.thesis_panel { justify-content: flex-start; padding-top: clamp(3rem, 2rem + 3vw, 5.5rem); }
+
+/* 10. Carousels: the outgoing slide fades out before the next fades in, so text never overlaps a photo. */
+.insights-carousel_slide.is-leaving { opacity: 0; transition: opacity .4s ease; }
+.insights-carousel_slide.is-active { transition: opacity .55s ease .3s, visibility 0s; }
+
+/* 11. Rotator progress lines pause with the rotator (hover, focus) and resume where they stopped. */
+.solutions-rotator:hover .solutions-rotator_tab.is-active .solutions-rotator_progress,
+.solutions-rotator:focus-within .solutions-rotator_tab.is-active .solutions-rotator_progress,
+.solutions-rotator.is-held .solutions-rotator_tab.is-active .solutions-rotator_progress { animation-play-state: paused; }
+
+/* 12. Advisory Board on phones: only the open panel takes space. */
+@media (max-width: 767px) {
+  .solutions-rotator > .advisors_panel:not(.is-active) { display: none; }
+}
+
+/* 13. Contact form: house-styled select and checkbox; hero text on the page column; matching column headings. */
+.contact_form select.form_input {
+  appearance: none; padding-right: 2.75rem; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230F2A4A' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center; background-size: 12px 8px;
+}
+.contact_form select.form_input:invalid { color: #5B6370; }
+.contact_form select.form_input option { color: #1E2531; }
+.form_checkbox-input { accent-color: #0F2A4A; margin-left: 0; }
+.contact-hero_panel { padding-left: calc(var(--_space---global) + max(0px, (100vw - 2 * var(--_space---global) - 80rem) / 2)); }
+.heading-style-h4.is-form { font-size: var(--_type---h3); }
+
+/* 14, 26. Footer: no stray divider when the logos stack; the email never breaks; the bottom row lines up with the
+   columns above (credits under the brand column, legal links and Back to top under the link columns). */
+.footer_logos.is-stacked .footer_logo-divider { display: none; }
+.footer_nav-col.is-contact a[href^="mailto:"] { white-space: nowrap; }
+@media (min-width: 992px) {
+  .footer_bottom { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.85fr); column-gap: 5rem; align-items: center; }
+  .footer_bottom > .footer_legal, .footer_bottom > .footer_top-link { grid-column: 2; grid-row: 1; }
+  .footer_bottom > .footer_legal { justify-self: start; }
+  .footer_bottom > .footer_top-link { justify-self: end; white-space: nowrap; }
+}
+
+/* 18. Solutions, photo-left sections: the mirror of the photo-right grid, video against the column edge. */
+@media (min-width: 992px) {
+  .solution_intro:has(> .solution_image-start) { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+  .solution_intro > .solution_image-start.solution_video { justify-self: start; }
+}
+
+/* 19. Education: the two light sections share one gap instead of two. */
+#audiences + #arc > .padding-global > .container-large > .padding-section-large { padding-top: 0; }
+
+/* 20. Phone tap targets: 44px hit areas, visuals unchanged. */
+.carousel_dot, .footer_legal-link, .footer_top-link, .contact-next_link, .navbar_menu-email { position: relative; }
+.carousel_dot::before, .footer_legal-link::before, .footer_top-link::before, .contact-next_link::before, .navbar_menu-email::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%);
+}
+
+/* 24. The YouTube button matches its neighbour's height. */
+.button.is-youtube svg { width: 1.25em; height: 1.25em; margin-block: -.25em; }
+
+/* 25. Phones: the reading-progress line stays at the top of the screen while the navbar slides away. */
+@media (max-width: 991px) {
+  html.nav-hidden .navbar_component[data-progress]::before { bottom: -2px; }
+}
+
+/* 27. One heading weight (600) for filter buttons and next-step links (figure titles in figures.min.css). */
+.insights-filter_button, .contact-next_link { font-weight: 600; }
+
+/* 28. Book cover box at the artwork's exact proportions (site.min.js sets --cover-ratio) so nothing is cropped. */
+.book-3d { aspect-ratio: var(--cover-ratio, 2 / 3); }
+
+/* 29. Closing bands in the brand's deep navy. */
+.background-color-deep { --_theme---background: #0A1C33; }
+
+/* 30. "How we help" cards: body text starts at the same height when headings run one or two lines. */
+@media (min-width: 768px) {
+  .solution_help:not(.is-stacked) .solution_help-item > h4 { min-height: 2lh; }
+}
+
+/* 32. Form messages share one alignment. */
+.form_success { text-align: left; }
+
+/* 33. Insights filters keep their natural width on phones. */
+@media (max-width: 767px) { .insights-filter_button { flex: 0 0 auto; } }
