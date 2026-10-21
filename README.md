@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.46:** footer credits: copyright, Mark Wallace Photography and Lain Mora each on their own line; legal links and Back to top align with the first line.
 - **v1.0.45:** alliance panel: the BizNuvo NEXUS card links to biznuvo.com ("Run on BizNuvo" link plus whole-card click, new tab).
 - **v1.0.44:** figures band pause button: no top offset on phones and tablets (it sits under the figures there).
 - **v1.0.43:** Home figures band: pause button moved to the top-right, centred on the row of labels.

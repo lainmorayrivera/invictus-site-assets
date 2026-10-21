@@ -859,3 +859,10 @@ p, li, figcaption { text-wrap: pretty; }
   .solution_nexus-item, .solution_nexus-letter { transition: none; }
 }
 @media (max-width: 767px) { .solution_alliance[data-brand="b"] .alliance_nexus-card { padding: 1.5rem 1.25rem 1rem; } }
+
+/* Footer credits: the copyright, the photo credit and the site credit each on their own line. The legal links and
+   Back to top line up with the first line. */
+.footer_bottom-text { line-height: 1.7; }
+.footer_bottom-text a { display: block; width: fit-content; }
+.footer_bottom-text a + a { margin-left: 0; }
+@media (min-width: 992px) { .footer_bottom { align-items: start; } }
