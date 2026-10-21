@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.52:** Contact form panel: navy compass watermark in the lower right.
 - **v1.0.51:** Solutions figure box: pause button sits on the compass watermark's hub; text keeps clear of it.
 - **v1.0.50:** Education learning arc: a gold line joins the four steps through the gaps between figure and text, draws with the scroll and lights a node by each step (wide layout). Section, sub-nav and rotator-tab icons are inlined from their SVG files and trace themselves in (navy lines draw, gold sparkle pops); a rotator tab's icon re-traces when the tab becomes active.
 - **v1.0.49:** spider chart draw-in now also runs where its list item carries the reveal flag (Education learning arc); gold lines draw in site-wide: band hairlines spread from the centre, closing-band sparkle dividers open, thesis tapers wipe in per slide, endorsement side bars draw down per quote, "How we help" and newsletter top bars draw across.
