@@ -1153,3 +1153,9 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 
 /* Solutions: the rotating stat band now closes the "Why Invictus" section, under the four cards. */
 .section_why .solution_stat { margin: clamp(2rem, 1rem + 2vw, 3.5rem) 0 0; }
+
+/* Book: the launch strip continues the endorsements, so the two share one section gap instead of stacking two
+   paddings (was 208 px between the carousel controls and "From the launch"). */
+section:has(+ .section_launch) .padding-section-large { padding-bottom: clamp(2.5rem, 1.5rem + 2vw, 4rem); }
+.section_launch .padding-section-medium { padding-top: 0; }
+.launch_head { margin-bottom: clamp(1.25rem, .75rem + 1vw, 2rem); }
