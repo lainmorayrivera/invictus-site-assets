@@ -740,13 +740,14 @@ p, li, figcaption { text-wrap: pretty; }
 .stats-toggle[aria-pressed="true"] .icon-play { display: block; }
 @media (max-width: 991px) { .section_stats .stats-toggle { top: auto; bottom: 1rem; right: var(--_space---global); translate: none; } .section_stats .padding-section-small { padding-bottom: calc(var(--_space---section-small) + 2.5rem); } }
 
-.solution_stat.is-band { position: relative; overflow: hidden; isolation: isolate; padding-right: clamp(4.5rem, 3rem + 4vw, 7rem); }
+.solution_stat.is-band { position: relative; overflow: hidden; isolation: isolate; padding-right: 8.5rem; }
 .solution_stat.is-band > :not(.band_hairline):not(.band_compass):not(.stats-progress):not(.stats-toggle) { position: relative; z-index: 1; }
 .solution_stat.is-band .band_compass { width: 20rem; right: -5rem; opacity: .06; }
 .solution_stat.is-band .stats_number { min-width: 3.4em; }
 .solution_stat-copy { display: grid; gap: .4rem; min-height: 4.75rem; align-content: center; }
 .solution_stat-copy .stats_label { color: #D1A933; }
-.solution_stat.is-band .stats-toggle { right: 1.5rem; bottom: auto; top: 50%; translate: 0 -50%; }
+/* Pause button on the compass hub (the compass is 20rem wide, 5rem past the right edge, so its centre is 5rem in). */
+.solution_stat.is-band .stats-toggle { right: calc(5rem - 20px); bottom: auto; top: 50%; translate: 0 -50%; }
 .stats-progress {
   position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 2; pointer-events: none;
   background: linear-gradient(90deg, rgba(209, 169, 51, .15), #D1A933 30%, #D1A933 70%, rgba(209, 169, 51, .15));
