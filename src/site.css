@@ -735,7 +735,7 @@ p, li, figcaption { text-wrap: pretty; }
 .stats-toggle svg { width: 16px; height: 16px; }
 .stats-toggle .icon-play, .stats-toggle[aria-pressed="true"] .icon-pause { display: none; }
 .stats-toggle[aria-pressed="true"] .icon-play { display: block; }
-@media (max-width: 991px) { .section_stats .stats-toggle { position: relative; display: grid; margin: 2rem 0 0 auto; } }
+@media (max-width: 991px) { .section_stats .stats-toggle { position: relative; top: auto; right: auto; display: grid; margin: 2rem 0 0 auto; } }
 
 .solution_stat.is-band { position: relative; overflow: hidden; isolation: isolate; padding-right: clamp(4.5rem, 3rem + 4vw, 7rem); }
 .solution_stat.is-band > :not(.band_hairline):not(.band_compass):not(.stats-progress):not(.stats-toggle) { position: relative; z-index: 1; }
