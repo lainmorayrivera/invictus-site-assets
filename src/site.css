@@ -1180,3 +1180,50 @@ img.content_watermark {
     --wm: 70vw; left: auto !important; right: var(--wm-off) !important; opacity: .04;
   }
 }
+
+/* ===== Watermark system (21 Oct 2026 alignment pass). One compass per box, in a bottom corner, 30% of its size past
+   both edges and cropped by the box. Sizes: --wm for sections and large panels, --wmp for form and newsletter panels.
+   Opacity: navy .045 on light, cream .07 on dark. Bands (Home figures, Solutions figures, footer) keep the compass
+   centred on the right edge, where the stats pause button sits on its hub; the CTA billboard keeps its centred emblem;
+   Privacy and Terms keep a diagonal pair (top right, bottom left). ===== */
+:root { --wm: clamp(17rem, 24vw, 26rem); --wmp: clamp(14rem, 22vw, 22rem); }
+
+/* Large panels and dark sections: Home thesis panels, BizNuvo alliance, podcast, Contact header. */
+.thesis_watermark, .alliance_watermark, .podcast_watermark, .contact-hero_compass {
+  width: var(--wm) !important; height: auto !important; aspect-ratio: 1; top: auto !important; transform: none !important;
+  bottom: calc(var(--wm) * -.3) !important; opacity: .07 !important;
+}
+.thesis_watermark:not(.is-left), .podcast_watermark { right: calc(var(--wm) * -.3) !important; left: auto !important; }
+.thesis_watermark.is-left, .alliance_watermark, .contact-hero_compass { left: calc(var(--wm) * -.3) !important; right: auto !important; }
+.section_podcast, .solution_alliance, .contact-hero_panel, .thesis_panel { position: relative; overflow: hidden; isolation: isolate; }
+
+/* Form and newsletter panels: bottom right, panel size. */
+.form_watermark, .newsletter_watermark {
+  width: var(--wmp) !important; height: auto; aspect-ratio: 1; top: auto !important; left: auto !important;
+  right: calc(var(--wmp) * -.3) !important; bottom: calc(var(--wmp) * -.3) !important; opacity: .045 !important;
+}
+
+/* Article title cards (16:9): bottom right on every page, 62% of the card's width, 30% of its size past each edge. */
+.insights_title-card-watermark, .insights_title-card-watermark.is-left {
+  width: 62% !important; height: auto !important; aspect-ratio: 1; top: auto !important; left: auto !important;
+  right: -18.6% !important; bottom: -33% !important; opacity: .07 !important;
+}
+
+/* Bands: centred on the right edge, 30% of their size past it (Solutions figures band and its pause button move with it). */
+.solution_stat.is-band .band_compass { right: -6rem; opacity: .07; }
+.solution_stat.is-band .stats-toggle { right: calc(6rem - 20px); }
+.footer_compass { right: calc(clamp(22rem, 38vw, 38rem) * -.3) !important; opacity: .07 !important; }
+.section_stats .band_compass { opacity: .07 !important; }
+
+/* Privacy and Terms: the pair sits exactly in the top-right and bottom-left corners. */
+.section_legal::before { top: calc(var(--wm) * -.3); right: calc(var(--wm) * -.3); width: var(--wm); }
+.section_legal::after { bottom: calc(var(--wm) * -.3); left: calc(var(--wm) * -.3); width: var(--wm); }
+
+/* Phones: every corner compass moves to the bottom right, sized to the screen. */
+@media (max-width: 767px) {
+  :root { --wm: 70vw; --wmp: 60vw; }
+  .thesis_watermark.is-left, .alliance_watermark, .contact-hero_compass { left: auto !important; right: calc(var(--wm) * -.3) !important; }
+  .section_legal::before, .section_legal::after { width: var(--wm); }
+}
+/* BizNuvo panel with the signing photo: the photo fills the bottom-left, so the compass takes the bottom-right corner. */
+@media (min-width: 992px) { .solution_alliance.has-ally-photo .alliance_watermark { left: auto !important; right: calc(var(--wm) * -.3) !important; } }
