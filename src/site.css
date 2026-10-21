@@ -589,7 +589,8 @@ p, li, figcaption { text-wrap: pretty; }
 .contact_form select.form_input:invalid { color: #5B6370; }
 .contact_form select.form_input option { color: #1E2531; }
 .form_checkbox-input { accent-color: #0F2A4A; margin-left: 0; }
-.contact-hero_panel { padding-left: calc(var(--_space---global) + max(0px, (100% - 2 * var(--_space---global) - 80rem) / 2)); }
+/* The panel is one column of a grid, so measure against the window (less its scrollbar, set by site.min.js). */
+.contact-hero_panel { padding-left: max(var(--_space---global), (100vw - var(--sbw, 0px) - 80rem) / 2); }
 .heading-style-h4.is-form { font-size: var(--_type---h3); }
 
 /* 14, 26. Footer: no stray divider when the logos stack; the email never breaks; the bottom row lines up with the
