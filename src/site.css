@@ -886,3 +886,28 @@ p, li, figcaption { text-wrap: pretty; }
   /* Solutions "How we help" cards: the gold top bar draws across as each card fades in. */
   .js-motion .solution_help-item[data-reveal].is-revealed { animation: line-bar-h 1s cubic-bezier(.45, 0, .25, 1) calc(var(--reveal-delay, 0s) + .3s) backwards; }
 }
+
+/* Education learning arc: the connecting line (site.min.js draws it from the layout and ties it to the scroll). */
+.edu-arc { position: relative; }
+.edu-arc > li { position: relative; z-index: 1; }
+.edu-arc_line { position: absolute; left: 0; top: 0; z-index: 0; overflow: visible; pointer-events: none; }
+.edu-arc_line-track { fill: none; stroke: rgba(15, 42, 74, .14); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+.edu-arc_line-draw { fill: none; stroke: #D1A933; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.edu-arc_line-node { fill: #FBFAF7; stroke: rgba(15, 42, 74, .28); stroke-width: 2; transform-box: fill-box; transform-origin: center;
+  transition: fill .45s ease, stroke .45s ease, transform .45s cubic-bezier(.34, 1.45, .64, 1); }
+.edu-arc_line-node.is-reached { fill: #D1A933; stroke: #D1A933; transform: scale(1.15); }
+@media (max-width: 991px) { .edu-arc_line { display: none; } }
+
+/* Inlined section and sub-nav icons (same look as the image files) and their trace-in. */
+.icon-inline { display: block; flex: none; overflow: visible; }
+.icon-inline .i-p { fill: none; stroke: #0F2A4A; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.icon-inline .i-pf { fill: #0F2A4A; }
+.icon-inline .i-a { fill: #D1A933; }
+.icon-inline .icon-fill { transform-box: fill-box; transform-origin: center; }
+.has-icon-draw .icon-inline .icon-line { stroke-dasharray: 1; }
+.has-icon-draw .icon-inline:not(.is-drawn) .icon-line { stroke-dashoffset: 1; }
+.has-icon-draw .icon-inline:not(.is-drawn) .icon-fill { opacity: 0; transform: scale(.3); }
+.has-icon-draw .icon-inline.is-drawn .icon-line { transition: stroke-dashoffset 1.1s cubic-bezier(.45, 0, .25, 1) var(--icon-delay, 0s); }
+.has-icon-draw .icon-inline.is-drawn .icon-fill { transition: opacity .35s ease calc(var(--icon-delay, 0s) + .8s), transform .55s cubic-bezier(.34, 1.45, .64, 1) calc(var(--icon-delay, 0s) + .8s); }
+@keyframes icon-retrace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.has-icon-draw .solutions-rotator_tab.is-active .icon-inline.is-drawn .icon-line { animation: icon-retrace .9s cubic-bezier(.45, 0, .25, 1); }
