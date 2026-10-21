@@ -913,9 +913,9 @@ p, li, figcaption { text-wrap: pretty; }
 @keyframes icon-retrace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 .has-icon-draw .solutions-rotator_tab.is-active .icon-inline.is-drawn .icon-line { animation: icon-retrace .9s cubic-bezier(.45, 0, .25, 1); }
 
-/* Contact form panel: navy compass watermark in the lower right (site.min.js adds it). */
-.contact_form { overflow: hidden; isolation: isolate; }
-.contact_form > :not(.form_watermark) { position: relative; z-index: 1; }
+/* Form panels (Contact, Book Chapter 1): navy compass watermark in the lower right (site.min.js adds it). */
+.contact_form, div.chapter1_form { overflow: hidden; isolation: isolate; }
+.contact_form > :not(.form_watermark), div.chapter1_form > :not(.form_watermark) { position: relative; z-index: 1; }
 .form_watermark { position: absolute; z-index: 0; right: -4.5rem; bottom: -5.5rem; width: min(22rem, 55%); height: auto; opacity: .05; pointer-events: none; }
 @media (max-width: 767px) { .form_watermark { right: -3rem; bottom: -4rem; width: 14rem; } }
 
