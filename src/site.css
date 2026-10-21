@@ -312,7 +312,7 @@ body.is-locked { overflow: hidden; }
   .header-media_aside .book-stage_hint { position: absolute; left: 0; right: calc(var(--hdr-h) * .375 / 6); top: calc(100% + 1.4rem); text-align: center; white-space: nowrap; }
   .section_header-media:has(.header-media_aside) .header-media_content { max-width: min(42rem, calc(100vw - var(--hdr-h) * .375 - 12rem)); }
   .section_header-media:has(.header-media_aside) .header-media_content .heading-style-h1 { font-size: clamp(2.25rem, 1rem + 3vw, 4.375rem); }
-  .section_header-media:has(.header-media_aside) .header-media_controls { top: clamp(1rem, 3vh, 2rem); bottom: auto; }
+  /* (Book slideshow controls now sit bottom-right like every other page; see "Book slideshow controls" below.) */
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .section_header-media .header-media_aside { display: block; position: absolute; z-index: 1; top: 50%; right: 2rem; transform: translateY(-50%); margin: 0; }
@@ -320,7 +320,7 @@ body.is-locked { overflow: hidden; }
   .header-media_aside .book-stage_shadow { position: absolute; left: 0; bottom: -1rem; margin: 0; width: 11rem; }
   .header-media_aside .book-stage_hint { position: absolute; left: -1rem; right: .75rem; top: calc(100% + 1.2rem); text-align: center; white-space: normal; line-height: 1.3; }
   .section_header-media:has(.header-media_aside) .header-media_content { max-width: calc(100% - 14rem); }
-  .section_header-media:has(.header-media_aside) .header-media_controls { top: 1rem; bottom: auto; }
+  /* (Book slideshow controls now sit bottom-right like every other page; see "Book slideshow controls" below.) */
 }
 @media (max-width: 767px) {   /* phones: a smaller book overlaps the bottom of the photo like a badge */
   .section_header-media:has(.header-media_aside) .header-media_layout { display: flex; flex-direction: column; }
@@ -521,7 +521,7 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
 .header-media_controls { right: calc(var(--_space---global) + max(0px, (100% - 2 * var(--_space---global) - 80rem) / 2)); }
 @media (max-width: 767px) {
   .section_header-media .header-media_aside { align-self: center; margin: -6.5rem auto 1rem; }
-  .section_header-media:has(.header-media_aside) .header-media_controls { top: 1rem; bottom: auto; }
+  /* (Book slideshow controls now sit bottom-right like every other page; see "Book slideshow controls" below.) */
 }
 
 /* 3. One scroll offset: the page's scroll-padding already clears the navbar and sub-nav. */
@@ -991,7 +991,9 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 }
 
 /* Book on phones: the cover overlaps the slideshow photo less. */
-@media (max-width: 767px) { .section_header-media .header-media_aside { margin-top: -3.5rem; } }
+/* Book slideshow controls: same spot as every other page (bottom-right of the photo). On phones the cover sits
+   below the photo instead of overlapping it, so the dots and pause button are clear. */
+@media (max-width: 767px) { .section_header-media .header-media_aside { margin-top: 1.25rem; } }
 
 /* Advisory Board: the panel area is as tall as the open profile, not the tallest one. */
 @media (min-width: 768px) {
