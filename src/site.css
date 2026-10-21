@@ -921,6 +921,9 @@ p, li, figcaption { text-wrap: pretty; }
 
 /*
  * Self-hosted WOFF2 fonts (Latin subset, ~14-15 KB each).
+ * Montserrat rules are held back (dist/fonts has the files): while Webflow's Google Fonts loader for Montserrat
+ * is in the page head, it asks the browser to load every Montserrat face, so overrides would only add bytes.
+ * Restore them (see src/fonts.css) once that loader is removed in the Designer.
  * These override the @font-face rules in Webflow's CSS, which point at the
  * old ~155 KB .woff files on cdn.prod.website-files.com. site.min.css loads
  * after Webflow's stylesheet, so rules with the same family/weight/style
@@ -929,41 +932,6 @@ p, li, figcaption { text-wrap: pretty; }
  * Subset: Basic Latin, Latin-1, Latin Extended-A, U+2010-2027, U+2030-203A,
  * U+2122, U+00D7, U+2190-2193, U+20AC (kern/liga/locl kept, no hinting).
  */
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("fonts/montserrat-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("fonts/montserrat-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("fonts/montserrat-600.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("fonts/montserrat-700.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("fonts/montserrat-800.woff2") format("woff2");
-}
 @font-face {
   font-family: "Source Sans 3";
   font-style: normal;
