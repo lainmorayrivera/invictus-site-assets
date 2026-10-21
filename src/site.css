@@ -435,7 +435,7 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
               box-shadow .35s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
 }
 .button:hover { transform: translateY(-2px); box-shadow: 0 .9rem 1.6rem -1rem rgba(8, 24, 44, .55); }
-.button:not(.is-secondary):not(.is-youtube):hover {
+.button:not(.is-secondary):not(.is-youtube):not(.is-substack):hover {
   background-color: color-mix(in srgb, var(--_theme---button-bg) 86%, #000);
   border-color: color-mix(in srgb, var(--_theme---button-bg) 86%, #000);
 }
@@ -722,3 +722,59 @@ p, li, figcaption { text-wrap: pretty; }
   .podcast_image .image-cover, .podcast_play-circle { transition: none; }
   .podcast_image:hover .image-cover, .podcast_play:hover .podcast_play-circle { transform: none; }
 }
+
+/* Rotating stats (site.min.js): Home figures band and the Solutions stat box. */
+.stat-slot [data-stat] { transition: opacity .35s ease, transform .35s ease; }
+.stat-slot.is-swapping [data-stat] { opacity: 0; transform: translateY(-6px); }
+.stat-slot .stats_number { font-variant-numeric: tabular-nums; }
+.section_stats .stats_text { min-height: 3lh; }
+.section_stats .container-large { position: relative; }
+.stats-toggle { width: 40px; height: 40px; position: absolute; right: 0; bottom: 0; z-index: 2; }
+.stats-toggle svg { width: 16px; height: 16px; }
+.stats-toggle .icon-play, .stats-toggle[aria-pressed="true"] .icon-pause { display: none; }
+.stats-toggle[aria-pressed="true"] .icon-play { display: block; }
+@media (max-width: 991px) { .section_stats .stats-toggle { position: relative; display: grid; margin: 2rem 0 0 auto; } }
+
+.solution_stat.is-band { position: relative; overflow: hidden; isolation: isolate; padding-right: clamp(4.5rem, 3rem + 4vw, 7rem); }
+.solution_stat.is-band > :not(.band_hairline):not(.band_compass):not(.stats-progress):not(.stats-toggle) { position: relative; z-index: 1; }
+.solution_stat.is-band .band_compass { width: 20rem; right: -5rem; opacity: .06; }
+.solution_stat.is-band .stats_number { min-width: 3.4em; }
+.solution_stat-copy { display: grid; gap: .4rem; min-height: 4.75rem; align-content: center; }
+.solution_stat-copy .stats_label { color: #D1A933; }
+.solution_stat.is-band .stats-toggle { right: 1.5rem; bottom: auto; top: 50%; translate: 0 -50%; }
+.stats-progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, rgba(209, 169, 51, .15), #D1A933 30%, #D1A933 70%, rgba(209, 169, 51, .15));
+  transform-origin: 0 50%; transform: scaleX(0);
+}
+.solution_stat.is-running .stats-progress { animation: stats-fill 6.5s linear forwards; }
+.solution_stat.is-held .stats-progress { animation-play-state: paused; }
+@keyframes stats-fill { to { transform: scaleX(1); } }
+@media (max-width: 767px) {
+  .solution_stat.is-band { padding-right: 2.5rem; padding-bottom: 5rem; }
+  .solution_stat.is-band .stats_number { min-width: 0; }
+  .solution_stat.is-band .stats-toggle { top: auto; bottom: 1.25rem; right: 1.25rem; translate: none; }
+}
+@media (prefers-reduced-motion: reduce) { .stat-slot [data-stat] { transition: none; } }
+
+/* Substack buttons (site.min.js adds .is-substack and the mark). Substack's orange, deepened slightly so white
+   text keeps 4.5:1 contrast. */
+.button.is-substack { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; background-color: #D9480F; border-color: #D9480F; color: #FFFFFF; }
+.button.is-substack:hover { background-color: #BB3D0C; border-color: #BB3D0C; color: #FFFFFF; }
+.button.is-substack svg { width: 1.2em; height: 1.2em; flex: none; margin-block: -.2em; }
+
+/* Newsletter panel: house card treatment (gold top bar already from Webflow), navy compass watermark, a "what you
+   get" row under the button and the latest article. */
+.newsletter_panel { position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 1px 0 rgba(15, 42, 74, .05), 0 1.4rem 2.8rem -1.8rem rgba(8, 24, 44, .45); }
+.newsletter_watermark { position: absolute; z-index: -1; right: -4rem; bottom: -6rem; width: min(22rem, 45%); height: auto; opacity: .05; pointer-events: none; }
+.newsletter_action { align-content: center; }
+.newsletter_points { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin: .5rem 0 0; padding: 0; list-style: none; font-size: .875rem; color: #5B6370; }
+.newsletter_points li { display: inline-flex; align-items: center; gap: .4rem; }
+.newsletter_points li::before {
+  content: ""; width: .9rem; height: .9rem; flex: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%2385660A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.newsletter_latest { display: grid; gap: .1rem; margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid rgba(15, 42, 74, .12); }
+.newsletter_latest-label { font-family: var(--_type---font-heading); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #5B6370; }
+.newsletter_latest .text-link { justify-self: start; text-align: left; }
+@media (max-width: 767px) { .newsletter_points { justify-content: center; } }
