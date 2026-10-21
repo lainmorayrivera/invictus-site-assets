@@ -1150,3 +1150,6 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 .js-motion .section_why.is-in .why_nexus-dot:nth-of-type(5) { transition-delay: 1.15s; }
 .js-motion .section_why.is-in .why_nexus-dot:nth-of-type(6) { transition-delay: 1.35s; }
 @media (forced-colors: active) { .why_frame { forced-color-adjust: none; } }
+
+/* Solutions: the rotating stat band now closes the "Why Invictus" section, under the four cards. */
+.section_why .solution_stat { margin: clamp(2rem, 1rem + 2vw, 3.5rem) 0 0; }
