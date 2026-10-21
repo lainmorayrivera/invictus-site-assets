@@ -767,8 +767,9 @@ p, li, figcaption { text-wrap: pretty; }
    get" row under the button and the latest article. */
 .newsletter_panel { position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 1px 0 rgba(15, 42, 74, .05), 0 1.4rem 2.8rem -1.8rem rgba(8, 24, 44, .45); }
 .newsletter_watermark { position: absolute; z-index: -1; right: -4rem; bottom: -6rem; width: min(22rem, 45%); height: auto; opacity: .05; pointer-events: none; }
-.newsletter_action { align-content: center; }
-.newsletter_points { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin: .5rem 0 0; padding: 0; list-style: none; font-size: .875rem; color: #5B6370; }
+.newsletter_action { align-self: center; align-content: center; justify-items: stretch; width: 100%; max-width: 22rem; justify-self: end; }
+.newsletter_action .button.is-substack { width: 100%; min-width: 0; }
+.newsletter_points { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; margin: .5rem 0 0; padding: 0; list-style: none; font-size: .875rem; color: #5B6370; }
 .newsletter_points li { display: inline-flex; align-items: center; gap: .4rem; }
 .newsletter_points li::before {
   content: ""; width: .9rem; height: .9rem; flex: none;
@@ -777,7 +778,8 @@ p, li, figcaption { text-wrap: pretty; }
 .newsletter_latest { display: grid; gap: .1rem; margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid rgba(15, 42, 74, .12); }
 .newsletter_latest-label { font-family: var(--_type---font-heading); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #5B6370; }
 .newsletter_latest .text-link { justify-self: start; text-align: left; }
-@media (max-width: 767px) { .newsletter_points { justify-content: center; } }
+@media (max-width: 991px) { .newsletter_action { justify-self: start; max-width: 24rem; } }
+@media (max-width: 767px) { .newsletter_action { max-width: none; } .newsletter_points { justify-content: center; } }
 
 /* Featured alliance panel (site.min.js): modernized Invictus panel with the NEXUS path on a BizNuvo-style mint
    card (BizNuvo teal #1AB38E, mint #ECF7F4, charcoal #383131; their rounded cards and wave shape). Teal only ever
