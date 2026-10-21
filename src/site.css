@@ -1078,3 +1078,75 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 .alliance_photo { margin: 0 0 clamp(1.25rem, 1rem + 1vw, 2rem); border-radius: var(--radius--small, 6px); overflow: hidden; aspect-ratio: 4 / 3; max-width: 32rem; box-shadow: 0 10px 30px rgba(8, 24, 44, .25); }
 .alliance_photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 @media (forced-colors: active) { .clip_toggle { forced-color-adjust: none; } }
+
+/* ===== Solutions: BizNuvo alliance with the signing photo (copy across the top; photo and NEXUS card side by side). ===== */
+@media (min-width: 992px) {
+  .solution_alliance.has-ally-photo { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: stretch; row-gap: clamp(2rem, 1rem + 2vw, 3rem); }
+  .solution_alliance.has-ally-photo > div:not(.alliance_nexus-card) {
+    grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    column-gap: var(--space--xlarge, 4rem); align-items: start;
+  }
+  .solution_alliance.has-ally-photo > div:not(.alliance_nexus-card) > .eyebrow { grid-column: 1 / -1; }
+  .solution_alliance.has-ally-photo .solution_alliance-blockquote { grid-column: 1; margin: 0; }
+  .solution_alliance.has-ally-photo .solution_alliance-text { grid-column: 2; margin: 0; }
+  .solution_alliance.has-ally-photo .alliance_photo { position: relative; margin: 0; max-width: none; aspect-ratio: auto; min-height: 20rem; }
+  .solution_alliance.has-ally-photo .alliance_photo img { position: absolute; inset: 0; object-position: 50% 62%; }
+  .solution_alliance.has-ally-photo .alliance_nexus-card { align-self: center; }
+}
+@media (max-width: 991px) {
+  .solution_alliance.has-ally-photo .alliance_photo { max-width: none; aspect-ratio: 16 / 10; margin: 0; }
+}
+
+/* ===== Solutions: "Why Invictus" media cards (same frame and gold rule as the Book launch strip). ===== */
+.section_why.has-media .why_list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.25rem, .5rem + 1.5vw, 2rem); }
+@media (max-width: 1199px) { .section_why.has-media .why_list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 599px) { .section_why.has-media .why_list { grid-template-columns: 1fr; } }
+.section_why.has-media .why_item { padding: 0; border: 0; background: none; display: flex; flex-direction: column; }
+.section_why.has-media .why_item::before { display: none; }
+.section_why.has-media .why_item > h3 { margin-top: 1rem; }
+.section_why.has-media .why_item > p { margin-top: .4rem; }
+.why_frame { margin-bottom: 0; }
+.js-motion .section_why.has-media .launch_frame::after { transform: scaleX(0); transition: transform .9s cubic-bezier(.2, .7, .2, 1); }
+.js-motion .section_why.is-in .launch_frame::after { transform: scaleX(1); }
+.js-motion .section_why.is-in .why_item:nth-child(2) .launch_frame::after { transition-delay: .15s; }
+.js-motion .section_why.is-in .why_item:nth-child(3) .launch_frame::after { transition-delay: .3s; }
+.js-motion .section_why.is-in .why_item:nth-child(4) .launch_frame::after { transition-delay: .45s; }
+
+/* Growth bars. */
+.why_frame.is-growth { background: linear-gradient(160deg, #13335A, #0B2140); display: grid; align-items: center; }
+.why_growth { padding: 0 clamp(1rem, .5rem + 1.2vw, 1.6rem); }
+.why_growth-label, .why_growth-foot { margin: 0; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: #C9D0D9; }
+.why_growth-foot { margin-top: .7rem; color: #D1A933; font-weight: 700; }
+.why_bar { position: relative; display: flex; align-items: center; gap: .6rem; margin-top: .65rem; }
+.why_bar-fill { height: .9rem; border-radius: 2px; background: rgba(251, 250, 247, .35); transform-origin: left; }
+.why_bar.is-before .why_bar-fill { width: 10%; }
+.why_bar.is-after .why_bar-fill { width: 70%; background: linear-gradient(90deg, #B8912A, #D1A933); }
+.why_bar-value { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: clamp(.95rem, .7rem + .5vw, 1.25rem); color: #FBFAF7; white-space: nowrap; }
+.js-motion .section_why .why_bar-fill { transform: scaleX(0); transition: transform 1.1s cubic-bezier(.2, .7, .2, 1) .3s; }
+.js-motion .section_why .why_bar.is-after .why_bar-fill { transition-delay: .6s; transition-duration: 1.6s; }
+.js-motion .section_why.is-in .why_bar-fill { transform: scaleX(1); }
+
+/* Book. */
+.why_frame.is-book { background: radial-gradient(ellipse at 50% 40%, #1C4472, #0B2140 70%); display: grid; place-items: center; }
+.why_frame.is-book { position: relative; }
+.why_frame .why_book { position: absolute; top: 9%; left: 0; right: 0; margin: 0 auto; height: 82%; width: auto; max-width: none; border-radius: 2px 4px 4px 2px; box-shadow: -2px 0 0 rgba(0, 0, 0, .25) inset, 0 14px 28px rgba(0, 0, 0, .45); transform: rotate(-4deg); transform-origin: 50% 60%; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.why_item:hover .why_book { transform: rotate(0) scale(1.03); }
+.js-motion .section_why .why_book { opacity: 0; transform: translateY(12px) rotate(-4deg); transition: opacity .7s ease .35s, transform .7s cubic-bezier(.2, .7, .2, 1) .35s; }
+.js-motion .section_why.is-in .why_book { opacity: 1; transform: rotate(-4deg); }
+
+/* NEXUS path in BizNuvo mint. */
+.why_frame.is-nexus { background: #ECF7F4; display: grid; place-items: center; }
+.why_nexus { position: relative; display: flex; justify-content: space-between; align-items: center; width: 82%; flex-wrap: wrap; }
+.why_nexus-line { position: absolute; left: 1rem; right: 1rem; top: 1.05rem; height: 2px; background: #1AB38E; transform-origin: left; }
+.why_nexus-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: #1AB38E; color: #08182C; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .85rem; box-shadow: 0 0 0 4px #ECF7F4; }
+.why_nexus-label { flex-basis: 100%; margin: .9rem 0 0; text-align: center; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: #383131; font-weight: 600; }
+.js-motion .section_why .why_nexus-line { transform: scaleX(0); transition: transform 1.2s cubic-bezier(.2, .7, .2, 1) .5s; }
+.js-motion .section_why .why_nexus-dot { opacity: 0; transform: scale(.6); transition: opacity .4s ease, transform .4s cubic-bezier(.2, .7, .2, 1); }
+.js-motion .section_why.is-in .why_nexus-line { transform: scaleX(1); }
+.js-motion .section_why.is-in .why_nexus-dot { opacity: 1; transform: none; }
+.js-motion .section_why.is-in .why_nexus-dot:nth-of-type(2) { transition-delay: .55s; }
+.js-motion .section_why.is-in .why_nexus-dot:nth-of-type(3) { transition-delay: .75s; }
+.js-motion .section_why.is-in .why_nexus-dot:nth-of-type(4) { transition-delay: .95s; }
+.js-motion .section_why.is-in .why_nexus-dot:nth-of-type(5) { transition-delay: 1.15s; }
+.js-motion .section_why.is-in .why_nexus-dot:nth-of-type(6) { transition-delay: 1.35s; }
+@media (forced-colors: active) { .why_frame { forced-color-adjust: none; } }
