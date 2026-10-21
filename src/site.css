@@ -1159,3 +1159,24 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 section:has(+ .section_launch) .padding-section-large { padding-bottom: clamp(2.5rem, 1.5rem + 2vw, 4rem); }
 .section_launch .padding-section-medium { padding-top: 0; }
 .launch_head { margin-bottom: clamp(1.25rem, .75rem + 1vw, 2rem); }
+
+/* Section compasses anchored to the section's bottom corner (21 Oct 2026). They hung off the bottom of the text
+   column, so their height on the page followed the copy (mid-section on Contact and Home) and at wide widths they
+   ran past the window edge. Now each sits in its section's bottom corner on the text side, same size and overhang
+   everywhere, cropped by the section like the form-panel compasses. */
+:is(.section_solution, .section_contact, .section_bio, .section_edu-academic, .section_book-feature, .section_about-teaser) {
+  position: relative; overflow: hidden; isolation: isolate; --wm: clamp(17rem, 24vw, 26rem); --wm-off: calc(var(--wm) * -.3);
+}
+:is(.section_solution, .section_contact, .section_bio, .section_edu-academic) :is(.solution_intro-text, .bio_content, .edu-academic_intro, .contact_intro),
+:is(.section_book-feature, .section_about-teaser) :has(.content_watermark) { position: static !important; isolation: auto; }
+:is(.solution_intro-text, .bio_content, .edu-academic_intro, .contact_intro)::before,
+img.content_watermark {
+  width: var(--wm) !important; height: auto; aspect-ratio: 1; top: auto !important; bottom: var(--wm-off) !important;
+  left: var(--wm-off) !important; right: auto !important; transform: none; z-index: -1;
+}
+.part_text-end::before, img.content_watermark:not(.is-left) { left: auto !important; right: var(--wm-off) !important; }
+@media (max-width: 991px) {
+  :is(.solution_intro-text, .bio_content, .edu-academic_intro, .contact_intro)::before, img.content_watermark {
+    --wm: 70vw; left: auto !important; right: var(--wm-off) !important; opacity: .04;
+  }
+}
