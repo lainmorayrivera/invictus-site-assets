@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.38:** podcast band restyled to match the site's navy bands (flat navy, compass watermark, gold bar and play circle on the photo, hairline platforms note) plus a row of the three latest episodes copied from the Insights CMS video cards.
 - **v1.0.37:** framed graphics: article images that aren't photos (diagrams, charts, covers) show whole inside the navy title-card frame instead of being cropped; Substack photos listed in `PHOTOS` keep the full-bleed crop.
 - **v1.0.36:** Contact hero text measured against the window less its scrollbar (`--sbw`), so it lines up with the page column.
 - **v1.0.35:** polish follow-up: Contact hero text on the page column (scrollbar-safe), Education highlights Solutions in the menu with its own class (Webflow resets w--current).

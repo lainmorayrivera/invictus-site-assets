@@ -666,3 +666,59 @@ p, li, figcaption { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .insights_card:hover .insights_title-card.is-framed > img.image-cover.is-overlay:is(*, [data-reveal-img].is-revealed) { scale: none; }
 }
+
+/* Podcast band (Media & Insights). Same language as the site's other navy bands: flat brand navy with the compass
+   watermark, a gold bar under the photo, a play circle like the slideshow controls, the hero's hairline "proof"
+   line for the platforms note, and the three latest episodes as cards (site.min.js builds the watermark, play
+   link and episode row). */
+.section_podcast {
+  background-image: none; background-color: #0F2A4A; isolation: isolate;
+  --_theme---heading: #FBFAF7; --_theme---text: #FBFAF7; --_theme---eyebrow: #D1A933;
+}
+.podcast_watermark { position: absolute; z-index: -1; right: -8%; bottom: -14%; width: min(38rem, 46%); height: auto; opacity: .06; pointer-events: none; }
+.podcast_image { isolation: isolate; }
+.podcast_image .image-cover { transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.podcast_image::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, rgba(209, 169, 51, .15), #D1A933 30%, #D1A933 70%, rgba(209, 169, 51, .15));
+}
+.podcast_play { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: #FBFAF7; }
+.podcast_play-circle {
+  display: grid; place-items: center; width: 4.5rem; height: 4.5rem; border-radius: 50%;
+  background-color: rgba(8, 24, 44, .55); border: 1.5px solid rgba(251, 250, 247, .7);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  transition: background-color .35s ease, border-color .35s ease, color .35s ease, transform .45s cubic-bezier(.2, .7, .2, 1);
+}
+.podcast_play-circle svg { width: 1.5rem; height: 1.5rem; margin-left: .2rem; }
+.podcast_play:hover .podcast_play-circle { background-color: #D1A933; border-color: #D1A933; color: #08182C; transform: scale(1.06); }
+.podcast_image:hover .image-cover { transform: scale(1.03); }
+.podcast_play:focus-visible { outline-offset: -6px; }
+.podcast_note {
+  margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(169, 178, 190, .3);
+  font-size: .875rem; color: #A9B2BE;
+}
+
+.podcast_episodes { margin-top: clamp(3.5rem, 2.5rem + 3vw, 5.5rem); padding-top: 2.5rem; border-top: 1px solid rgba(169, 178, 190, .2); }
+.podcast_episodes-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 2rem; margin-bottom: 1.75rem; }
+.podcast_episodes-head .eyebrow { margin-bottom: 0; }
+.podcast_episodes-head .text-link { color: #D1A933; }
+.podcast_episodes-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.podcast_episodes .insights_card { color: #FBFAF7; }
+.podcast_episodes .insights_meta, .podcast_episodes .insights_text { color: #A9B2BE; }
+.podcast_episodes .insights_text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.podcast_episodes .tag.is-topic { color: #C9CFD8; border-color: rgba(201, 207, 216, .4); }
+.podcast_episodes .tag.is-new { background: #FBFAF7; color: #0F2A4A; border-color: #FBFAF7; }
+.podcast_episodes .image-frame.is-card { box-shadow: 0 1rem 2rem -1.2rem rgba(0, 0, 0, .7); }
+.podcast_episodes .insights_card:hover .image-frame { box-shadow: 0 1.4rem 2.6rem -1.2rem rgba(0, 0, 0, .8); }
+@media (max-width: 991px) {
+  .podcast_episodes-list {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(16rem, 42%); gap: 1.25rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .75rem; overscroll-behavior-x: contain;
+  }
+  .podcast_episodes-list > * { scroll-snap-align: start; }
+}
+@media (max-width: 767px) { .podcast_episodes-list { grid-auto-columns: 82%; } }
+@media (prefers-reduced-motion: reduce) {
+  .podcast_image .image-cover, .podcast_play-circle { transition: none; }
+  .podcast_image:hover .image-cover, .podcast_play:hover .podcast_play-circle { transform: none; }
+}
