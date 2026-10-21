@@ -499,3 +499,14 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
   .insights_card, .insights-featured_card, .edu-card, .edu-resource, .contact_topic, .solution_help-item,
   .insights_card .image-cover, .insights-featured_card .image-cover, .text-link::after, .contact-next_link span[aria-hidden] { transition-property: box-shadow, border-color, background-color; }
 }
+/* Cards that also fade in on scroll: keep the reveal's fade and stagger, and add the hover properties
+   (with no delay) so their shadow doesn't snap. Rotator play/pause circles carry a Webflow combo class with its own 0.2s. */
+.js-motion :is(.edu-card, .edu-resource, .contact_topic, .solution_help-item, .insights_card)[data-reveal] {
+  transition-property: opacity, transform, box-shadow, border-color, background-color;
+  transition-duration: .7s, .7s, .45s, .35s, .35s;
+  transition-timing-function: ease, cubic-bezier(.2, .7, .2, 1), ease, ease, ease;
+  transition-delay: var(--reveal-delay, 0s), var(--reveal-delay, 0s), 0s, 0s, 0s;
+}
+.header-media_toggle.solutions-rotator_toggle {
+  transition: color .3s ease, background-color .3s ease, border-color .3s ease, transform .4s cubic-bezier(.2, .7, .2, 1);
+}
