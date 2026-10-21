@@ -728,14 +728,17 @@ p, li, figcaption { text-wrap: pretty; }
 .stat-slot.is-swapping [data-stat] { opacity: 0; transform: translateY(-6px); }
 .stat-slot .stats_number { font-variant-numeric: tabular-nums; }
 .section_stats .stats_text { min-height: 3lh; }
-/* Pause button: top-right, centred on the row of small labels (the band's top padding, less half the button). */
-.section_stats .padding-section-small { position: relative; }
-.section_stats .stats-toggle { top: calc(var(--_space---section-small) - 12px); bottom: auto; right: 0; }
+/* Pause button: the hub of the band's compass watermark (.band_compass: 26rem wide, 8rem past the right edge,
+   vertically centred), so its centre sits 5rem in from the band's right edge. The figures keep clear of it. */
+.section_stats .stats-toggle { top: 50%; bottom: auto; right: calc(5rem - 20px); translate: 0 -50%; }
+@media (min-width: 992px) {
+  .section_stats .stats_list { padding-right: max(0px, 7rem - var(--_space---global) - max(0px, (100vw - 2 * var(--_space---global) - 80rem) / 2)); }
+}
 .stats-toggle { width: 40px; height: 40px; position: absolute; right: 0; bottom: 0; z-index: 2; }
 .stats-toggle svg { width: 16px; height: 16px; }
 .stats-toggle .icon-play, .stats-toggle[aria-pressed="true"] .icon-pause { display: none; }
 .stats-toggle[aria-pressed="true"] .icon-play { display: block; }
-@media (max-width: 991px) { .section_stats .stats-toggle { position: relative; top: auto; right: auto; display: grid; margin: 2rem 0 0 auto; } }
+@media (max-width: 991px) { .section_stats .stats-toggle { top: auto; bottom: 1rem; right: var(--_space---global); translate: none; } .section_stats .padding-section-small { padding-bottom: calc(var(--_space---section-small) + 2.5rem); } }
 
 .solution_stat.is-band { position: relative; overflow: hidden; isolation: isolate; padding-right: clamp(4.5rem, 3rem + 4vw, 7rem); }
 .solution_stat.is-band > :not(.band_hairline):not(.band_compass):not(.stats-progress):not(.stats-toggle) { position: relative; z-index: 1; }
