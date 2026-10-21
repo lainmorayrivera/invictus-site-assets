@@ -918,3 +918,154 @@ p, li, figcaption { text-wrap: pretty; }
 .contact_form > :not(.form_watermark) { position: relative; z-index: 1; }
 .form_watermark { position: absolute; z-index: 0; right: -4.5rem; bottom: -5.5rem; width: min(22rem, 55%); height: auto; opacity: .05; pointer-events: none; }
 @media (max-width: 767px) { .form_watermark { right: -3rem; bottom: -4rem; width: 14rem; } }
+
+/*
+ * Self-hosted WOFF2 fonts (Latin subset, ~14-15 KB each).
+ * These override the @font-face rules in Webflow's CSS, which point at the
+ * old ~155 KB .woff files on cdn.prod.website-files.com. site.min.css loads
+ * after Webflow's stylesheet, so rules with the same family/weight/style
+ * declared here win and the old .woff files are never fetched.
+ * URLs are relative to dist/site.min.css, i.e. they resolve to dist/fonts/.
+ * Subset: Basic Latin, Latin-1, Latin Extended-A, U+2010-2027, U+2030-203A,
+ * U+2122, U+00D7, U+2190-2193, U+20AC (kern/liga/locl kept, no hinting).
+ */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/montserrat-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/montserrat-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/montserrat-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/montserrat-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("fonts/montserrat-800.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/source-sans-3-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/source-sans-3-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/source-sans-3-700.woff2") format("woff2");
+}
+
+
+/* ===== Baseline evaluation fixes (21 Oct 2026; docs/eval/2026-10-20-baseline/README.md). ===== */
+
+/* Contrast: Substack orange darkened so white text passes 4.5:1 (was #D9480F at 4.29:1; #C2410C is about 5.2:1). */
+.button.is-substack { background-color: #C2410C; border-color: #C2410C; }
+.button.is-substack:hover { background-color: #A3360A; border-color: #A3360A; }
+
+/* Target size: footer credit links at least 24 px tall. */
+.footer_bottom-text a { min-height: 24px; display: flex; align-items: center; }
+
+/* Home figures band: numbers never collide with the next column. */
+.section_stats .stats_number { font-size: clamp(2.25rem, .6rem + 3vw, 4rem); white-space: nowrap; }
+@media (max-width: 479px) { .section_stats .stats_text { min-height: 0; } .section_stats .stats_item { padding-bottom: 1.1rem; } }
+
+/* Rotator tabs fit beside the pause button at laptop widths (the last tab was clipped by 10 px at 1280). */
+@media (min-width: 992px) and (max-width: 1439px) {
+  .solutions-rotator_tab { padding-left: clamp(.6rem, .1rem + .7vw, 1rem); padding-right: clamp(.6rem, .1rem + .7vw, 1rem); }
+}
+
+/* Section rhythm: two light sections in a row share one gap instead of two full paddings. */
+main section:not([class*="background-color-"]):not(.section_header-media):not(.section_podcast):not(.section_cta-billboard)
+  + section:not([class*="background-color-"]):not(.section_header-media):not(.section_podcast):not(.section_cta-billboard)
+  .padding-section-large:first-of-type { padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); }
+
+/* Header photos at tablet width: a stronger scrim so headline text stays legible over bright patches. */
+@media (min-width: 768px) and (max-width: 991px) {
+  .section_header-media .header-media_content { text-shadow: 0 1px 18px rgba(8, 24, 44, .55); }
+  .section_header-media .header-media_overlay { background-image: linear-gradient(90deg, rgba(8, 24, 44, .88), rgba(8, 24, 44, .55) 70%, rgba(8, 24, 44, .35)); }
+}
+
+/* Contact header: room on the right at tablet width; left edge set by site.min.js to match the page column. */
+@media (min-width: 768px) and (max-width: 991px) {
+  .contact-hero_panel { padding-right: clamp(1.5rem, 3vw, 2.5rem); }
+  .contact-hero_text > .heading-style-h1 { font-size: clamp(2.25rem, 1.2rem + 3vw, 3rem); }
+}
+
+/* Book on phones: the cover overlaps the slideshow photo less. */
+@media (max-width: 767px) { .section_header-media .header-media_aside { margin-top: -3.5rem; } }
+
+/* Advisory Board: the panel area is as tall as the open profile, not the tallest one. */
+@media (min-width: 768px) {
+  .advisors-rotator { position: relative; }
+  .advisors-rotator > .advisors_panel:not(.is-active) { position: absolute; left: 0; right: 0; }
+}
+
+/* Education learning arc: step text sits level with the top of its figure instead of floating mid-way. */
+@media (min-width: 992px) { .edu-arc_step { align-items: start; } .edu-arc_body { padding-top: 1.5rem; } }
+
+/* Article and video cards: 16:9 frames, so YouTube thumbnails are never side-cropped. */
+.insights_card .image-frame.is-card { aspect-ratio: 16 / 9; }
+/* Letterboxed thumbnails (black bars baked into the image) are zoomed to hide the bars (site.min.js measures them). */
+.insights_card img.image-cover.is-overlay[data-letterbox] { transform: scale(var(--letterbox-scale, 1)); }
+
+/* Podcast: the platforms note no longer sits between two rules. */
+.podcast_note { border-top: 0; padding-top: 0; margin-top: 1.25rem; }
+
+/* Privacy and Terms: the reading column centred on the page. */
+.legal_content { max-width: 72ch; margin-left: auto; margin-right: auto; }
+
+/* Low vision: small grey labels a little larger; inactive carousel dashes darker (3:1 against the background). */
+.hero_proof { font-size: .9375rem; }
+.header-media_note { font-size: .8125rem; color: #C9D0D9; }
+.alliance_nexus-label { font-size: .8125rem; }
+.carousel_dot.is-light { --dot-colour: rgba(15, 42, 74, .55); }
+.carousel_dot:not(.is-light) { --dot-colour: rgba(251, 250, 247, .6); }
+
+/* Windows High Contrast (forced colours). */
+@media (forced-colors: active) {
+  /* Selected tab, sub-nav link, filter and slide dot use the system highlight, since background fills are removed. */
+  [role="tab"][aria-selected="true"], .subnav_link.is-current, .insights-filter_button[aria-pressed="true"],
+  .contact_topic[aria-pressed="true"], .carousel_dot[aria-current="true"], .navbar_link.w--current, .navbar_link.is-section-current {
+    forced-color-adjust: none; background: Highlight; color: HighlightText; outline: 2px solid CanvasText;
+  }
+  /* Inline icons use the text colour; brand logos keep their colours on a light plate. */
+  .icon-inline .i-p { stroke: CanvasText; }
+  .icon-inline .i-a, .icon-inline .i-pf { fill: CanvasText; }
+  img.brand-tag, img[class*="logo"] { forced-color-adjust: none; background: #FBFAF7; border-radius: 3px; }
+  /* Charts keep their own colours, finished, with no draw-in. */
+  .fig-diagnostic, .fig-wheel, .fig-phases, .fig-force { forced-color-adjust: none; }
+  .fig-diagnostic *, .fig-wheel *, .fig-phases *, .fig-force * { animation: none !important; transition: none !important; }
+  .fig-diagnostic .fig-draw, .fig-diagnostic .fig-diagnostic_line, .fig-diagnostic_mask-line, .has-draw .fig-draw { stroke-dashoffset: 0 !important; }
+  .navbar_component { background: Canvas; border-bottom: 1px solid CanvasText; }
+}
