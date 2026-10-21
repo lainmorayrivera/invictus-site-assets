@@ -869,3 +869,20 @@ p, li, figcaption { text-wrap: pretty; }
 .footer_bottom-text a { display: block; width: fit-content; }
 .footer_bottom-text a + a { margin-left: 0; }
 @media (min-width: 992px) { .footer_bottom { align-items: start; } }
+
+/* Gold lines draw in (site.min.js adds .will-draw / .is-drawn; reduced motion skips it all). */
+@keyframes line-bar-h { from { background-size: 0% 2px; } }
+@keyframes line-bar-v { from { background-size: 2px 0%; } }
+@keyframes line-wipe-r { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.band_hairline.will-draw { transform: scaleX(0); transform-origin: 50% 50%; transition: transform 1.4s cubic-bezier(.45, 0, .25, 1); }
+.divider-sparkle.will-draw { clip-path: inset(0 50% 0 50%); transition: clip-path 1.2s cubic-bezier(.45, 0, .25, 1) .15s; }
+.will-draw.is-drawn { transform: none; clip-path: inset(0 0 0 0); }
+.newsletter_panel.will-draw.is-drawn { animation: line-bar-h 1.1s cubic-bezier(.45, 0, .25, 1) .2s backwards; }
+@media (prefers-reduced-motion: no-preference) {
+  /* Home thesis band: each slide's taper wipes in as the slide arrives. */
+  .js-motion .insights-carousel_slide.is-active .divider-taper { animation: line-wipe-r .9s cubic-bezier(.45, 0, .25, 1) .55s backwards; }
+  /* Endorsements: the gold side bar draws down as each quote arrives. */
+  .js-motion .insights-carousel_slide.is-active .endorse_panel { animation: line-bar-v 1.1s cubic-bezier(.45, 0, .25, 1) .45s backwards; }
+  /* Solutions "How we help" cards: the gold top bar draws across as each card fades in. */
+  .js-motion .solution_help-item[data-reveal].is-revealed { animation: line-bar-h 1s cubic-bezier(.45, 0, .25, 1) calc(var(--reveal-delay, 0s) + .3s) backwards; }
+}

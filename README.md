@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.49:** spider chart draw-in now also runs where its list item carries the reveal flag (Education learning arc); gold lines draw in site-wide: band hairlines spread from the centre, closing-band sparkle dividers open, thesis tapers wipe in per slide, endorsement side bars draw down per quote, "How we help" and newsletter top bars draw across.
 - **v1.0.48:** draw-in for the wheel, phases and AI force figures: every icon line traces itself after its card pops; the wheel's spokes and funnels grow from each card into the hub; the force engine's stem drops, the bar's gold line spreads and the arrowheads appear before the pillars pop; each phase's rule draws across.
 - **v1.0.47:** SFOM spider chart entrance redrawn: the current outline draws point to point 1 to 10 (points pop as reached), then the dashed target outline draws 1 to 10 via a mask (numbers pop as passed); fills fade in after each closes. Figures band pause button sits on the compass watermark's hub; figures keep clear of it.
 - **v1.0.46:** footer credits: copyright, Mark Wallace Photography and Lain Mora each on their own line; legal links and Back to top align with the first line.
