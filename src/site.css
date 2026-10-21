@@ -425,7 +425,26 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
 /* "Watch on YouTube" buttons: YouTube red with the play logo (site.min.js adds .is-youtube and the icon).
    #CC0000 rather than YouTube's #FF0000 so white text passes WCAG AA contrast. */
 .button.is-youtube { display: inline-flex; align-items: center; gap: .55rem; background-color: #CC0000; border-color: #CC0000; color: #FFFFFF; }
-.button.is-youtube:hover { background-color: #A80000; border-color: #A80000; color: #FFFFFF; }
+.button.is-youtube:hover { background-color: #B30000; border-color: #B30000; color: #FFFFFF; }
+
+/* Buttons: one smooth, consistent hover everywhere. Webflow's buttons had no hover or transition (the YouTube
+   button's darker state snapped). Filled buttons deepen in their own colour, outline buttons take a faint tint
+   of theirs; all lift 2px with a soft shadow, and press down on click. */
+.button, .footer_social-button, .insights-filter_button, .insights-carousel_arrow {
+  transition: background-color .35s ease, border-color .35s ease, color .35s ease,
+              box-shadow .35s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+.button:hover { transform: translateY(-2px); box-shadow: 0 .9rem 1.6rem -1rem rgba(8, 24, 44, .55); }
+.button:not(.is-secondary):not(.is-youtube):hover {
+  background-color: color-mix(in srgb, var(--_theme---button-bg) 86%, #000);
+  border-color: color-mix(in srgb, var(--_theme---button-bg) 86%, #000);
+}
+.button.is-secondary:hover { background-color: color-mix(in srgb, var(--_theme---button-bg) 12%, transparent); }
+.button:active { transform: translateY(0); box-shadow: 0 .4rem .8rem -.6rem rgba(8, 24, 44, .5); transition-duration: .12s; }
+.insights-carousel_arrow:hover { transform: translateY(-1px); }
+@media (prefers-reduced-motion: reduce) {
+  .button:hover, .button:active, .footer_social-button:hover, .insights-carousel_arrow:hover { transform: none; }
+}
 .button.is-youtube svg { width: 1.35em; height: 1.35em; flex: none; }
 
 @media (prefers-reduced-motion: reduce) {

@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.31:** `site.min.css`: one smooth hover for every button (0.35s ease): filled buttons deepen in their own colour, outline buttons take a faint tint, all lift 2px with a soft shadow and press down on click; YouTube button eases instead of snapping. Social, filter and carousel-arrow buttons share the timing.
 - **v1.0.30:** `figures.min.css`: a consistent "pop" across all four book figures. On scroll-in the centre (wheel hub, AI engine) appears first, then the cards pop in one by one with a slight overshoot (CSS animations with backwards fill, so hover still works); on hover (pointer devices) wheel cards, phase cards, force pillars and diagnostic key items lift and scale slightly with a soft shadow. No motion for reduced-motion users.
 - **v1.0.29:** `site.min.css`: footer credit links (photographer, website developer) styled as quiet text links with a gold underline; spacing between adjacent links.
 - **v1.0.28:** `site.min.css`: header slideshows vary their motion (zoom out, pan right, gentle zoom in, pan left, repeating) instead of every slide zooming out the same way. Reduced-motion users still get no motion.
