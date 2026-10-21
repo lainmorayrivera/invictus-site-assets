@@ -649,3 +649,20 @@ p, li, figcaption { text-wrap: pretty; }
 
 /* 37. Education sits under Solutions in the menu (site.min.js adds the class; Webflow's own script resets w--current). */
 .navbar_link.is-section-current { color: #D1A933; background-size: 100% 2px; }
+
+/* Framed graphics. Article images that are diagrams, charts or covers (not photos) are never cropped: they sit
+   whole inside the navy title-card template, with the watermark behind and the logo small in the corner.
+   site.min.js adds .is-framed; photos keep the full-bleed crop. */
+.insights_title-card.is-framed > .insights_title-card-label { visibility: hidden; }
+.insights_title-card.is-framed > .insights_title-card-logo { position: absolute; left: .85rem; top: .75rem; height: 1.25rem; opacity: .85; }
+.insights_title-card.is-framed > img.image-cover.is-overlay:is(*, [data-reveal-img].is-revealed) {
+  inset: auto; top: 50%; left: 50%; width: auto; height: auto;
+  max-width: calc(100% - 3.5rem); max-height: calc(100% - 4.25rem); margin-top: .35rem;
+  object-fit: contain; transform: none; translate: -50% -50%; border-radius: 3px;
+  box-shadow: 0 .9rem 1.8rem -.8rem rgba(0, 0, 0, .65), 0 0 0 1px rgba(255, 255, 255, .08);
+  transition: scale .45s cubic-bezier(.2, .7, .2, 1), opacity .7s ease;
+}
+.insights_card:hover .insights_title-card.is-framed > img.image-cover.is-overlay:is(*, [data-reveal-img].is-revealed) { transform: none; scale: 1.03; }
+@media (prefers-reduced-motion: reduce) {
+  .insights_card:hover .insights_title-card.is-framed > img.image-cover.is-overlay:is(*, [data-reveal-img].is-revealed) { scale: none; }
+}

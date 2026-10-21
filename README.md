@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.37:** framed graphics: article images that aren't photos (diagrams, charts, covers) show whole inside the navy title-card frame instead of being cropped; Substack photos listed in `PHOTOS` keep the full-bleed crop.
 - **v1.0.36:** Contact hero text measured against the window less its scrollbar (`--sbw`), so it lines up with the page column.
 - **v1.0.35:** polish follow-up: Contact hero text on the page column (scrollbar-safe), Education highlights Solutions in the menu with its own class (Webflow resets w--current).
 - **v1.0.34:** polish pass (docs/polish-review-2026-10-20.md, all 37 items): advisor avatars, Book phone hero, one scroll offset, card meta rows, legal reading column, balanced headings, one focus style, header spacing and headline scale, thesis band, sequential carousel fades, rotators resume in step and pause on phones/off screen, Advisory Board phone panels, Contact select/checkbox/headings, footer grid, Solutions mirror grid, tap targets, curly apostrophes, responsive header slides, book cover ratio and Tap hint, weight 600, brand deep navy, Education nav highlight.
