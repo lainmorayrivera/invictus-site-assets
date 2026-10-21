@@ -589,7 +589,7 @@ p, li, figcaption { text-wrap: pretty; }
 .contact_form select.form_input:invalid { color: #5B6370; }
 .contact_form select.form_input option { color: #1E2531; }
 .form_checkbox-input { accent-color: #0F2A4A; margin-left: 0; }
-.contact-hero_panel { padding-left: calc(var(--_space---global) + max(0px, (100vw - 2 * var(--_space---global) - 80rem) / 2)); }
+.contact-hero_panel { padding-left: calc(var(--_space---global) + max(0px, (100% - 2 * var(--_space---global) - 80rem) / 2)); }
 .heading-style-h4.is-form { font-size: var(--_type---h3); }
 
 /* 14, 26. Footer: no stray divider when the logos stack; the email never breaks; the bottom row lines up with the
@@ -645,3 +645,6 @@ p, li, figcaption { text-wrap: pretty; }
 
 /* 33. Insights filters keep their natural width on phones. */
 @media (max-width: 767px) { .insights-filter_button { flex: 0 0 auto; } }
+
+/* 37. Education sits under Solutions in the menu (site.min.js adds the class; Webflow's own script resets w--current). */
+.navbar_link.is-section-current { color: #D1A933; background-size: 100% 2px; }
