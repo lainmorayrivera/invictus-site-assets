@@ -801,7 +801,7 @@ p, li, figcaption { text-wrap: pretty; }
 
 .alliance_nexus-card { position: relative; border-radius: 12px; transition: background-color .5s ease, box-shadow .5s ease, padding .5s ease; }
 .alliance_nexus-label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; margin: 0 0 1rem; font-family: var(--_type---font-heading); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #A9B2BE; }
-.alliance_nexus-label span { display: none; color: #1AB38E; }
+.alliance_nexus-label > a { display: none; }
 
 /* NEXUS path: a vertical line through the step circles. */
 .solution_nexus { position: relative; row-gap: 0; }
@@ -839,7 +839,16 @@ p, li, figcaption { text-wrap: pretty; }
   background: rgba(26, 179, 142, .14); pointer-events: none;
 }
 .solution_alliance[data-brand="b"] .alliance_nexus-label { color: #383131; }
-.solution_alliance[data-brand="b"] .alliance_nexus-label span { display: inline; color: #0E7A60; }
+.solution_alliance[data-brand="b"] .alliance_nexus-label > a {
+  display: inline-flex; align-items: center; gap: .3rem; min-height: 24px; color: #0E7A60; text-decoration: underline; text-decoration-color: transparent;
+  text-underline-offset: .25em; transition: color .3s ease, text-decoration-color .3s ease;
+}
+.solution_alliance[data-brand="b"] .alliance_nexus-label > a svg { width: .7rem; height: .7rem; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.solution_alliance[data-brand="b"] .alliance_nexus-card.is-linked { cursor: pointer; }
+.solution_alliance[data-brand="b"] .alliance_nexus-card.is-linked:hover { box-shadow: 0 1.75rem 3.25rem -1.6rem rgba(0, 0, 0, .65), 0 0 0 1px rgba(26, 179, 142, .45); }
+.solution_alliance[data-brand="b"] .alliance_nexus-card:hover .alliance_nexus-label > a,
+.solution_alliance[data-brand="b"] .alliance_nexus-label > a:focus-visible { color: #0A5E4A; text-decoration-color: currentColor; }
+.solution_alliance[data-brand="b"] .alliance_nexus-card:hover .alliance_nexus-label > a svg { transform: translate(2px, -2px); }
 .solution_alliance[data-brand="b"] .solution_nexus-item { color: #383131; border-bottom-color: rgba(56, 49, 49, .1); }
 .solution_alliance[data-brand="b"] .solution_nexus-letter { box-shadow: 0 0 0 5px #ECF7F4; }
 @media (hover: hover) {
