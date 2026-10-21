@@ -728,7 +728,9 @@ p, li, figcaption { text-wrap: pretty; }
 .stat-slot.is-swapping [data-stat] { opacity: 0; transform: translateY(-6px); }
 .stat-slot .stats_number { font-variant-numeric: tabular-nums; }
 .section_stats .stats_text { min-height: 3lh; }
-.section_stats .container-large { position: relative; }
+/* Pause button: top-right, centred on the row of small labels (the band's top padding, less half the button). */
+.section_stats .padding-section-small { position: relative; }
+.section_stats .stats-toggle { top: calc(var(--_space---section-small) - 12px); bottom: auto; right: 0; }
 .stats-toggle { width: 40px; height: 40px; position: absolute; right: 0; bottom: 0; z-index: 2; }
 .stats-toggle svg { width: 16px; height: 16px; }
 .stats-toggle .icon-play, .stats-toggle[aria-pressed="true"] .icon-pause { display: none; }

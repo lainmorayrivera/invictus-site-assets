@@ -35,6 +35,7 @@ Rollback means changing the tag back. Each tag is a fixed snapshot that jsDelivr
 Never point Webflow at `@main` or `@latest`: those can change without warning and are cached unpredictably.
 
 ## Changelog
+- **v1.0.43:** Home figures band: pause button moved to the top-right, centred on the row of labels.
 - **v1.0.42:** newsletter panel: Subscribe button and benefits row share one width (button full width, ticks spread edge to edge), block centred against the copy.
 - **v1.0.41:** alliance panel: split treatment (B) is live (NEXUS path on a BizNuvo mint card); reviewer switcher and the unused A/C treatments removed.
 - **v1.0.40:** featured alliance panel (Solutions): modernized NEXUS path (connecting line that draws and lights each step on scroll-in, hover lift, gold top bar, compass watermark) plus three BizNuvo brand treatments for review via ?alliance=a|b|c (teal accent, split mint card, co-branded gradient with wave) and a reviewer switcher.
