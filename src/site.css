@@ -779,8 +779,8 @@ p, li, figcaption { text-wrap: pretty; }
 .newsletter_latest .text-link { justify-self: start; text-align: left; }
 @media (max-width: 767px) { .newsletter_points { justify-content: center; } }
 
-/* Featured alliance panel (site.min.js). Base: modernized Invictus panel. a/b/c: BizNuvo brand treatments
-   (BizNuvo teal #1AB38E, mint #ECF7F4, charcoal #383131; their rounded cards and wave shape). Teal only ever
+/* Featured alliance panel (site.min.js): modernized Invictus panel with the NEXUS path on a BizNuvo-style mint
+   card (BizNuvo teal #1AB38E, mint #ECF7F4, charcoal #383131; their rounded cards and wave shape). Teal only ever
    carries navy or charcoal text, or none, so contrast holds. */
 .solution_alliance { --ally-accent: #D1A933; --ally-line-end: #D1A933; --ally-letter-ink: #08182C;
   position: relative; overflow: hidden; isolation: isolate; align-items: center;
@@ -790,7 +790,7 @@ p, li, figcaption { text-wrap: pretty; }
   background-size: 100% 2px, auto, auto; background-repeat: no-repeat;
   transition: background-color .5s ease;
 }
-.solution_alliance > :not(.alliance_watermark):not(.alliance_wave) { position: relative; z-index: 1; }
+.solution_alliance > :not(.alliance_watermark) { position: relative; z-index: 1; }
 .alliance_watermark { position: absolute; z-index: 0; left: -7rem; bottom: -9rem; width: 24rem; height: auto; opacity: .05; pointer-events: none; }
 .solution_alliance-blockquote { font-weight: 600; }
 .alliance_partner { transition: color .4s ease; }
@@ -825,13 +825,6 @@ p, li, figcaption { text-wrap: pretty; }
 .solution_alliance.has-flow .solution_nexus-item:nth-child(5) { transition-delay: .8s; }
 .solution_alliance.is-flowing .solution_nexus-item:hover { transition-delay: 0s; }
 
-.alliance_wave { position: absolute; z-index: 0; pointer-events: none; display: none; }
-
-/* A: BizNuvo teal as the second accent. Gold (Invictus defines) flows into teal (BizNuvo executes). */
-.solution_alliance[data-brand="a"] { --ally-accent: #1AB38E; --ally-line-end: #1AB38E; }
-.solution_alliance[data-brand="a"] .solution_nexus::before { background: linear-gradient(180deg, #D1A933, #1AB38E); opacity: .8; }
-.solution_alliance[data-brand="a"] .alliance_partner { color: #1AB38E; }
-.solution_alliance[data-brand="a"] .alliance_nexus-label span { display: inline; }
 
 /* B: split. Invictus navy for the idea, a BizNuvo mint card for the platform path. */
 .solution_alliance[data-brand="b"] { --ally-accent: #1AB38E; --ally-line-end: #1AB38E; }
@@ -849,31 +842,7 @@ p, li, figcaption { text-wrap: pretty; }
   .solution_alliance[data-brand="b"] .solution_nexus-item:hover .solution_nexus-letter { box-shadow: 0 0 0 5px #ECF7F4, 0 0 0 9px rgba(26, 179, 142, .3); }
 }
 
-/* C: co-branded. Navy deepening into BizNuvo teal, with their wave across the foot of the panel. */
-.solution_alliance[data-brand="c"] { --ally-accent: #FFFFFF; --ally-line-end: #1AB38E; --ally-letter-ink: #0E5F4D;
-  background-image: linear-gradient(90deg, rgba(26, 179, 142, .2), #1AB38E 30%, #D1A933 70%, rgba(209, 169, 51, .2)),
-                    linear-gradient(125deg, #0F2A4A 0%, #0F2A4A 42%, #0E4A57 72%, #11806A 100%);
-  background-size: 100% 2px, auto;
-}
-.solution_alliance[data-brand="c"] .alliance_partner { color: #7FE0C6; }
-.solution_alliance[data-brand="c"] .alliance_nexus-label span { display: inline; color: #7FE0C6; }
-.solution_alliance[data-brand="c"] .solution_nexus-item { border-bottom-color: rgba(255, 255, 255, .14); }
-.solution_alliance[data-brand="c"] .solution_nexus-letter { box-shadow: 0 0 0 5px rgba(14, 74, 87, .9); }
-.solution_alliance[data-brand="c"] .alliance_wave {
-  display: block; left: -10%; right: -10%; bottom: -55%; height: 80%; border-radius: 50% 50% 0 0;
-  background: radial-gradient(120% 100% at 50% 0, rgba(26, 179, 142, .28), rgba(26, 179, 142, .05) 70%);
-}
-.solution_alliance[data-brand="c"] .solution_alliance-text { color: #C9D4DC; }
-
-/* Reviewer switcher (?alliance=). */
-.alliance_switcher { position: fixed; left: 1rem; bottom: 1rem; z-index: 3000; display: flex; flex-wrap: wrap; gap: .35rem; padding: .4rem;
-  background: rgba(8, 24, 44, .92); border-radius: 999px; box-shadow: 0 .75rem 2rem -1rem rgba(0, 0, 0, .6); font-family: var(--_type---font-heading); }
-.alliance_switcher button { min-height: 36px; padding: 0 .9rem; border: 0; border-radius: 999px; background: transparent; color: #FBFAF7; font-size: .8125rem; font-weight: 600; cursor: pointer; }
-.alliance_switcher button[aria-pressed="true"] { background: #D1A933; color: #08182C; }
-@media (max-width: 767px) {
-  .alliance_switcher { left: .5rem; right: .5rem; border-radius: 12px; justify-content: center; }
-  .solution_alliance[data-brand="b"] .alliance_nexus-card { padding: 1.5rem 1.25rem 1rem; }
-}
 @media (prefers-reduced-motion: reduce) {
   .solution_nexus-item, .solution_nexus-letter { transition: none; }
 }
+@media (max-width: 767px) { .solution_alliance[data-brand="b"] .alliance_nexus-card { padding: 1.5rem 1.25rem 1rem; } }
