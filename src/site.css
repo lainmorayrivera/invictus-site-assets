@@ -1321,3 +1321,13 @@ img.content_watermark {
 .contact-next_item > .button { margin-top: .5rem; }
 /* Labels set through the API inside link-strip links. */
 .subnav_link > p { display: inline; margin: 0; font: inherit; color: inherit; }
+/* Five "How we help" cards (Don's 26 Oct additions): 3 + 2 on desktop and a full-width fifth on tablets,
+   instead of one card left alone on a second row. */
+@media (min-width: 992px) {
+  .solution_help:not(.is-stacked):has(> :nth-child(5):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .solution_help:not(.is-stacked):has(> :nth-child(5):last-child) > * { grid-column: span 2; }
+  .solution_help:not(.is-stacked):has(> :nth-child(5):last-child) > :nth-child(n+4) { grid-column: span 3; }
+}
+@media (min-width: 480px) and (max-width: 991px) {
+  .solution_help:not(.is-stacked):has(> :nth-child(5):last-child) > :nth-child(5) { grid-column: 1 / -1; }
+}
