@@ -1253,3 +1253,71 @@ img.content_watermark {
 @media (min-width: 992px) { .navbar_container:has(> .nav-order) { justify-content: flex-start; } .navbar_container:has(> .nav-order) > .navbar_menu { margin-left: auto; } }
 @media (min-width: 992px) { .nav-order { margin-left: 0; } }
 @media (min-width: 992px) and (max-width: 1199px) { .nav-order_long { display: none; } .nav-order_short { display: inline; } }
+
+/* ===== Don's review (26 Oct 2026): Home copy, the band line, Epilogue tab and section, Introduction panel. ===== */
+/* Text set through the Webflow API arrives as a <p> inside list items, tags and tab buttons. */
+.sparkle-item > p, .tag > p { margin: 0; }
+.solutions-rotator_tab > p { display: inline; margin: 0; font: inherit; color: inherit; }
+/* A1: the line under the Home headline is a sentence from the book. */
+.text-size-large.is-hero { font-style: italic; }
+/* E1, Epilogue, Introduction: the speaker's name above the source line. */
+.thesis_author { display: block; font-style: normal; font-weight: 700; }
+
+/* B1: one line in the Home band, each word rising in, held, then replayed (script.js). */
+.section_stats .stats_list[hidden] { display: none; }
+.band_line {
+  position: relative; z-index: 1; max-width: 54rem; margin: 0 auto; text-align: center; text-wrap: balance;
+  font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: clamp(1.5rem, .9rem + 2.4vw, 2.75rem);
+  line-height: 1.2; letter-spacing: -.01em; color: #FBFAF7;
+}
+.band_word { display: inline-block; opacity: 0; transform: translateY(.45em); }
+.band_line.is-in .band_word { animation: band-word 8s cubic-bezier(.2, .7, .2, 1) calc(var(--k) * .16s) both; }
+.band_line.is-static .band_word { opacity: 1; transform: none; }
+@keyframes band-word {
+  0% { opacity: 0; transform: translateY(.45em) scale(.92); }
+  8%, 88% { opacity: 1; transform: none; }
+  97%, 100% { opacity: 0; transform: translateY(-.2em); }
+}
+@media (max-width: 991px) { .section_stats .padding-section-small { padding-bottom: var(--_space---section-small); } }
+
+/* Book Epilogue: the three points and the line from p. 321. */
+.section_epilogue .solutions-rotator_points { margin-top: 1.5rem; }
+.epilogue_quote, .intro_quote { margin: 0; padding: 0; border: 0; }
+.epilogue_quote { margin-top: 2rem; padding-left: 1.25rem; border-left: 3px solid #D1A933; }
+.epilogue_quote p, .intro_quote p {
+  margin: 0 0 .9rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; line-height: 1.35; color: #0F2A4A; text-wrap: pretty;
+}
+.epilogue_quote p { font-size: clamp(1.15rem, .95rem + .7vw, 1.5rem); }
+.epilogue_quote .thesis_cite, .intro_quote .thesis_cite { display: block; font-size: .95rem; font-style: normal; color: #5B6370; }
+.epilogue_quote .thesis_author, .intro_quote .thesis_author { color: #0F2A4A; }
+
+/* J6: Mackenzie's introduction, video left and her words right, joined to "From the launch" below. */
+.section_intro { background: #FBFAF7; }
+.section_intro + .section_launch > .padding-global > .container-large > .padding-section-medium { padding-top: 0; }
+.intro_layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(1.75rem, 1rem + 3vw, 4rem); align-items: center; }
+.intro_frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius--small, 6px); background: #0F2A4A; }
+.intro_frame::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: #D1A933; pointer-events: none; }
+.section_intro.is-playing .intro_frame::after { display: none; }
+.intro_video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.intro_play {
+  position: absolute; inset: 0; margin: auto; width: 4.5rem; height: 4.5rem; display: grid; place-items: center; border: 0; border-radius: 50%;
+  background: #D1A933; color: #0F2A4A; cursor: pointer; box-shadow: 0 10px 28px rgba(8, 24, 44, .35); transition: transform .2s, background-color .2s;
+}
+.intro_play svg { width: 1.6rem; height: 1.6rem; margin-left: .2rem; fill: currentColor; }
+.intro_play:hover { background: #E0BC4F; transform: scale(1.06); }
+.intro_play:focus-visible { outline: 3px solid #0F2A4A; outline-offset: 3px; }
+.section_intro.is-playing .intro_play { display: none; }
+.intro_copy .eyebrow { margin-bottom: .25rem; }
+.intro_quote p { font-size: clamp(1.25rem, .95rem + 1vw, 1.75rem); }
+@media (max-width: 767px) { .intro_layout { grid-template-columns: 1fr; } }
+@media (forced-colors: active) { .intro_play { border: 2px solid ButtonText; } }
+
+/* K1: "Follow on LinkedIn" in LinkedIn blue beside the Substack buttons (script.js adds it). */
+.button.is-linkedin { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; background-color: #0A66C2; border-color: #0A66C2; color: #FFFFFF; }
+.button.is-linkedin:hover { background-color: #004182 !important; border-color: #004182 !important; color: #FFFFFF !important; }
+.button.is-linkedin svg { width: 1.15em; height: 1.15em; flex: none; margin-block: -.2em; }
+.button.is-linkedin + .button.is-substack { margin-left: .75rem; }
+@media (max-width: 479px) { .button.is-linkedin + .button.is-substack { margin-left: 0; margin-top: .75rem; } }
+.contact-next_item > .button { margin-top: .5rem; }
+/* Labels set through the API inside link-strip links. */
+.subnav_link > p { display: inline; margin: 0; font: inherit; color: inherit; }
