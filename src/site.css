@@ -1752,3 +1752,39 @@ img.content_watermark {
    unused. Removing them is OPTIONAL, nothing renders them: search site.css for the .newsletter_latest rules and
    delete them (three rules: .newsletter_latest, .newsletter_latest-label, .newsletter_latest .text-link, currently lines 784-786).
    --------------------------------------------------------------------------------------------------------------------- */
+
+/* ===== 27 Oct alignment and spacing pass. ===== */
+/* ==========================================================================
+   alignment.css - site-wide alignment and spacing pass (27 Oct 2026, review item 8)
+   WHERE IT GOES: append this whole file to the END of site-assets/src/site.css (after the strategy-offers block).
+   No JS needed. Spacing scale (existing Webflow variables, unchanged): section-small 56 / medium 88 / large 120 px
+   at 1440 (52/74/98 at 768, 42/57/72 at 375); a light section that follows a light section drops its top padding to
+   clamp(2.5rem, 1.5rem + 3vw, 5rem) (67px at 1440), giving the site's one "continuation" gap of 187px.
+   ========================================================================== */
+
+/* 1. Sub-nav pills wrapped onto 2-3 lines at 1024 and below ("Implementable Strategy & Advisory", "Why Transformation
+   Now?"). Keep every label on one line; the strip already scrolls horizontally with its edge fade. */
+.subnav_link, .subnav_link > p { white-space: nowrap; }
+.subnav_list { flex-wrap: nowrap; }
+.subnav_list > li { flex: none; }
+
+/* 2. "Follow on LinkedIn" + "Subscribe on Substack" (Insights header, Insights newsletter, Contact): the spacing was a
+   margin-left / margin-top hack on the Substack button, so when the pair wrapped (Insights header at 1440) the
+   Substack button was indented 12px from the left edge and the gap between the three buttons was uneven (16px, then
+   28px on phones, 20px in the newsletter panel). The row/column gap comes from the container instead. */
+.button.is-linkedin + .button.is-substack { margin-left: 0; margin-top: 0; }
+@media (max-width: 479px) { .button.is-linkedin + .button.is-substack { margin-left: 0; margin-top: 0; } }
+.newsletter_action { row-gap: 1rem; }   /* matches .button-group's 16px */
+.contact-next_list .button.is-linkedin + .button.is-substack { margin-top: .5rem; }
+
+/* 3. Section gap: the "light after light" rhythm rule only covered .padding-section-large, so the two medium-padded
+   sections kept a full 88px top and stacked to 208px (Book: first section to the Introduction panel; Contact:
+   the form section to "Start with the book / Connect / Follow"). They now use the same continuation gap (187px).
+   .section_launch keeps its own 0 top so the Introduction + "From the launch" still read as one block. */
+main section:not([class*="background-color-"]):not(.section_header-media):not(.section_podcast):not(.section_cta-billboard)
+  + section:not([class*="background-color-"]):not(.section_header-media):not(.section_podcast):not(.section_cta-billboard):not(.section_launch)
+  .padding-section-medium:first-of-type { padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); }
+
+/* 4. Heading-to-lede gap: Home, Solutions and Insights section headers put 16px between the h2 and its lede; the
+   About advisory-board header had 10px (lede margin-top 0). One gap. */
+.section-header > .heading-style-h2 + .text-size-medium { margin-top: 16px; }
