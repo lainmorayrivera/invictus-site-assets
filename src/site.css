@@ -1331,3 +1331,424 @@ img.content_watermark {
 @media (min-width: 480px) and (max-width: 991px) {
   .solution_help:not(.is-stacked):has(> :nth-child(5):last-child) > :nth-child(5) { grid-column: 1 / -1; }
 }
+
+/* ===== Don's 27 Oct notes: Implementable Strategy & Advisory entry-level solutions (Solutions). ===== */
+/* ==========================================================================
+   strategy-offers.css  -  Solutions > #strategy-advisory > "Entry-level solutions"
+   WHERE IT GOES: append this whole file to the END of site-assets/src/site.css.
+   No JS needed. Markup lives in Webflow (Solutions page, div.offers#entry-solutions,
+   last child of the #strategy-advisory .padding-section-large div).
+   Brand: navy #0F2A4A, deep navy #08182C, gold #D1A933, cream #FBFAF7,
+   card beige #F1EEE8, muted #5B6370.
+   NOTE: the Webflow classes offers*, offer*, stat-cite_source exist as EMPTY
+   classes (declared so the builder would keep them); all styling is here.
+   ========================================================================== */
+
+/* --- Block wrapper -------------------------------------------------------- */
+.offers {
+  --offer-navy: #0F2A4A;
+  --offer-deep: #08182C;
+  --offer-gold: #D1A933;
+  --offer-cream: #FBFAF7;
+  --offer-beige: #F1EEE8;
+  --offer-muted: #5B6370;
+  --offer-radius: var(--radius--small, 6px);
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+/* Anchor targets (sticky navbar offset) */
+.offers,
+.offer { scroll-margin-top: 6rem; }
+
+/* --- Overview cards (3-up desktop, 2-up tablet, stacked phone) ----------- */
+.offers_overview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) { .offers_overview { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .offers_overview { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+
+.offers_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 1.75rem 1.5rem 1.5rem;
+  background: var(--offer-beige);
+  border: 1px solid rgba(15, 42, 74, 0.08);
+  border-top: 3px solid var(--offer-gold);
+  border-radius: var(--offer-radius);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.offers_card:hover,
+.offers_card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(8, 24, 44, 0.12);
+}
+.offers_card-num {
+  font-family: var(--font--heading, Montserrat, sans-serif);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  color: var(--offer-gold);
+}
+.offers_card-title { margin: 0; color: var(--offer-navy); }
+.offers_card-tagline {
+  margin: 0;
+  font-weight: 600;
+  color: var(--offer-navy);
+}
+.offers_card-audience {
+  margin: 0;
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--offer-muted);
+}
+.offers_card-link {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  align-self: flex-start;
+}
+
+/* --- Offer article -------------------------------------------------------- */
+.offer {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--offer-cream);
+  border: 1px solid rgba(15, 42, 74, 0.1);
+  border-radius: var(--offer-radius);
+}
+
+.offer_head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.25rem;
+  row-gap: 0.5rem;
+  align-items: start;
+}
+.offer_index {
+  grid-row: 1 / span 3;
+  font-family: var(--font--heading, Montserrat, sans-serif);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1;
+  color: var(--offer-gold);
+}
+.offer_title { margin: 0; color: var(--offer-navy); }
+.offer_tagline {
+  margin: 0;
+  padding-bottom: 0.75rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--offer-navy);
+  border-bottom: 2px solid var(--offer-gold);
+  max-width: 44rem;
+}
+.offer_audience {
+  margin: 0;
+  font-style: italic;
+  color: var(--offer-muted);
+}
+
+/* Body: single column; two columns >= 992px (story left, lists/outcome right) */
+.offer_body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+@media (min-width: 992px) {
+  .offer_body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+}
+.offer_story,
+.offer_detail { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+
+.offer_narrative { display: flex; flex-direction: column; gap: 1rem; }
+.offer_narrative p,
+.offer_case p,
+.offer_outcome p { margin: 0; }
+
+.offer_stats-intro { margin: 0; font-weight: 600; color: var(--offer-navy); }
+
+/* --- Stat cards: auto-fit grid, min ~14rem -------------------------------- */
+.offer_stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1rem;
+}
+.offer_stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid rgba(15, 42, 74, 0.1);
+  border-left: 3px solid var(--offer-gold);
+  border-radius: var(--offer-radius);
+}
+.offer_stat-figure {
+  font-family: var(--font--heading, Montserrat, sans-serif);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+  line-height: 1.1;
+  color: var(--offer-navy);
+  overflow-wrap: anywhere;
+}
+.offer_stat-label {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--offer-muted);
+}
+.stat-cite_source {
+  margin-top: auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--offer-navy);
+}
+
+/* --- Sparkle list: two columns from 640px up ------------------------------ */
+.offer_subhead { margin: 0; color: var(--offer-navy); }
+.offer_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.625rem 1.5rem;
+}
+@media (min-width: 640px) { .offer_list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.offer_list > li { margin: 0; overflow-wrap: anywhere; }
+.offer_after { margin: 0; font-style: italic; color: var(--offer-muted); }
+
+/* --- Outcome panel -------------------------------------------------------- */
+.offer_outcome {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--offer-beige);
+  border: 1px solid rgba(15, 42, 74, 0.08);
+  border-left: 4px solid var(--offer-gold);
+  border-radius: var(--offer-radius);
+}
+
+/* Rating chips: colour + text label + shape glyph, never colour alone */
+.offer_scale {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+.offer_chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+.offer_chip::before {
+  content: "";
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  background: currentColor;
+}
+.offer_chip-green { background: #1AB38E; color: #04271F; border-color: #11866a; }
+.offer_chip-green::before { border-radius: 50%; }
+.offer_chip-amber { background: #D1A933; color: #2B2105; border-color: #a8851f; }
+.offer_chip-amber::before { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.offer_chip-red { background: #C0392B; color: #fff; border-color: #8f2a20; }
+.offer_chip-red::before { clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%); }
+@media (forced-colors: active) {
+  .offer_chip { border-color: CanvasText; background: Canvas; color: CanvasText; forced-color-adjust: none; }
+  .offer_chip::before { background: CanvasText; }
+}
+
+/* Report sections / profile items as a wrapping row of tags */
+.offer_sections {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.offer_section {
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  background: #fff;
+  border: 1px solid rgba(15, 42, 74, 0.2);
+  border-radius: var(--offer-radius);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--offer-navy);
+}
+
+/* --- Business case: navy panel, cream text ------------------------------- */
+.offer_case {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  background: var(--offer-navy);
+  color: var(--offer-cream);
+  border-radius: var(--offer-radius);
+}
+.offer_case .offer_subhead { color: var(--offer-gold); }
+.offer_case p { color: var(--offer-cream); max-width: 52rem; }
+.offer_case-lead {
+  font-family: var(--font--heading, Montserrat, sans-serif);
+  font-weight: 600;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: 1.4;
+}
+
+.offer_cta { display: flex; justify-content: flex-start; }
+
+/* --- Focus states --------------------------------------------------------- */
+.offers a:focus-visible {
+  outline: 3px solid var(--offer-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Phones --------------------------------------------------------------- */
+@media (max-width: 479px) {
+  .offer_head { grid-template-columns: 1fr; }
+  .offer_index { grid-row: auto; }
+  .offer_outcome { padding: 1.25rem; }
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .offers_card { transition: none; }
+  .offers_card:hover,
+  .offers_card:focus-within { transform: none; }
+}
+
+/* ===== 27 Oct fixes: Home quote watermark, six-tab parts bar, Contact buttons, Home links. ===== */
+/* =====================================================================================================================
+   home-insights-contact.css  (agent hic2, 27 Oct 2026)
+   APPEND THE WHOLE FILE TO THE END OF site-assets/src/site.css (after the last rule), in this order. Nothing here edits an
+   existing rule; every override is scoped and uses equal-or-higher specificity than what it beats. Verified in Edge at
+   375 / 768 / 1440 / 1920 against the staging build (v1.0.69) with this file injected.
+   ===================================================================================================================== */
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   A. HOME Solutions rotator, Implementable Strategy & Advisory panel: two text links in a row
+   The panel now ends with "Learn more" and "See our entry-level solutions". .text-link is inline-flex in a block parent
+   with no gap between siblings, so give the second one a left gap; on phones it drops to its own line.
+   --------------------------------------------------------------------------------------------------------------------- */
+.solutions-rotator_panel .text-link + .text-link { margin-left: 1.5rem; }
+@media (max-width: 479px) { .solutions-rotator_panel .text-link + .text-link { margin-left: 0; margin-top: .75rem; display: flex; width: fit-content; } }
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   B. HOME QUOTE SLIDESHOW: compass watermark vs the bottom edge (section.section_thesis)
+   CAUSE: the five slides are stacked in one grid cell (.insights-carousel_track), so the section is as tall as the
+   TALLEST slide. Each slide's .thesis_layout is height:auto, so on every shorter slide the layout (photo + navy
+   .thesis_panel, which has overflow:hidden) stops short of the section's bottom: 29px short on three slides at 1440,
+   29px at 1920, 29-65px at 375, 29px at 768 (which slide is tallest differs per width). The watermark is positioned
+   (bottom: -30% of its size) against the PANEL bottom, so its crop edge floated 29-65px above the section edge, leaving
+   a strip of plain navy under the crop (the dead blue space), and the photo stopped short there too.
+   FIX: each slide becomes a flex column and its layout grows to fill the slide, so panel, photo and watermark crop all
+   end exactly on the section's bottom edge, on every slide at every width (measured: 0px gap on all five slides).
+   --------------------------------------------------------------------------------------------------------------------- */
+.thesis-carousel .insights-carousel_slide { display: flex; flex-direction: column; }
+.thesis-carousel .insights-carousel_slide > .thesis_layout { flex: 1 1 auto; }
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   C. HOME "INSIDE THE BOOK" TAB BAR: six parts, no cut-off look
+   CAUSE: the tablist is the Solutions rotator's component (.solutions-rotator_tabs), a one-row nowrap flex strip with
+   overflow-x:auto whose tabs are nowrap and flex:1 0 auto. Six tabs need 1289px but only 1220px is available (even at
+   1440 and 1920), and the scroll-edge fade (".solutions-rotator_tabs.has-more" mask above, switched on by script.js
+   section "12. Scrollable strips", which matches this tablist because it shares the class) fades the right edge, so
+   "Epilogue" was clipped on desktop and tablets and faded out on phones.
+   FIX (CSS only, scoped to .parts-rotator so the four-tab Solutions rotator keeps its strip): a grid with all six tabs
+   visible and wrapping labels. No horizontal overflow means no scroll, so script.js never sets has-more; the mask is
+   also forced off. The pause/play button stays to the right of the grid.
+   >=1200px: 6 columns x 1 row (icon above label); 480-1199px: 3 columns x 2 rows (icon beside label); <480px:
+   2 columns x 3 rows (icon above label). No JS change needed.
+   --------------------------------------------------------------------------------------------------------------------- */
+.parts-rotator .solutions-rotator_bar { align-items: flex-start; }
+.parts-rotator .solutions-rotator_tabs {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); flex: 1 1 auto; min-width: 0;
+  overflow: visible; scroll-snap-type: none;
+  -webkit-mask-image: none !important; mask-image: none !important;
+}
+.parts-rotator .solutions-rotator_tab {
+  flex: none; min-width: 0; height: auto; min-height: 56px; white-space: normal;
+  padding: 12px 10px 16px; gap: 8px; line-height: 1.25; scroll-snap-align: none;
+}
+.parts-rotator .solutions-rotator_tab > svg { flex: none; }
+.parts-rotator .solutions-rotator_toggle { flex: none; margin-top: 6px; }
+@media (min-width: 1200px) {
+  .parts-rotator .solutions-rotator_tabs { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .parts-rotator .solutions-rotator_tab { flex-direction: column; align-items: flex-start; gap: 6px; padding-left: 8px; padding-right: 8px; }
+}
+@media (max-width: 479px) {
+  .parts-rotator .solutions-rotator_tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .parts-rotator .solutions-rotator_tab { flex-direction: column; align-items: flex-start; gap: 6px; font-size: .875rem; }
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   D. CONTACT, "What happens next": the three actions share Book's "Preview Chapter 1" button
+   CAUSE: size, padding, radius and font were already identical (48px pill, 14px 24px, Montserrat 15px/600), but the
+   treatment was not: Book's button is an OUTLINE button (.button.is-secondary: transparent, 1px border and text in the
+   theme colour, 12% tint on hover) while Contact's LinkedIn and Substack were SOLID brand fills (.is-linkedin blue,
+   .is-substack orange), and "Preview Chapter 1" in the first column was a plain text link. On light sections
+   .is-secondary renders navy (on Book's dark hero it renders gold); gold-on-cream would fail contrast, so on Contact
+   the outline is navy for Preview Chapter 1 and the brand colour for LinkedIn (#0A66C2) and Substack (#C2410C).
+   Needs the one JS tweak in home-insights-contact.js (D) so "Preview Chapter 1" is a .button.is-secondary too.
+   At 991px and below the three items stack in one column so the nowrap buttons never wrap.
+   --------------------------------------------------------------------------------------------------------------------- */
+.contact-next_list .button.is-linkedin,
+.contact-next_list .button.is-substack {
+  background-color: transparent; border-color: var(--next-btn, #0F2A4A); color: var(--next-btn, #0F2A4A);
+}
+.contact-next_list .button.is-linkedin { --next-btn: #0A66C2; }
+.contact-next_list .button.is-substack { --next-btn: #C2410C; }
+.contact-next_list .button.is-linkedin:hover,
+.contact-next_list .button.is-substack:hover,
+.contact-next_list .button.is-linkedin:focus-visible,
+.contact-next_list .button.is-substack:focus-visible {
+  background-color: color-mix(in srgb, var(--next-btn) 12%, transparent) !important;
+  border-color: var(--next-btn) !important; color: var(--next-btn) !important;
+}
+.contact-next_list .button { width: auto; min-width: 0; justify-self: start; align-self: flex-start; margin-top: .5rem; }
+.contact-next_list .button svg { width: 1.15em; height: 1.15em; flex: none; margin-block: -.2em; }
+.contact-next_list .button { white-space: nowrap; }
+@media (max-width: 991px) { .contact-next_list { grid-template-columns: minmax(0, 1fr); } }
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   F. INSIGHTS newsletter panel: after the JS "Latest article" block is deleted (see the .js patch, F) these rules are
+   unused. Removing them is OPTIONAL, nothing renders them: search site.css for the .newsletter_latest rules and
+   delete them (three rules: .newsletter_latest, .newsletter_latest-label, .newsletter_latest .text-link, currently lines 784-786).
+   --------------------------------------------------------------------------------------------------------------------- */
