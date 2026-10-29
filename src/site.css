@@ -1864,3 +1864,354 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 /* LB-1. Contact topics on tablets (two-column grid): an odd fifth card (Media) spans the row instead of sitting alone.
    Goes with the Webflow fix that gives each topic its own list item. */
 @media (min-width: 480px) and (max-width: 991px) { .contact_topic-item:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+
+/* ===== 29 Oct: Media & Insights featured press release and launch gallery. ===== */
+/* ===== Media & Insights: launch press release block and launch gallery (29 Oct 2026) =====
+   PLACEMENT: append to the END of site-assets/src/site.css (after all existing rules).
+   Page: /insights. Sections #press-release and #launch-gallery sit right after the page header. */
+
+/* Featured press release: a card with a gold rule, in the page's navy / warm-white palette. */
+.section_pressfeat { background: #FBFAF7; }
+.pressfeat_card {
+  max-width: 52rem; padding: clamp(1.25rem, .8rem + 1.6vw, 2.25rem); background: #fff;
+  border: 1px solid #E3DFD3; border-left: 4px solid #D1A933; border-radius: var(--radius--small, 6px);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+}
+.pressfeat_card > p { margin: 0; }
+.pressfeat_dateline { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; color: #5B6370; }
+.pressfeat_summary { color: #0F2A4A; }
+.pressfeat_event { font-size: .9375rem; line-height: 1.5; color: #44505F; padding-top: 1rem; border-top: 1px solid #E3DFD3; width: 100%; }
+.pressfeat_link { margin-top: .25rem; }
+#press-release .section-header { max-width: 52rem; }
+
+/* Launch gallery: responsive grid of audience photos, 3 / 2 / 1 columns. */
+.section_mgal { background: #FBFAF7; }
+.section_mgal .padding-section-large { padding-top: 0; }
+.mgal_caption { margin-top: .75rem; max-width: 44rem; }
+.mgal_grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.75rem, .4rem + 1.2vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
+.mgal_item { margin: 0; padding: 0; }
+.mgal_figure { position: relative; margin: 0; aspect-ratio: 3 / 2; overflow: hidden; border-radius: var(--radius--small, 6px); background: #0F2A4A; }
+.mgal_figure::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: #D1A933; }
+.mgal_img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+@media (max-width: 991px) { .mgal_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 479px) { .mgal_grid { grid-template-columns: 1fr; } }
+
+/* ===== 29 Oct: Knowledge Management & Education, Why Invictus values and statement, Talent subtitle. ===== */
+/* ==========================================================================
+   content.css  -  Don's notes 29 Oct 2026, sections B (Knowledge Management & Education),
+   A3 (Why Invictus page), D/E touch-ups.
+   WHERE IT GOES: append this whole file to the END of site-assets/src/site.css.
+   No JS needed. Every class below exists in Webflow as an EMPTY class (declared through the
+   builder); all styling lives here.
+   Brand: navy #0F2A4A, deep navy #08182C, gold #D1A933, dark gold #8A6D12, cream #FBFAF7,
+   card beige #F1EEE8, muted #5B6370.
+   Relationship to patches/why-invictus.css: that file styles .why_pillars / .why_pillar-* /
+   .why_statement / .why_tagline. This file only adds what the new page and the KM section need.
+   NOTE ON why-invictus.css: its `.why_pillars { margin-top: ... }` rule assumed the pillars follow
+   .why_list. On /why-invictus the pillars sit in their own section, so reset it (see below).
+   ========================================================================== */
+
+/* --- Solutions > Talent & Workforce: the subtitle line under the eyebrow ------------------------ */
+.solution_subtitle {
+  margin: -.25rem 0 1rem;
+  font-weight: 600;
+  color: #8A6D12;
+}
+
+/* ========================================================================== */
+/* Solutions > #knowledge-management                                          */
+/* ========================================================================== */
+
+/* Don's four paragraphs + the closing line, inside .solution_intro-text */
+.km_copy { margin-top: 1.25rem; }
+.km_copy p { margin: 0 0 1rem; }
+.km_copy p:last-child { margin-bottom: 0; }
+.km_build {
+  margin-top: 1.5rem !important;
+  padding-left: 1rem;
+  border-left: 3px solid #D1A933;
+  font-family: var(--font--heading, Montserrat, sans-serif);
+  font-size: clamp(1.0625rem, .95rem + .5vw, 1.3rem);
+  line-height: 1.4;
+  color: #0F2A4A;
+  text-wrap: balance;
+}
+
+/* The 12 offerings: reuse .solution_help-item cards, laid out as a 1 / 2 / 3 column grid.
+   (The base .solution_help grid and the 5-item :has() rules do not apply to 12 items.) */
+.km_offerings { margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
+#knowledge-management .solution_help.is-offerings {
+  display: grid; grid-template-columns: 1fr; gap: clamp(1rem, .6rem + 1vw, 1.5rem);
+  list-style: none; margin: 0; padding: 0;
+}
+@media (min-width: 700px)  { #knowledge-management .solution_help.is-offerings { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { #knowledge-management .solution_help.is-offerings { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+#knowledge-management .solution_help.is-offerings > .solution_help-item { grid-column: auto; height: 100%; }
+#knowledge-management .solution_help.is-offerings > .solution_help-item > h4 { min-height: 0; margin-top: 0; }
+
+/* Curriculum portfolio */
+.km_portfolio { margin-top: clamp(3.5rem, 3rem + 3vw, 6rem); scroll-margin-top: 6rem; }
+.km_portfolio-title { margin: 0 0 clamp(1.5rem, 1rem + 1.5vw, 2.5rem); color: #0F2A4A; }
+.km_group { margin-top: clamp(2rem, 1.5rem + 2vw, 3.25rem); }
+.km_group:first-of-type { margin-top: 0; }
+
+.km_courses {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+}
+@media (min-width: 640px)  { .km_courses { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .km_courses { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.km_course {
+  margin: 0; padding: 1.25rem 1.25rem 1.35rem;
+  background: #FBFAF7; border: 1px solid rgba(15, 42, 74, .1); border-top: 3px solid #D1A933; border-radius: 4px;
+}
+.km_course-title {
+  margin: 0 0 .5rem; font-family: var(--font--heading, Montserrat, sans-serif);
+  font-size: 1.0625rem; font-weight: 700; line-height: 1.3; color: #0F2A4A; text-wrap: balance;
+}
+.km_course-text { margin: 0; font-size: .9688rem; line-height: 1.6; color: #5B6370; }
+
+/* Executive & corporate: flagship card + program tags */
+.km_flagship {
+  margin: 0 0 1.5rem; padding: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  background: #0F2A4A; color: #fff; border-radius: 4px; border-left: 4px solid #D1A933;
+}
+.km_flagship-tag {
+  margin: 0 0 .5rem; font-family: var(--font--heading, Montserrat, sans-serif);
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #D1A933;
+}
+.km_flagship-title {
+  margin: 0 0 .6rem; font-family: var(--font--heading, Montserrat, sans-serif);
+  font-size: clamp(1.25rem, 1.05rem + .8vw, 1.75rem); font-weight: 700; line-height: 1.25; color: #fff; text-wrap: balance;
+}
+.km_flagship-text { margin: 0; max-width: 46rem; color: rgba(255, 255, 255, .88); line-height: 1.6; }
+.km_programs-label {
+  margin: 0 0 .75rem; font-family: var(--font--heading, Montserrat, sans-serif);
+  font-size: .8125rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #5B6370;
+}
+.km_programs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .625rem; }
+.km_program {
+  margin: 0; padding: .5rem .9rem; font-size: .9375rem; line-height: 1.35; color: #0F2A4A;
+  background: #F1EEE8; border: 1px solid rgba(15, 42, 74, .12); border-radius: 999px;
+}
+.km_program.is-dev { border-style: dashed; border-color: #8A6D12; background: transparent; }
+.km_badge {
+  display: inline-block; margin-left: .35rem; padding: .1rem .5rem; font-size: .6875rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: #08182C; background: #D1A933; border-radius: 999px; vertical-align: .08em;
+}
+.km_note { margin: 1rem 0 0; font-size: .9375rem; font-style: italic; color: #5B6370; }
+
+/* Entry points */
+.km_entry {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: .75rem 2rem;
+}
+@media (min-width: 700px) { .km_entry { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.km_entry-item { position: relative; margin: 0; padding-left: 1.5rem; line-height: 1.5; color: #0F2A4A; }
+.km_entry-item::before {
+  content: ""; position: absolute; left: 0; top: .55em; width: .5rem; height: .5rem;
+  background: #D1A933; transform: rotate(45deg);
+}
+
+/* The learning ladder: 6 steps, a rising staircase on desktop, a vertical rail on phones.
+   Built from an <ol>, so the order is announced by assistive tech; the numbers are decorative. */
+.km_ladder { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; }
+.km_step { position: relative; margin: 0; padding: 0 0 1.5rem 3.5rem; min-height: 3rem; }
+.km_step:last-child { padding-bottom: 0; }
+.km_step::before { /* vertical rail between the number circles */
+  content: ""; position: absolute; left: 1.1875rem; top: 2.5rem; bottom: .25rem; width: 2px; background: rgba(209, 169, 51, .55);
+}
+.km_step:last-child::before { display: none; }
+.km_step-num {
+  position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center;
+  width: 2.375rem; height: 2.375rem; border-radius: 50%; background: #0F2A4A; color: #D1A933;
+  font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .9375rem;
+  box-shadow: 0 0 0 3px #FBFAF7, 0 0 0 5px #D1A933;
+}
+.km_step:last-child .km_step-num { background: #D1A933; color: #08182C; }
+.km_step-title {
+  margin: 0 0 .25rem; padding-top: .35rem; font-family: var(--font--heading, Montserrat, sans-serif);
+  font-size: 1.0625rem; font-weight: 700; line-height: 1.3; color: #0F2A4A;
+}
+.km_step-text { margin: 0; font-size: .9688rem; line-height: 1.5; color: #5B6370; }
+@media (min-width: 992px) {
+  .km_ladder { grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: start; padding-top: 5rem; }
+  .km_step { padding: 3.25rem .75rem 0 0; min-height: 0; border-top: 0; }
+  .km_step:nth-child(1) { margin-top: 4rem; }
+  .km_step:nth-child(2) { margin-top: 3.2rem; }
+  .km_step:nth-child(3) { margin-top: 2.4rem; }
+  .km_step:nth-child(4) { margin-top: 1.6rem; }
+  .km_step:nth-child(5) { margin-top: .8rem; }
+  .km_step:nth-child(6) { margin-top: 0; }
+  .km_step::before { left: 2.75rem; right: 0; top: 1.1875rem; bottom: auto; width: auto; height: 2px; }
+  .km_step-title { padding-top: 0; }
+}
+@media (min-width: 992px) and (max-width: 1199px) { .km_step-title { font-size: 1rem; } .km_step-text { font-size: .9rem; } }
+
+/* ========================================================================== */
+/* /why-invictus                                                              */
+/* ========================================================================== */
+
+/* Pillars now sit in their own section (not after .why_list), so drop the offset from why-invictus.css */
+.section_pillars .why_pillars { margin-top: 0; }
+.section_pillars .section-header,
+.section_values .section-header { margin-bottom: clamp(2rem, 1.4rem + 2vw, 3.25rem); }
+
+/* Teaser link on Solutions, under the proof cards + tagline */
+.why_more { margin: clamp(1.25rem, 1rem + 1vw, 2rem) 0 0; }
+.section_why .why_tagline { margin-top: clamp(2rem, 1.5rem + 2vw, 3.25rem); }
+
+/* Our values: five numbered cards, 1 / 2 / 3 columns (3 + 2 on desktop) */
+.values_list {
+  list-style: none; margin: 0; padding: 0; counter-reset: value;
+  display: grid; grid-template-columns: 1fr; gap: clamp(1rem, .6rem + 1vw, 1.5rem);
+}
+@media (min-width: 640px)  { .values_list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .values_list { grid-template-columns: repeat(6, minmax(0, 1fr)); } .values_item { grid-column: span 2; } .values_item:nth-child(4) { grid-column: 2 / span 2; } .values_item:nth-child(5) { grid-column: 4 / span 2; } }
+.values_item {
+  counter-increment: value; position: relative; margin: 0; padding: 1.5rem 1.25rem;
+  background: #FBFAF7; border: 1px solid rgba(15, 42, 74, .1); border-top: 3px solid #D1A933; border-radius: 4px;
+}
+.values_item::before {
+  content: counter(value, decimal-leading-zero); display: block; margin: 0 0 .75rem;
+  font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .8125rem; letter-spacing: .12em; color: #8A6D12;
+}
+.values_name { margin: 0 0 .5rem; color: #0F2A4A; text-transform: uppercase; letter-spacing: .06em; font-size: 1.0625rem; }
+.values_text { margin: 0; font-size: .9688rem; line-height: 1.6; color: #5B6370; }
+
+/* Closing brand statement band: large type on deep navy, with the gold rule from .why_statement */
+.section_statement { background: #08182C; }
+.section_statement .statement_slot { padding-top: clamp(4rem, 3rem + 5vw, 8rem); padding-bottom: clamp(4rem, 3rem + 5vw, 8rem); }
+.section_statement .why_statement {
+  margin: 0 auto; max-width: 30em; color: #fff; font-size: clamp(1.6rem, 1.1rem + 2.4vw, 3rem);
+}
+.section_statement .why_statement::before { margin-bottom: 1.75rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .km_step, .km_course, .values_item { transition: none; }
+}
+
+/* ===== 29 Oct: one section at a time (panels), section switcher, nav dropdowns. ===== */
+/* ==========================================================================
+   panels.css - one section at a time, the section switcher, nav dropdowns (Don's notes 29 Oct 2026, decisions 2 and 3)
+   WHERE IT GOES: append this whole file to the END of site-assets/src/site.css. Pairs with panels.js (see its header).
+   ========================================================================== */
+
+/* Keyboard focus inside the sticky navbar must not scroll the page. The page's scroll-padding (navbar + switcher) makes the
+   browser think a focused nav link sits "under the bar", so every Tab through the bar scrolled the page up by ~490 px
+   (pre-existing on staging v1.0.76). While focus is in the navbar, scroll-padding is 0. */
+html:has(.navbar_component:focus-within) { scroll-padding-top: 0; }
+
+/* ---- 1. Panels ---- */
+.panels_panel[hidden] { display: none !important; }
+.panels_panel [tabindex="-1"]:focus { outline: none; }
+.panels_panel.is-entering { animation: panels-in .35s ease both; }
+@keyframes panels-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .panels_panel.is-entering { animation: none; } }
+
+/* Before the script has built the panels (head code adds html.panels-pending, panels.js removes it): show only the hero,
+   the stats band under it, the closing CTA and the footer, so the page does not flash open and collapse. */
+html.panels-pending main > :not(:first-child):not(.section_stats):not(.section_cta-billboard) { display: none; }
+html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
+
+/* A panel starts just under the switcher: its first section drops the generous top padding. */
+.panels_panel > :first-child .padding-section-large:first-of-type,
+.panels_panel > :first-child .padding-section-medium:first-of-type { padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); }
+.panels_panel > :first-child.section_launch .padding-section-medium:first-of-type { padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); }
+
+/* ---- 2. Switcher (the existing .section_subnav strip, now role=tablist) ---- */
+.section_subnav .subnav_link[aria-selected="true"] { background-color: rgba(209, 169, 51, .1); border-color: rgba(209, 169, 51, .75); color: #0F2A4A; }
+.section_subnav .subnav_link:focus-visible { outline: 3px solid #85660A; outline-offset: -3px; }
+@media (min-width: 992px) {
+  .subnav_list.has-more { -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent); mask-image: linear-gradient(90deg, #000 92%, transparent); }
+  .subnav_list.is-tight { column-gap: .25rem; }
+  .subnav_list.is-tight .subnav_link { padding-left: .65rem; padding-right: .65rem; font-size: .8125rem; }
+  .subnav_list.is-tight .subnav_icon { display: none; }
+}
+@media (forced-colors: active) {
+  .section_subnav .subnav_link[aria-selected="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; outline: 2px solid CanvasText; }
+}
+
+/* ---- 3a. Desktop bar fit (seven links, the Contact pill, the Order pill and a dropdown chevron on each) ---- */
+@media (min-width: 992px) {
+  .navbar_link { white-space: nowrap; font-size: .875rem; }
+  .navbar_link-list { column-gap: .875rem; }
+  .navbar_link-item.has-drop > .navbar_link:not(.is-cta) { padding-right: .15rem; }
+  .navbar_drop-toggle { width: 18px; }
+  .navbar_container { column-gap: 1rem; }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar_container { column-gap: .75rem; }
+  .navbar_container .navbar_logo { width: 7.5rem; }
+  .navbar_link-list { column-gap: .25rem; }
+  .navbar_link { font-size: .78125rem; letter-spacing: 0; padding-left: .2rem; padding-right: .1rem; }
+  .navbar_link.is-cta { padding-left: .7rem; padding-right: .7rem; }
+  .navbar_drop-toggle { width: 14px; }
+  .nav-order { padding: 0 .8rem; font-size: .78125rem; }
+}
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .navbar_container .navbar_logo { width: 8.25rem; }
+  .navbar_link-list { column-gap: .5rem; }
+  .navbar_link { font-size: .8125rem; }
+  .navbar_drop-toggle { width: 16px; }
+  .nav-order_long { display: none; }
+  .nav-order_short { display: inline; }
+}
+
+/* ---- 3. Nav: "Invictus Global Solutions" needs 1200 px; below that the bar shows "Solutions" ---- */
+@media (min-width: 992px) and (max-width: 1199px) { .navbar_link-prefix { display: none; } }
+
+/* ---- 4. Nav dropdowns ---- */
+.navbar_drop, .navbar_drop-toggle { margin: 0; }
+.navbar_drop-toggle {
+  flex: none; padding: 0; border: 0; background: none; color: #FBFAF7; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; transition: color .2s;
+}
+.navbar_drop-toggle svg { width: 11px; height: 11px; transition: transform .2s; }
+.navbar_drop-toggle:hover, .has-drop.is-open > .navbar_drop-toggle { color: #D1A933; }
+.has-drop.is-open > .navbar_drop-toggle svg { transform: rotate(180deg); }
+.navbar_drop-toggle:focus-visible, .navbar_drop-link:focus-visible { outline: 2px solid #D1A933; outline-offset: 2px; }
+.navbar_drop { padding: 0; list-style: none; display: none; }
+.has-drop.is-open > .navbar_drop { display: block; }
+.navbar_drop-link {
+  display: block; text-decoration: none; color: #FBFAF7; font-family: var(--_type---font-heading, Montserrat, Arial, sans-serif);
+  font-weight: 600; line-height: 1.3; transition: color .2s, background-color .2s;
+}
+.navbar_drop-link:hover, .navbar_drop-link:focus-visible { color: #D1A933; background-color: rgba(209, 169, 51, .1); }
+.navbar_drop-link.is-current { color: #D1A933; }
+
+@media (min-width: 992px) {
+  .navbar_link-item.has-drop { position: relative; display: flex; align-items: center; }
+  .navbar_drop-toggle { width: 20px; height: 44px; margin-left: -.1rem; }
+  .navbar_drop {
+    position: fixed; z-index: 60; top: 4.75rem; left: 0; min-width: 17.5rem; max-width: 22rem; padding: .5rem;   /* top/left are set by panels.js */
+    background: linear-gradient(#0F2A4A, #0B2140); border: 1px solid rgba(209, 169, 51, .35); border-top: 2px solid #D1A933;
+    border-radius: 0 0 8px 8px; box-shadow: 0 18px 36px -14px rgba(8, 24, 44, .65);
+  }
+  .navbar_drop::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }   /* bridge, so the pointer can cross the gap */
+  .navbar_drop-link { padding: .6rem .85rem; font-size: .9375rem; border-radius: 6px; white-space: nowrap; }
+  .navbar_drop-link.is-current { box-shadow: inset 3px 0 0 #D1A933; }
+  .has-drop.is-open > .navbar_drop { animation: panels-in .18s ease both; }
+}
+@media (min-width: 992px) and (prefers-reduced-motion: reduce) { .has-drop.is-open > .navbar_drop { animation: none; } }
+
+/* Phone menu: the row is the link plus a chevron button; the button opens that page's sections underneath. */
+@media (max-width: 991px) {
+  .navbar_link-item.has-drop { display: flex; flex-wrap: wrap; align-items: stretch; }
+  .navbar_link-item.has-drop > .navbar_link { flex: 1 1 0; width: auto; min-width: 0; }
+  .navbar_drop-toggle { width: 64px; min-height: 64px; border-left: 1px solid rgba(169, 178, 190, .25); }
+  .navbar_drop-toggle svg { width: 14px; height: 14px; }
+  .navbar_drop { flex: 0 0 100%; margin: 0 0 1rem .25rem; padding: 0 0 0 1rem; border-left: 2px solid rgba(209, 169, 51, .55); }
+  .navbar_drop-link { padding: .75rem .5rem; font-size: 1.0625rem; color: rgba(251, 250, 247, .9); }
+  .navbar_drop-link.is-current { box-shadow: none; }
+}
+@media (forced-colors: active) {
+  .navbar_drop { background: Canvas; border: 1px solid CanvasText; }
+  .navbar_drop-link.is-current { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+}
+
+/* ---- 5. Print: every panel prints, in order; the switcher and dropdowns do not ---- */
+@media print {
+  .panels_panel[hidden] { display: block !important; }
+  html.has-panels .section_subnav, .navbar_drop, .navbar_drop-toggle { display: none !important; }
+}
