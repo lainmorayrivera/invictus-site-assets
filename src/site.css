@@ -2399,8 +2399,8 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .offers.has-subviews .offers_card:has(.is-selected) { border-color: #D1A933; box-shadow: 0 0 0 1px #D1A933, 0 16px 32px -22px rgba(15, 42, 74, .45); }
 .offers.has-subviews .offers_card-link.is-selected { color: #85660A; text-decoration-color: currentColor; }
 .offers.has-subviews .offers_card-link.is-selected::after { content: " \2193"; }
-.offers.has-subviews > article.offer[hidden] { display: none; }
-.offers.has-subviews > article.offer { margin-top: 2rem; }
+.offers.has-subviews > .subview[hidden] { display: none; }
+.offers.has-subviews > .subview > article.offer { margin-top: 2rem; }
 
 /* Pills for sub-views (KM curriculum). */
 .subtabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 2rem; }
@@ -2428,3 +2428,41 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .press-list_item .press_actions { margin-top: 2rem; }
 .press-list_loading { color: #5B6370; }
 @media (max-width: 767px) { .press-list_item { padding: 1.5rem 1.25rem; } }
+
+/* ===== v1.0.84: release audit fixes (docs/review-2026-10-29/release-audit.md) ===== */
+/* RA-07 Home Solutions rotator: four long names, so a grid like the Parts rotator instead of a clipped strip. */
+.section_solutions .solutions-rotator_tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; -webkit-mask-image: none; mask-image: none; }
+.section_solutions .solutions-rotator_tab { white-space: normal; text-align: left; }
+@media (max-width: 1199px) { .section_solutions .solutions-rotator_tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .section_solutions .solutions-rotator_tabs { grid-template-columns: minmax(0, 1fr); } }
+
+/* RA-08 Home Why carousel: the values slide sets every slide's height, so on wide screens its title goes above
+   and the five values sit in three columns; the pillar slides then sit in a card close to their own size. */
+@media (min-width: 1024px) {
+  .home-why_card:has(.home-why_values) { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 1.5rem; }
+  .home-why_values { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 2.5rem; }
+  .home-why_value, .home-why_value:first-child, .home-why_value:last-child { grid-template-columns: minmax(0, 1fr); align-content: start; row-gap: .25rem; padding: 0; border-top: 0; }
+}
+/* RA-09 numerals: accent ink, as on the Why Invictus page (gold on cream was 2.1:1). */
+.home-why_num { color: #85660A; }
+
+/* RA-10 About hero: a firmer scrim on wide screens, so the title and sub-line don't sit on the bright face. */
+@media (min-width: 1200px) {
+  html[data-wf-page="6ad7655c38b42945e6ff6ddc"] .section_header-media .header-media_overlay {
+    background-image: linear-gradient(90deg, rgba(8, 24, 44, .92) 0%, rgba(8, 24, 44, .8) 42%, rgba(8, 24, 44, .3) 72%, rgba(8, 24, 44, .15) 100%); }
+}
+/* RA-11 Book hero: darken the lower left, where the edition line sits over bright slides. */
+.section_header-media:has(.header-media_aside) .header-media_overlay {
+  background-image: linear-gradient(0deg, rgba(8, 24, 44, .7) 0%, rgba(8, 24, 44, 0) 38%), linear-gradient(90deg, rgba(8, 24, 44, .88), rgba(8, 24, 44, .55) 70%, rgba(8, 24, 44, .35)); }
+
+/* RA-18 targets of at least 24 px. */
+@media (min-width: 992px) { .navbar_drop-toggle { width: 24px; margin-left: -4px; } }
+.footer_legal-link, .footer_top-link { padding-block: .2rem; display: inline-block; }
+.carousel_dot { min-width: 24px; min-height: 24px; }
+
+/* RA-20 press releases: a readable measure inside the card. */
+.press-list_item .press_body, .press-list_item .press_about-block, .press_body { max-width: 42rem; }
+/* RA-21 gallery group labels belong to the grid below them. */
+.mgal_grid + .solution_label, .mgal_grid + .heading-style-h6 { margin-top: 2.5rem; }
+/* RA-22 a submit button waiting for the spam check looks like it. */
+.button[disabled], input.button[disabled], input[type="submit"][disabled] { opacity: .55; cursor: progress; }
