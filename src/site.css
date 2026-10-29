@@ -2349,3 +2349,6 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
   .home-why_value { grid-template-columns: minmax(0, 1fr); row-gap: .15rem; padding: .7rem 0; }
 }
 @media (prefers-reduced-motion: reduce) { .home-why_link { transition: none; } }
+
+/* v1.0.81: keep the paragraph breaks typed into an advisor's CMS quote */
+.advisors_quote-text { white-space: pre-line; }
