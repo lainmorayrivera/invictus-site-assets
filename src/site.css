@@ -2466,3 +2466,20 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .mgal_grid + .solution_label, .mgal_grid + .heading-style-h6 { margin-top: 2.5rem; }
 /* RA-22 a submit button waiting for the spam check looks like it. */
 .button[disabled], input.button[disabled], input[type="submit"][disabled] { opacity: .55; cursor: progress; }
+
+/* ===== v1.0.85: book trailer pop-up player (29 Oct 2026) ===== */
+.trailer_button { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; }
+.trailer_button svg { width: .875rem; height: .875rem; flex: none; }
+.trailer_dialog { width: min(1100px, 92vw); max-width: none; padding: 0; border: 0; background: transparent; overflow: visible; }
+.trailer_dialog::backdrop { background: rgba(8, 24, 44, .86); }
+.trailer_frame { position: relative; aspect-ratio: 16 / 9; background: #08182C; border-radius: 6px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .6); }
+.trailer_video { display: block; width: 100%; height: 100%; border-radius: 6px; background: #08182C; }
+.trailer_close { position: absolute; top: -3rem; right: 0; width: 2.5rem; height: 2.5rem; display: grid; place-items: center;
+  border: 1px solid rgba(255, 255, 255, .5); border-radius: 999px; background: transparent; color: #fff; cursor: pointer; }
+.trailer_close svg { width: 1rem; height: 1rem; }
+.trailer_close:hover { border-color: #D1A933; color: #D1A933; }
+.trailer_close:focus-visible { outline: 2px solid #D1A933; outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .trailer_dialog[open] { animation: trailer-in .3s ease both; }
+  @keyframes trailer-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+}
