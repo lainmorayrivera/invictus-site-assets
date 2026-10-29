@@ -2215,3 +2215,85 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
   .panels_panel[hidden] { display: block !important; }
   html.has-panels .section_subnav, .navbar_drop, .navbar_drop-toggle { display: none !important; }
 }
+
+/* ===== 29 Oct: About › Advisory Board & Select Team Members — full biographies shown by default (script.js
+   unwraps the "Full biography" disclosure into .advisors_bio). ===== */
+.advisors_bio { max-width: 68ch; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(15, 42, 74, .12); }
+.advisors_bio-p { margin: 0 0 1rem; color: #1E2531; font-size: 1rem; line-height: 1.65; }
+.advisors_bio-p:last-child { margin-bottom: 0; }
+.advisors_bio-p.is-lede { font-size: 1.125rem; line-height: 1.6; color: #0F2A4A; }
+.advisors_quote + .advisors_bio { border-top: 0; padding-top: 0; }
+/* Photos: a steady 4:5 head-and-shoulders frame, faces near the top; on desktop the photo stays in view beside long bios. */
+.advisors_photo { aspect-ratio: 4 / 5; overflow: hidden; }
+.advisors_photo .image-cover { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+@media (min-width: 992px) { .advisors_panel { align-items: start; } .advisors_photo { position: sticky; top: 9.5rem; } }
+
+/* ===== 29 Oct: Why Invictus page brought in line with the other pages. ===== */
+/* ==========================================================================
+   why-page.css -- /why-invictus formatting pass (29 Oct 2026).
+   WHERE IT GOES: append this whole file to the END of site-assets/src/site.css (after panels.css).
+   Pairs with why-page.js (one BAND entry in prototype/script.js).
+   Touches only Why-Invictus-only classes (.why_pillar, .values_*, .section_pillars, .section_statement),
+   so Solutions' .section_why / .why_item are unaffected.
+   ========================================================================== */
+
+/* 1. Cards: the Solutions "How we help" card (.solution_help-item): sand fill, hairline border, 2 px gold bar across the
+      top that fades at both ends, soft shadow, 2 px lift on hover. Replaces the earlier 3 px solid gold top border. */
+.why_pillar, .values_item {
+  position: relative; margin: 0; padding: 1.5rem;
+  background-color: #F1EEE7;
+  background-image: linear-gradient(90deg, rgba(209, 169, 51, .15), #D1A933 30%, #D1A933 70%, rgba(209, 169, 51, .15));
+  background-size: 100% 2px; background-repeat: no-repeat;
+  border: 1px solid rgba(15, 42, 74, .06); border-radius: 0 0 4px 4px;
+  box-shadow: 0 1px 0 rgba(15, 42, 74, .05), 0 .9rem 2rem -1.4rem rgba(8, 24, 44, .38);
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1), box-shadow .45s ease;
+}
+.why_pillar:hover, .values_item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(15, 42, 74, .06), 0 1.25rem 2.5rem -1.4rem rgba(8, 24, 44, .5);
+}
+/* The Values section has the sand "alternate" background, so its cards go lighter to stay visible (as on the other alternate sections). */
+.background-color-alternate .values_item { background-color: #FBFAF7; }
+/* Cards that also fade in on scroll keep the reveal's fade and stagger (same rule the site uses for .solution_help-item). */
+.js-motion :is(.why_pillar, .values_item)[data-reveal] {
+  transition-property: opacity, transform, box-shadow;
+  transition-duration: .7s, .7s, .45s;
+  transition-timing-function: ease, cubic-bezier(.2, .7, .2, 1), ease;
+  transition-delay: var(--reveal-delay, 0s), var(--reveal-delay, 0s), 0s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* The gold bar draws across as each card fades in (as on "How we help"). */
+  .js-motion :is(.why_pillar, .values_item)[data-reveal].is-revealed { animation: line-bar-h 1s cubic-bezier(.45, 0, .25, 1) calc(var(--reveal-delay, 0s) + .3s) backwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .why_pillar, .values_item { transition: none; }
+  .why_pillar:hover, .values_item:hover { transform: none; }
+}
+
+/* 2. Values: five cards, never a lone card on the last row. Same rule as the five "How we help" cards:
+      3 + 2 (the last two half width) from 992 px, 2 + 2 + a full-width fifth from 480 px, one column below. */
+.values_list { grid-template-columns: 1fr; }
+@media (min-width: 480px) and (max-width: 991px) {
+  .values_list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .values_item, .values_item:nth-child(4), .values_item:nth-child(5) { grid-column: auto; }
+  .values_item:nth-child(5) { grid-column: 1 / -1; }
+}
+@media (min-width: 992px) {
+  .values_list { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .values_item { grid-column: span 2; }
+  .values_item:nth-child(n+4) { grid-column: span 3; }
+}
+
+/* 3. Watermarks, as on the other pages: one compass per section, in the bottom corner on the text side, 30% of its size past
+      both edges and cropped by the section. Navy .045 on the light Pillars section (the sand "alternate" sections carry none,
+      as on Solutions); cream .07 on the dark statement band. Phones: bottom right. Uses the --wm size from the watermark system. */
+.section_pillars, .section_statement { position: relative; overflow: hidden; isolation: isolate; }
+.section_pillars::before, .section_statement::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  width: var(--wm); aspect-ratio: 1; bottom: calc(var(--wm) * -.3);
+  -webkit-mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+  mask: url("https://cdn.prod.website-files.com/6ad718edf2713443b680783b/6ad73b67d9c6244c30101fc0_watermark-mark.svg") center / contain no-repeat;
+}
+.section_pillars::before { left: calc(var(--wm) * -.3); background-color: #0F2A4A; opacity: .045; }
+.section_statement::before { right: calc(var(--wm) * -.3); background-color: #FBFAF7; opacity: .07; }
+@media (max-width: 991px) { .section_pillars::before { left: auto; right: calc(var(--wm) * -.3); } }
