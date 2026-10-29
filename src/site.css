@@ -1054,7 +1054,9 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 .clip_toggle:hover { background: #0F2A4A; border-color: #D1A933; }
 .clip_toggle:focus-visible { outline: 2px solid #D1A933; outline-offset: 2px; }
 .clip_toggle svg { width: 1rem; height: 1rem; fill: currentColor; }
-@media (prefers-reduced-motion: reduce) { .endorse_video, .launch_video { display: none; } .launch_frame { background-size: cover; } }
+/* Reduced motion: the endorsement clip hides so its photo shows; the launch clips stay (they start paused on their
+   poster, Play on request). Hiding them left six blank navy squares (29 Oct review, FB-1). */
+@media (prefers-reduced-motion: reduce) { .endorse_video { display: none; } }
 
 /* Book: "From the launch" strip. */
 .section_launch { background: #FBFAF7; }
@@ -1359,9 +1361,10 @@ img.content_watermark {
   gap: clamp(2rem, 4vw, 3rem);
 }
 
-/* Anchor targets (sticky navbar offset) */
+/* Anchor targets: no own offset, the page's scroll-padding already clears the navbar and sub-nav (29 Oct review,
+   LS-1 / PARTA-1: the 6rem here stacked on it, so these three landed 96 px lower than every other anchor). */
 .offers,
-.offer { scroll-margin-top: 6rem; }
+.offer { scroll-margin-top: 0; }
 
 /* --- Overview cards (3-up desktop, 2-up tablet, stacked phone) ----------- */
 .offers_overview {
@@ -1832,3 +1835,32 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 }
 .why_statement::before { content: ""; display: block; width: 3.5rem; height: 3px; margin: 0 auto 1.5rem; background: #D1A933; }
 @media (prefers-reduced-motion: reduce) { .why_pillar-link { transition: none; } }
+
+/* ===== Pre-launch review (29 Oct 2026): layout and brand fix-now items. ===== */
+/* LB-2. Insights hero: the three-button group may run past the 42rem text column so "Subscribe on Substack" stays on
+   the row (desktop only; below 992 px the buttons stack full width and keep the column). */
+@media (min-width: 992px) {
+  .section_header-media .header-media_content > .button-group { width: max-content; max-width: calc(100vw - var(--sbw, 0px) - 2 * var(--_space---global, 5%)); }
+}
+/* LB-3, LB-4, LB-5. An odd last card in a two-column grid spans the row instead of sitting alone bottom-left:
+   Solutions stat cards (offer 02 has five), the entry-level overview on tablets, the About bio sidebar on tablets. */
+.offer_stats > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (min-width: 768px) and (max-width: 991px) {
+  .offers_overview > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .bio_sidebar > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+/* LB-6. Footer on phones: the three link columns stack, so "Get in touch" lines up with the other two headings. */
+@media (max-width: 479px) { .footer_nav { grid-template-columns: minmax(0, 1fr); } }
+/* LB-7. "AI engine" title in the force-multiplier figure had a 24px line-height under a 26px font. */
+.fig-force_engine-title { line-height: 1.1; }
+/* LB-8. Gold is never text on light: the Solutions numerals use accent-ink like the eyebrows. */
+.offers_card-num, .offer_index, .why_pillar::before { color: #85660A; }
+/* LB-9. Near-token greys replaced by the tokens (muted #5B6370 on light, neutral #A9B2BE on dark). */
+.launch_lede, .launch_role { color: #5B6370; }
+.header-media_note, .why_growth-label { color: #A9B2BE; }
+.podcast_episodes .tag.is-topic { color: #A9B2BE; border-color: rgba(169, 178, 190, .45); }
+/* CSEO-23. Insights title cards: an unbound CMS image (empty src) never renders; the card's own title-card shows. */
+.insights_title-card > img.is-overlay.w-dyn-bind-empty { display: none; }
+/* LB-1. Contact topics on tablets (two-column grid): an odd fifth card (Media) spans the row instead of sitting alone.
+   Goes with the Webflow fix that gives each topic its own list item. */
+@media (min-width: 480px) and (max-width: 991px) { .contact_topic-item:last-child:nth-child(odd) { grid-column: 1 / -1; } }
