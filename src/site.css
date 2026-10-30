@@ -2483,3 +2483,27 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
   .trailer_dialog[open] { animation: trailer-in .3s ease both; }
   @keyframes trailer-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
 }
+
+/* ===== v1.0.86: Curriculum portfolio led by the learning ladder (29 Oct 2026, option A) =====
+   The six ladder steps are the controls (script.js "Sub-views"); the stage below shows the chosen step's offerings. */
+.km_portfolio.is-ladder .km_ladder { margin-bottom: clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem); }
+.km_step-btn { display: block; width: 100%; margin: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; border-radius: 4px; }
+.km_step-btn:focus-visible { outline: 2px solid #85660A; outline-offset: 4px; }
+.km_portfolio.is-ladder .km_step-num { background: #FBFAF7; color: #0F2A4A; transition: background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+.km_portfolio.is-ladder .km_step-btn:hover .km_step-num { background: #F1EEE7; }
+.km_portfolio.is-ladder .km_step-btn[aria-selected="true"] .km_step-num { background: #0F2A4A; color: #D1A933; box-shadow: 0 0 0 3px #FBFAF7, 0 0 0 5px #D1A933, 0 6px 16px -4px rgba(15, 42, 74, .45); }
+.km_portfolio.is-ladder .km_step-btn .km_step-title { text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-decoration-color .2s ease; }
+.km_portfolio.is-ladder .km_step-btn:hover .km_step-title { text-decoration-color: rgba(209, 169, 51, .6); }
+.km_portfolio.is-ladder .km_step-btn[aria-selected="true"] .km_step-title { text-decoration-color: #D1A933; }
+
+.km_stage { padding: clamp(1.5rem, 1rem + 2vw, 2.75rem); background: #fff; border: 1px solid rgba(15, 42, 74, .08); border-top: 3px solid #D1A933; border-radius: 6px; box-shadow: 0 16px 40px -28px rgba(15, 42, 74, .4); }
+.km_view[hidden] { display: none; }
+.km_view > .km_group { margin-top: 0; }
+.km_view > .km_group + .km_group { margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem); }
+.km_view .km_course { background: #FBFAF7; }
+.km_view-lead p { margin: 0; max-width: 46rem; font-size: 1.125rem; line-height: 1.6; color: #0F2A4A; }
+.km_view-links { display: flex; flex-wrap: wrap; gap: .75rem 1.75rem; margin-top: 1.25rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .km_view:not([hidden]) { animation: km-view-in .35s ease both; }
+  @keyframes km-view-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
