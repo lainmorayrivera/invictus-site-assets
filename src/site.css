@@ -2612,17 +2612,25 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .mini-press_card:hover .mini-press_read { text-decoration: underline; text-underline-offset: 3px; }
 
 .section_mini-follow { padding-bottom: clamp(3rem, 2.5rem + 2vw, 5rem); }
-.mini-follow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; padding: clamp(1.25rem, 1rem + 1vw, 1.75rem) clamp(1.25rem, 1rem + 1.5vw, 2.25rem); background: #0F2A4A; border-radius: 6px; color: #fff; }
-.mini-follow .eyebrow { margin: 0 0 .3rem; color: #D1A933; }
-.mini-follow_title { margin: 0; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: clamp(1.125rem, 1rem + .5vw, 1.375rem); line-height: 1.3; color: #fff; }
-.mini-follow_list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+/* v1.0.91: the Media & Insights newsletter panel (.newsletter_panel: cream, fading gold top bar, compass watermark),
+   shorter, with a brand-coloured button per platform. */
+.newsletter_panel.mini-follow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2.5rem; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.5rem); }
+.mini-follow_text { flex: 1 1 18rem; }
+.mini-follow .eyebrow { margin: 0 0 .4rem; }
+.mini-follow_title { margin: 0; color: #0F2A4A; text-wrap: balance; }
+.mini-follow_sub { margin: .4rem 0 0; }
+.mini-follow_list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; flex: 0 1 34rem; justify-content: flex-end; }
 .mini-follow_list li { margin: 0; }
-.mini-follow_btn { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .5rem 1rem; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; text-decoration: none; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .8125rem; transition: background-color .2s ease, border-color .2s ease, color .2s ease; }
-.mini-follow_btn:hover { background: #fff; border-color: #fff; color: #0F2A4A; }
-.mini-follow_btn:focus-visible { outline: 2px solid #D1A933; outline-offset: 3px; }
-.mini-follow_btn.is-linkedin { background: #0A66C2; border-color: #0A66C2; }
-.mini-follow_btn.is-substack { background: #C9471A; border-color: #C9471A; }
-.mini-follow_btn.is-linkedin:hover, .mini-follow_btn.is-substack:hover { background: #fff; color: #0F2A4A; border-color: #fff; }
+.mini-follow_btn { --brand: #0F2A4A; display: inline-flex; align-items: center; gap: .5rem; min-height: 2.6rem; padding: .55rem 1.05rem; border-radius: 999px; background: var(--brand); color: #fff; text-decoration: none; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .8125rem; line-height: 1.2; box-shadow: 0 6px 16px -10px rgba(8, 24, 44, .55); transition: filter .2s ease, transform .2s ease; }
+.mini-follow_btn:hover { filter: brightness(.88); transform: translateY(-1px); color: #fff; }
+.mini-follow_btn:focus-visible { outline: 2px solid #85660A; outline-offset: 3px; }
+.mini-follow_btn.is-linkedin { --brand: #0A66C2; }
+.mini-follow_btn.is-substack { --brand: #C2410C; }
+.mini-follow_btn.is-youtube { --brand: #CC0000; }
+.mini-follow_btn.is-instagram { background: linear-gradient(45deg, #E1306C 0%, #C13584 45%, #833AB4 100%); }
+.mini-follow_btn.is-tiktok { --brand: #010101; }
+.mini-follow_btn.is-tiktok .mini-follow_icon { filter: drop-shadow(1.2px 1px 0 #FE2C55) drop-shadow(-1px -.8px 0 #25F4EE); }
 .mini-follow_icon { width: 1rem; height: 1rem; flex: none; }
-@media (max-width: 599px) { .mini-follow_list { width: 100%; } .mini-follow_btn { width: 100%; justify-content: center; } .mini-follow_list li { flex: 1 1 100%; } }
+@media (max-width: 767px) { .mini-follow_list { justify-content: flex-start; } }
+@media (max-width: 599px) { .mini-follow_list { width: 100%; } .mini-follow_list li { flex: 1 1 100%; } .mini-follow_btn { width: 100%; justify-content: center; } }
 #insights:has(+ .section_mini-follow) .padding-section-large { padding-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
