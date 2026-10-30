@@ -2579,3 +2579,14 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .substack-feed_item .substack-feed_sub { font-size: .9375rem; }
 .substack-feed_more { margin: clamp(1.25rem, 1rem + 1vw, 2rem) 0 0; }
 .substack-feed_lead:focus-visible, .substack-feed_item:focus-visible { outline: 2px solid #85660A; outline-offset: 3px; }
+
+/* ===== v1.0.89: press release brand (29 Oct 2026) =====
+   The attribute sits ON .press_content (set by site.min.js from the release's brand), so match it directly; the
+   :has() rules above only matched a descendant. In the Press releases panel it sits on the list item. */
+.press_content[data-press-brand="Invictus Global Media"] .press_brand.is-advisors,
+.press_content[data-press-brand="Invictus Global Media"] .press_about-block.is-advisors,
+.press-list_item[data-press-brand="Invictus Global Media"] .press_about-block.is-advisors { display: none; }
+.press_content[data-press-brand="Invictus Global Media"] .press_brand.is-media,
+.press_content[data-press-brand="Invictus Global Media"] .press_about-block.is-media,
+.press-list_item[data-press-brand="Invictus Global Media"] .press_about-block.is-media { display: block; }
+.press-list_item[data-press-brand="Invictus Global Advisors"] .press_about-block.is-media { display: none; }
