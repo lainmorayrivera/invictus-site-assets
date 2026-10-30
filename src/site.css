@@ -2590,3 +2590,39 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .press_content[data-press-brand="Invictus Global Media"] .press_about-block.is-media,
 .press-list_item[data-press-brand="Invictus Global Media"] .press_about-block.is-media { display: block; }
 .press-list_item[data-press-brand="Invictus Global Advisors"] .press_about-block.is-media { display: none; }
+
+/* ===== v1.0.90: Home › Media & Insights mini press release and follow strip (29 Oct 2026) ===== */
+.section_mini-press { padding-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.section_mini-press + #insights > .padding-global > .container-large > .padding-section-large,
+.section_mini-press + #insights .padding-section-large { padding-top: clamp(2.25rem, 1.75rem + 2vw, 3.5rem); }
+.mini-press_head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .9rem; }
+.mini-press_head .eyebrow { margin: 0; }
+.mini-press_card { display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; background: #fff; border: 1px solid rgba(15, 42, 74, .08); border-left: 3px solid #D1A933; border-radius: 6px; color: inherit; text-decoration: none; box-shadow: 0 14px 34px -26px rgba(15, 42, 74, .45); transition: transform .25s ease, box-shadow .25s ease; }
+@media (min-width: 640px) { .mini-press_card { grid-template-columns: 13rem minmax(0, 1fr); } }
+.mini-press_card:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -26px rgba(15, 42, 74, .55); }
+.mini-press_card:focus-visible { outline: 2px solid #85660A; outline-offset: 3px; }
+.mini-press_media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0F2A4A; }
+@media (min-width: 640px) { .mini-press_media { aspect-ratio: auto; height: 100%; } }
+.mini-press_media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+.mini-press_body { display: flex; flex-direction: column; gap: .35rem; padding: 1.1rem 1.35rem; }
+.mini-press_meta { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: #85660A; }
+.mini-press_title { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: 1.0625rem; line-height: 1.35; color: #0F2A4A; text-wrap: balance; }
+.mini-press_sum { font-size: .9375rem; line-height: 1.5; color: #5B6370; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mini-press_read { margin-top: .25rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .875rem; color: #85660A; }
+.mini-press_card:hover .mini-press_read { text-decoration: underline; text-underline-offset: 3px; }
+
+.section_mini-follow { padding-bottom: clamp(3rem, 2.5rem + 2vw, 5rem); }
+.mini-follow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; padding: clamp(1.25rem, 1rem + 1vw, 1.75rem) clamp(1.25rem, 1rem + 1.5vw, 2.25rem); background: #0F2A4A; border-radius: 6px; color: #fff; }
+.mini-follow .eyebrow { margin: 0 0 .3rem; color: #D1A933; }
+.mini-follow_title { margin: 0; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: clamp(1.125rem, 1rem + .5vw, 1.375rem); line-height: 1.3; color: #fff; }
+.mini-follow_list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+.mini-follow_list li { margin: 0; }
+.mini-follow_btn { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .5rem 1rem; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; text-decoration: none; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .8125rem; transition: background-color .2s ease, border-color .2s ease, color .2s ease; }
+.mini-follow_btn:hover { background: #fff; border-color: #fff; color: #0F2A4A; }
+.mini-follow_btn:focus-visible { outline: 2px solid #D1A933; outline-offset: 3px; }
+.mini-follow_btn.is-linkedin { background: #0A66C2; border-color: #0A66C2; }
+.mini-follow_btn.is-substack { background: #C9471A; border-color: #C9471A; }
+.mini-follow_btn.is-linkedin:hover, .mini-follow_btn.is-substack:hover { background: #fff; color: #0F2A4A; border-color: #fff; }
+.mini-follow_icon { width: 1rem; height: 1rem; flex: none; }
+@media (max-width: 599px) { .mini-follow_list { width: 100%; } .mini-follow_btn { width: 100%; justify-content: center; } .mini-follow_list li { flex: 1 1 100%; } }
+#insights:has(+ .section_mini-follow) .padding-section-large { padding-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
