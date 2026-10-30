@@ -2614,12 +2614,19 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .section_mini-follow { padding-bottom: clamp(3rem, 2.5rem + 2vw, 5rem); }
 /* v1.0.91: the Media & Insights newsletter panel (.newsletter_panel: cream, fading gold top bar, compass watermark),
    shorter, with a brand-coloured button per platform. */
-.newsletter_panel.mini-follow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2.5rem; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.5rem); }
-.mini-follow_text { flex: 1 1 18rem; }
+/* v1.0.92: text, then the buttons as an ordered grid (the two writing channels as a wide pair, the three video and
+   social channels as an even row), all on the left so the compass watermark on the right shows. */
+.newsletter_panel.mini-follow { display: block; padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.5rem); }
+.newsletter_panel.mini-follow .newsletter_watermark { opacity: .08; right: -3rem; bottom: -5rem; width: min(20rem, 38%); }
+.mini-follow_text { max-width: 38rem; }
 .mini-follow .eyebrow { margin: 0 0 .4rem; }
 .mini-follow_title { margin: 0; color: #0F2A4A; text-wrap: balance; }
 .mini-follow_sub { margin: .4rem 0 0; }
-.mini-follow_list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; flex: 0 1 34rem; justify-content: flex-end; }
+.mini-follow_list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6rem; max-width: 40rem; }
+.mini-follow_list li:nth-child(-n + 2) { grid-column: span 3; }
+.mini-follow_list li:nth-child(n + 3) { grid-column: span 2; }
+.mini-follow_list .mini-follow_btn { width: 100%; justify-content: center; white-space: nowrap; }
+.mini-follow_list li:nth-child(n + 3) .mini-follow_btn { font-size: .78rem; padding-inline: .7rem; }
 .mini-follow_list li { margin: 0; }
 .mini-follow_btn { --brand: #0F2A4A; display: inline-flex; align-items: center; gap: .5rem; min-height: 2.6rem; padding: .55rem 1.05rem; border-radius: 999px; background: var(--brand); color: #fff; text-decoration: none; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .8125rem; line-height: 1.2; box-shadow: 0 6px 16px -10px rgba(8, 24, 44, .55); transition: filter .2s ease, transform .2s ease; }
 .mini-follow_btn:hover { filter: brightness(.88); transform: translateY(-1px); color: #fff; }
@@ -2631,6 +2638,9 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .mini-follow_btn.is-tiktok { --brand: #010101; }
 .mini-follow_btn.is-tiktok .mini-follow_icon { filter: drop-shadow(1.2px 1px 0 #FE2C55) drop-shadow(-1px -.8px 0 #25F4EE); }
 .mini-follow_icon { width: 1rem; height: 1rem; flex: none; }
-@media (max-width: 767px) { .mini-follow_list { justify-content: flex-start; } }
-@media (max-width: 599px) { .mini-follow_list { width: 100%; } .mini-follow_list li { flex: 1 1 100%; } .mini-follow_btn { width: 100%; justify-content: center; } }
+@media (max-width: 479px) {
+  .mini-follow_list { grid-template-columns: minmax(0, 1fr); max-width: none; }
+  .mini-follow_list li:nth-child(n) { grid-column: auto; }
+  .mini-follow_list li:nth-child(n + 3) .mini-follow_btn { font-size: .8125rem; }
+}
 #insights:has(+ .section_mini-follow) .padding-section-large { padding-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
