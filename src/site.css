@@ -2536,3 +2536,46 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .why_experience-card { margin: 0; padding: 1.5rem 1.25rem; background: #FBFAF7; border: 1px solid rgba(15, 42, 74, .1); border-left: 3px solid #D1A933; border-radius: 4px; }
 .why_experience-card p:last-child { margin: 0; font-size: .9688rem; line-height: 1.6; color: #3E4757; }
 .why_credentials { margin: 1.5rem 0 0; font-size: .9688rem; color: #5B6370; }
+
+/* ===== v1.0.88: press release photos (29 Oct 2026) ===== */
+.pressfeat_layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1.25rem, 1rem + 1.5vw, 2.5rem); align-items: stretch; }
+@media (min-width: 900px) { .pressfeat_layout { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.pressfeat_media { display: block; overflow: hidden; border-radius: 6px; aspect-ratio: 4 / 3; background: #08182C; box-shadow: 0 18px 40px -26px rgba(15, 42, 74, .55); }
+.pressfeat_media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; transition: transform .5s ease; }
+.pressfeat_media:hover img { transform: scale(1.03); }
+@media (min-width: 900px) { .pressfeat_media { aspect-ratio: auto; min-height: 100%; } }
+.pressfeat_layout > .pressfeat_card { margin: 0; }
+
+.press_image { border-radius: 6px; overflow: hidden; }
+.press_image img { width: 100%; height: auto; display: block; }
+.press-photos { margin: clamp(2rem, 1.5rem + 1.5vw, 3rem) 0 0; }
+.press-photos_label { margin: 0 0 1rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: #85660A; }
+.press-photos_grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+@media (min-width: 768px) { .press-photos_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.press-photos_item { aspect-ratio: 3 / 2; overflow: hidden; border-radius: 4px; background: #F1EEE7; }
+.press-photos_item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.press-photos_label { text-align: left; }
+
+/* ===== v1.0.88: Newsletter tab as a Substack feed; signup below the tabs (29 Oct 2026) ===== */
+.substack-feed_head { align-items: end; }
+.substack-feed { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1.25rem, 1rem + 1.5vw, 2.5rem); margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
+@media (min-width: 992px) { .substack-feed { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; } }
+.substack-feed_lead { display: flex; flex-direction: column; overflow: hidden; background: #fff; border: 1px solid rgba(15, 42, 74, .08); border-top: 3px solid #D1A933; border-radius: 6px; color: inherit; text-decoration: none; box-shadow: 0 16px 40px -28px rgba(15, 42, 74, .45); transition: box-shadow .25s ease, transform .25s ease; }
+.substack-feed_lead:hover { transform: translateY(-2px); box-shadow: 0 22px 48px -28px rgba(15, 42, 74, .55); }
+.substack-feed_media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0F2A4A; }
+.substack-feed_media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.substack-feed_body { display: flex; flex-direction: column; gap: .6rem; padding: clamp(1.25rem, 1rem + 1vw, 2rem); }
+.substack-feed_tag { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: #85660A; }
+.substack-feed_meta { font-size: .875rem; color: #5B6370; }
+.substack-feed_title { margin: 0; color: #0F2A4A; text-wrap: balance; }
+.substack-feed_sub { font-size: 1rem; line-height: 1.55; color: #3E4757; }
+.substack-feed_read { margin-top: .4rem; align-self: flex-start; }
+.substack-feed_list { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid rgba(15, 42, 74, .12); }
+.substack-feed_list li { margin: 0; border-bottom: 1px solid rgba(15, 42, 74, .12); }
+.substack-feed_item { display: grid; gap: .3rem; padding: 1.1rem .25rem; color: inherit; text-decoration: none; border-radius: 4px; transition: background-color .2s ease; }
+.substack-feed_item:hover { background: rgba(209, 169, 51, .08); }
+.substack-feed_item-title { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: 1.0625rem; line-height: 1.35; color: #0F2A4A; }
+.substack-feed_item:hover .substack-feed_item-title { text-decoration: underline; text-decoration-color: #D1A933; text-underline-offset: 4px; }
+.substack-feed_item .substack-feed_sub { font-size: .9375rem; }
+.substack-feed_more { margin: clamp(1.25rem, 1rem + 1vw, 2rem) 0 0; }
+.substack-feed_lead:focus-visible, .substack-feed_item:focus-visible { outline: 2px solid #85660A; outline-offset: 3px; }
