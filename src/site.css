@@ -2639,3 +2639,30 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .press-feature_actions { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.75rem; margin-top: .5rem; }
 .section_mini-press { padding-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
 .section_mini-press + #insights .padding-section-large { padding-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
+
+/* ===== v1.0.94: Home › Our Team (29 Oct 2026): founder feature, then a card per advisory board and team member ===== */
+.section_about-teaser .image-frame.is-portrait { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(15, 42, 74, .06), 0 28px 56px -32px rgba(15, 42, 74, .55); }
+.section_about-teaser:has(+ .section_home-team) .padding-section-large { padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.section_home-team { padding-bottom: clamp(3.5rem, 3rem + 3vw, 6rem); }
+.home-team { border-top: 1px solid rgba(15, 42, 74, .12); padding-top: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.home-team_head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .75rem 2rem; margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem); }
+.home-team_head .eyebrow { margin: 0 0 .4rem; }
+.home-team_head h2 { margin: 0; color: #0F2A4A; }
+.home-team_grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1rem, .75rem + 1vw, 1.5rem); }
+@media (min-width: 560px) { .home-team_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .home-team_grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.team-card { margin: 0; display: flex; }
+.team-card_link { display: flex; flex-direction: column; width: 100%; overflow: hidden; background: #fff; border: 1px solid rgba(15, 42, 74, .08); border-radius: 8px; color: inherit; text-decoration: none; box-shadow: 0 1px 2px rgba(15, 42, 74, .05), 0 18px 40px -30px rgba(15, 42, 74, .5); transition: transform .25s ease, box-shadow .25s ease; }
+.team-card_link:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(15, 42, 74, .05), 0 26px 50px -30px rgba(15, 42, 74, .6); }
+.team-card_link:focus-visible { outline: 2px solid #85660A; outline-offset: 3px; }
+.team-card_photo { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #E9E5DC; }
+.team-card_photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; transition: transform .5s ease; }
+.team-card_link:hover .team-card_photo img { transform: scale(1.04); }
+.team-card_body { display: flex; flex-direction: column; gap: .35rem; flex: 1 1 auto; padding: 1.15rem 1.25rem 1.3rem; background-image: linear-gradient(90deg, #D1A933, rgba(209, 169, 51, 0)); background-repeat: no-repeat; background-size: 100% 3px; }
+.team-card_role { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: #85660A; }
+.team-card_name { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: 1.125rem; line-height: 1.25; color: #0F2A4A; }
+.team-card_title { font-size: .875rem; line-height: 1.4; color: #5B6370; }
+.team-card_summary { margin-top: .35rem; font-size: .9375rem; line-height: 1.55; color: #3E4757; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.team-card_more { margin-top: auto; padding-top: .75rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .875rem; color: #85660A; }
+.team-card_more::after { content: " \2192"; }
+.team-card_link:hover .team-card_more { text-decoration: underline; text-underline-offset: 3px; }
