@@ -2507,3 +2507,32 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
   .km_view:not([hidden]) { animation: km-view-in .35s ease both; }
   @keyframes km-view-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 }
+
+/* ===== v1.0.87: Why Invictus additions (29 Oct 2026): The challenge, Don's experience, How we deliver ===== */
+.challenge_card::before, .delivery_card::before { content: none; }
+.challenge_lead { max-width: 52rem; margin-top: 1rem; color: #3E4757; }
+@media (min-width: 900px) { .challenge_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.challenge_tag, .delivery_num, .why_experience-tag {
+  margin: 0 0 .6rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .75rem;
+  letter-spacing: .14em; text-transform: uppercase; color: #85660A; }
+.challenge_points, .delivery_questions { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.challenge_points li, .delivery_questions li { position: relative; margin: 0; padding-left: 1.1rem; font-size: .9688rem; line-height: 1.55; color: #3E4757; }
+.challenge_points li::before, .delivery_questions li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: #D1A933; }
+.delivery_questions strong { color: #0F2A4A; font-weight: 600; }
+.challenge_close { max-width: 52rem; margin: clamp(1.5rem, 1rem + 1.5vw, 2.25rem) 0 0; padding-left: 1rem; border-left: 3px solid #D1A933; font-size: 1.0625rem; line-height: 1.6; color: #0F2A4A; }
+
+.delivery_intro { display: grid; gap: 1rem; max-width: 52rem; margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
+.delivery_intro p { margin: 0; color: #3E4757; }
+.delivery_intro .text-size-medium { color: #0F2A4A; }
+@media (min-width: 1200px) { .delivery_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.delivery_num { font-size: .875rem; }
+.delivery_note { margin: 1.5rem 0 0; font-size: .9375rem; font-style: italic; color: #5B6370; }
+.delivery_note .text-link { font-style: normal; }
+
+.why_experience { margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.why_experience-title { margin: 0 0 1.25rem; }
+.why_experience-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: clamp(1rem, .6rem + 1vw, 1.5rem); }
+@media (min-width: 900px) { .why_experience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.why_experience-card { margin: 0; padding: 1.5rem 1.25rem; background: #FBFAF7; border: 1px solid rgba(15, 42, 74, .1); border-left: 3px solid #D1A933; border-radius: 4px; }
+.why_experience-card p:last-child { margin: 0; font-size: .9688rem; line-height: 1.6; color: #3E4757; }
+.why_credentials { margin: 1.5rem 0 0; font-size: .9688rem; color: #5B6370; }
