@@ -2719,3 +2719,18 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .is-sustain .solution_help-text { color: rgba(251, 250, 247, .82); }
 .advisory-more_phases { margin: .5rem 0 .9rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; line-height: 1.7; color: #D1A933; }
 .advisory-more_close { margin-top: auto; padding-top: .9rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: .95rem; line-height: 1.4; color: #FBFAF7; }
+
+/* ===== 31 Oct pre-launch fixes (docs/review-2026-10-31/fixes-log.md) ===== */
+/* F-18 <main> is focusable by script (tabindex=-1) so "Skip to content" lands there; no ring on the container itself. */
+main:focus { outline: 0; }
+/* F-22 Knowledge Management: the photo aligns to the top of the long text column, as the other panels read. */
+@media (min-width: 992px) {
+  #knowledge-management .solution_intro { align-items: start; }
+}
+/* F-23 Home Why Invictus: the "Our values" slide sets every slide's height (they share one grid cell), so on wide
+   screens its title sits to the left like the pillar cards, Trust (the longest value) spans both rows and the other
+   four fill the two columns beside it. The values slide gets ~100 px shorter and the pillar cards hug their content. */
+@media (min-width: 1024px) {
+  .home-why_card:has(.home-why_values) { grid-template-columns: minmax(0, 2fr) minmax(0, 9fr); align-content: normal; align-items: center; gap: clamp(1.5rem, 1rem + 2vw, 3rem); }
+  .home-why_values > .home-why_value:first-child { grid-row: 1 / span 2; }
+}
