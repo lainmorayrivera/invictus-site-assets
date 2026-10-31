@@ -435,7 +435,7 @@ html:has(.section_subnav) { scroll-padding-top: 9.75rem; }
               box-shadow .35s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
 }
 .button:hover { transform: translateY(-2px); box-shadow: 0 .9rem 1.6rem -1rem rgba(8, 24, 44, .55); }
-.button:not(.is-secondary):not(.is-youtube):not(.is-substack):hover {
+.button:not(.is-secondary):not(.is-youtube):not(.is-substack):not(.is-instagram):not(.is-tiktok):hover {
   background-color: color-mix(in srgb, var(--_theme---button-bg) 86%, #000);
   border-color: color-mix(in srgb, var(--_theme---button-bg) 86%, #000);
 }
@@ -1121,7 +1121,7 @@ main section:not([class*="background-color-"]):not(.section_header-media):not(.s
 .why_growth-foot { margin-top: .7rem; color: #D1A933; font-weight: 700; }
 .why_bar { position: relative; display: flex; align-items: center; gap: .6rem; margin-top: .65rem; }
 .why_bar-fill { height: .9rem; border-radius: 2px; background: rgba(251, 250, 247, .35); transform-origin: left; }
-.why_bar.is-before .why_bar-fill { width: 10%; }
+.why_bar.is-before .why_bar-fill { width: 7%; }
 .why_bar.is-after .why_bar-fill { width: 70%; background: linear-gradient(90deg, #B8912A, #D1A933); }
 .why_bar-value { font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 700; font-size: clamp(.95rem, .7rem + .5vw, 1.25rem); color: #FBFAF7; white-space: nowrap; }
 .js-motion .section_why .why_bar-fill { transform: scaleX(0); transition: transform 1.1s cubic-bezier(.2, .7, .2, 1) .3s; }
@@ -2468,6 +2468,15 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .button[disabled], input.button[disabled], input[type="submit"][disabled] { opacity: .55; cursor: progress; }
 
 /* ===== v1.0.85: book trailer pop-up player (29 Oct 2026) ===== */
+.section_trailer { background: #FBFAF7; }
+.section_trailer + .section_intro > .padding-global > .container-large > .padding-section-medium { padding-top: 0; }
+.section_trailer .eyebrow { margin-bottom: 1rem; }
+.trailer_embed { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius--small, 6px); background: #0F2A4A; }
+.trailer_embed::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: #D1A933; pointer-events: none; }
+.trailer_embed.is-playing::after { display: none; }
+.trailer_poster { display: block; width: 100%; height: 100%; object-fit: cover; }
+.trailer_embed .trailer_video { position: absolute; inset: 0; border: 0; }
+.trailer_frame .trailer_video { border: 0; }
 .trailer_button { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; }
 .trailer_button svg { width: .875rem; height: .875rem; flex: none; }
 .trailer_dialog { width: min(1100px, 92vw); max-width: none; padding: 0; border: 0; background: transparent; overflow: visible; }
@@ -2666,3 +2675,19 @@ html.panels-pending main > :has(> .section_cta-billboard) { display: block; }
 .team-card_more { margin-top: auto; padding-top: .75rem; font-family: var(--font--heading, Montserrat, sans-serif); font-weight: 600; font-size: .875rem; color: #85660A; }
 .team-card_more::after { content: " \2192"; }
 .team-card_link:hover .team-card_more { text-decoration: underline; text-underline-offset: 3px; }
+
+/* I-02 (31 Oct 2026): Instagram and TikTok buttons in the Media & Insights closing CTA, dressed by site.min.js like the
+   YouTube button. Instagram's gradient is deepened so white text passes WCAG AA; TikTok is near-black with its
+   cyan and pink offset on the logo, as in the Home follow strip. */
+.button.is-instagram, .button.is-tiktok { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; color: #FFFFFF; }
+.button.is-instagram { background-color: #C13584; background-image: linear-gradient(45deg, #D62976 0%, #B02F8E 45%, #7A35B0 100%); border-color: #B02F8E; }
+.button.is-instagram:hover { background-image: linear-gradient(45deg, #BA2468 0%, #962779 45%, #66299A 100%); border-color: #962779; color: #FFFFFF; }
+.button.is-tiktok { background-color: #010101; border-color: #010101; }
+.button.is-tiktok:hover { background-color: #1F1F1F; border-color: #1F1F1F; color: #FFFFFF; }
+.button.is-tiktok svg { filter: drop-shadow(1.2px 1px 0 #FE2C55) drop-shadow(-1px -.8px 0 #25F4EE); }
+.button.is-instagram svg, .button.is-tiktok svg { width: 1.2em; height: 1.2em; flex: none; margin-block: -.2em; }
+.section_cta-billboard .button.is-tiktok { border-color: rgba(255, 255, 255, .55); }
+
+/* S-13 / S-14 (31 Oct 2026): Knowledge Management is six offering cards and one closing button. The old ladder, the
+   curriculum groups and the "Show all" toggle are gone; their rules above stay unused until Don restores the content. */
+.km_offerings + .offer_cta { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
