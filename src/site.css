@@ -2734,3 +2734,47 @@ main:focus { outline: 0; }
   .home-why_card:has(.home-why_values) { grid-template-columns: minmax(0, 2fr) minmax(0, 9fr); align-content: normal; align-items: center; gap: clamp(1.5rem, 1rem + 2vw, 3rem); }
   .home-why_values > .home-why_value:first-child { grid-row: 1 / span 2; }
 }
+
+/* ===== 3 Nov 2026 (Don's texts) ===== */
+/* Book Launch: the introduction text above Mackenzie's video, like the trailer's label above its player. */
+.intro_layout { grid-template-columns: minmax(0, 1fr); gap: clamp(1rem, .75rem + 1vw, 1.75rem); }
+.intro_copy { max-width: 46rem; }
+
+/* Book reviews: the endorsement carousel with no photo; a readers' card is the quote panel alone. */
+.endorse_slide.is-review { grid-template-columns: minmax(0, 1fr); }
+.endorse_slide.is-review .endorse_panel { border-radius: 4px; }
+.review_stars { margin: 0 0 .75rem; color: #D1A933; font-size: 1.125rem; letter-spacing: .15em; line-height: 1; }
+.reviews_more { margin: clamp(1.25rem, 1rem + 1vw, 2rem) 0 0; }
+.section_reviews .padding-section-large { padding-top: 0; }
+
+/* Solutions › Finance Process & Performance Transformation: the body sentence between the tagline and the tags. */
+.advisory-more_body { margin: 0 0 .9rem; font-size: .9375rem; line-height: 1.55; color: #44505F; }
+.advisory-more_tag + .advisory-more_body { margin-top: .9rem; }
+@media (min-width: 700px) { .advisory-more_tag + .advisory-more_body { margin-top: 0; } }
+
+/* Book Launch: Red Carpet and Photos From the Event galleries, with a lightbox. */
+.section_gallery { background: #FBFAF7; }
+.section_gallery .padding-section-medium { padding-top: 0; }
+.gallery_grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.5rem, .25rem + 1vw, 1rem); margin: 0; padding: 0; list-style: none; }
+.gallery_grid.is-tall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.gallery_item { margin: 0; }
+.gallery_open { display: block; width: 100%; padding: 0; border: 0; background: #0F2A4A; border-radius: var(--radius--small, 6px); overflow: hidden; cursor: zoom-in; aspect-ratio: 3 / 2; }
+.gallery_grid.is-tall .gallery_open { aspect-ratio: 2 / 3; }
+.gallery_open img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2, .7, .2, 1), opacity .3s; }
+.gallery_open:hover img { transform: scale(1.04); }
+.gallery_open:focus-visible { outline: 3px solid #D1A933; outline-offset: 3px; }
+@media (max-width: 991px) { .gallery_grid.is-tall { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .gallery_grid, .gallery_grid.is-tall { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gallery_dialog { width: min(1200px, 94vw); max-width: none; max-height: 94vh; padding: 0; border: 0; background: transparent; overflow: visible; }
+.gallery_dialog::backdrop { background: rgba(8, 24, 44, .9); }
+.gallery_figure { margin: 0; text-align: center; }
+.gallery_full { display: block; max-width: 100%; max-height: 82vh; margin: 0 auto; border-radius: 6px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .6); }
+.gallery_caption { margin-top: .75rem; color: #E8ECF2; font-size: .9375rem; }
+.gallery_nav, .gallery_close { position: absolute; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid rgba(255, 255, 255, .5); border-radius: 50%; background: rgba(8, 24, 44, .55); color: #FFFFFF; font-size: 1.75rem; line-height: 1; cursor: pointer; }
+.gallery_nav { top: calc(41vh - 1.375rem); }
+.gallery_nav.is-prev { left: .75rem; }
+.gallery_nav.is-next { right: .75rem; }
+.gallery_close { top: -3.25rem; right: 0; font-size: 1.5rem; }
+.gallery_nav:hover, .gallery_close:hover { border-color: #D1A933; color: #D1A933; }
+.gallery_nav:focus-visible, .gallery_close:focus-visible { outline: 2px solid #D1A933; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .gallery_open img { transition: none; } .gallery_open:hover img { transform: none; } }
