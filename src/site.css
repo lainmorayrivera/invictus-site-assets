@@ -2801,3 +2801,9 @@ main:focus { outline: 0; }
 
 /* Advisor bios: a bold heading with its sentences beneath (K.D. and Mangesh, 5 Nov 2026). */
 .advisors_bio-p strong { color: #0F2A4A; }
+
+/* Advisory Board & Team: six people no longer fit one row (Maurice was cut off), so from tablet up the tabs wrap and
+   every name shows. Phones keep the swipeable row. */
+@media (min-width: 768px) {
+  .advisors-rotator .solutions-rotator_tabs, .advisors-rotator .solutions-rotator_tabs.has-more { flex-wrap: wrap; overflow-x: visible; row-gap: .25rem; -webkit-mask-image: none; mask-image: none; }
+}
