@@ -2755,16 +2755,24 @@ main:focus { outline: 0; }
 /* Book Launch: Red Carpet and Photos From the Event galleries, with a lightbox. */
 .section_gallery { background: #FBFAF7; }
 .section_gallery .padding-section-medium { padding-top: 0; }
-.gallery_grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.5rem, .25rem + 1vw, 1rem); margin: 0; padding: 0; list-style: none; }
-.gallery_grid.is-tall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-.gallery_item { margin: 0; }
+.gallery_grid { --gallery-gap: clamp(.5rem, .25rem + 1vw, 1rem); --gallery-show: 3; display: flex; gap: var(--gallery-gap); margin: 0; padding: 0; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.gallery_grid::-webkit-scrollbar { display: none; }
+.gallery_grid:focus-visible { outline: 3px solid #D1A933; outline-offset: 3px; }
+.gallery_grid.is-tall { --gallery-show: 5; }
+.gallery_item { flex: 0 0 calc((100% - (var(--gallery-show) - 1) * var(--gallery-gap)) / var(--gallery-show)); margin: 0; scroll-snap-align: start; }
 .gallery_open { display: block; width: 100%; padding: 0; border: 0; background: #0F2A4A; border-radius: var(--radius--small, 6px); overflow: hidden; cursor: zoom-in; aspect-ratio: 3 / 2; }
 .gallery_grid.is-tall .gallery_open { aspect-ratio: 2 / 3; }
 .gallery_open img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2, .7, .2, 1), opacity .3s; }
 .gallery_open:hover img { transform: scale(1.04); }
-.gallery_open:focus-visible { outline: 3px solid #D1A933; outline-offset: 3px; }
-@media (max-width: 991px) { .gallery_grid.is-tall { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 767px) { .gallery_grid, .gallery_grid.is-tall { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gallery_open:focus-visible { outline: 3px solid #D1A933; outline-offset: -3px; }
+.gallery_controls { display: flex; align-items: center; justify-content: flex-end; gap: .5rem; margin-top: 1rem; }
+.gallery_count { margin: 0 auto 0 0; color: #44505F; font-size: .9375rem; }
+.gallery_page { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid rgba(15, 42, 74, .35); border-radius: 50%; background: transparent; color: #0F2A4A; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.gallery_page:hover:not(:disabled) { border-color: #D1A933; color: #85660A; }
+.gallery_page:focus-visible { outline: 3px solid #D1A933; outline-offset: 2px; }
+.gallery_page:disabled { opacity: .35; cursor: default; }
+@media (max-width: 991px) { .gallery_grid { --gallery-show: 2; } .gallery_grid.is-tall { --gallery-show: 3; } }
+@media (max-width: 767px) { .gallery_grid { --gallery-show: 1; } .gallery_grid.is-tall { --gallery-show: 2; } }
 .gallery_dialog { width: min(1200px, 94vw); max-width: none; max-height: 94vh; padding: 0; border: 0; background: transparent; overflow: visible; }
 .gallery_dialog::backdrop { background: rgba(8, 24, 44, .9); }
 .gallery_figure { margin: 0; text-align: center; }
@@ -2778,3 +2786,18 @@ main:focus { outline: 0; }
 .gallery_nav:hover, .gallery_close:hover { border-color: #D1A933; color: #D1A933; }
 .gallery_nav:focus-visible, .gallery_close:focus-visible { outline: 2px solid #D1A933; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .gallery_open img { transition: none; } .gallery_open:hover img { transform: none; } }
+
+/* Book reviews: Dr. Mishra's review as a featured card above the carousel (5 Nov 2026, Don). Direct quotes only. */
+.review_feature { margin-bottom: clamp(1.5rem, 1rem + 2vw, 3rem); padding: clamp(1.5rem, 1rem + 3vw, 3.5rem); border: 1px solid rgba(15, 42, 74, .08); border-radius: 4px; background-color: #FBFAF7; background-image: linear-gradient(rgba(209, 169, 51, .15), #D1A933 25% 75%, rgba(209, 169, 51, .15)); background-repeat: no-repeat; background-size: 2px 100%; box-shadow: 0 1.5rem 3rem -1.5rem rgba(8, 24, 44, .2); }
+.review_feature-title { margin: 0 0 1rem; font-family: var(--_type---font-heading, Montserrat, sans-serif); font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); font-weight: 600; line-height: 1.25; color: #0F2A4A; }
+.review_feature-lede { margin: 0 0 1rem; font-family: var(--_type---font-heading, Montserrat, sans-serif); font-size: clamp(1.0625rem, 1rem + .4vw, 1.25rem); font-weight: 500; line-height: 1.45; color: #0F2A4A; }
+.review_feature-text { margin: 0 0 1.25rem; color: #1E2531; line-height: 1.6; }
+.review_feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 1rem + 2vw, 3rem); margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); padding-top: clamp(1.25rem, 1rem + 1vw, 2rem); border-top: 1px solid rgba(15, 42, 74, .12); }
+.review_feature-head { margin: 0 0 .75rem; font-family: var(--_type---font-heading, Montserrat, sans-serif); font-size: .8125rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #85660A; }
+.review_feature-list { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; color: #1E2531; line-height: 1.6; }
+.review_feature-list strong { color: #0F2A4A; }
+.review_feature-close { margin: clamp(1.25rem, 1rem + 1vw, 2rem) 0 1.25rem; padding-top: clamp(1.25rem, 1rem + 1vw, 2rem); border-top: 1px solid rgba(15, 42, 74, .12); font-family: var(--_type---font-heading, Montserrat, sans-serif); font-size: clamp(1.0625rem, 1rem + .4vw, 1.25rem); font-weight: 500; line-height: 1.45; color: #0F2A4A; }
+@media (max-width: 767px) { .review_feature-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Advisor bios: a bold heading with its sentences beneath (K.D. and Mangesh, 5 Nov 2026). */
+.advisors_bio-p strong { color: #0F2A4A; }
